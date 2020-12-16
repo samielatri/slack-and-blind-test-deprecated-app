@@ -41,8 +41,8 @@ public class User {
         Date date = new Date();
         Scanner buffer = new Scanner(System.in);
         msg = buffer.next();
-        addCollabteur(user);
-        return new Message(this, user, msg,date);
+        //addCollabteur(user);
+        return new Message(this, user, msg,date, this.username);
     }
     public Channel createCh(){
         String nom;
@@ -103,7 +103,7 @@ public class User {
                 Message m=sentMessages.get(idmsg);
                 System.out.println("Edit your message here: ");
                 String edit=buffer.next();
-                m= new Message(edit,m.getCreatedAt(),new Date());
+                m= new Message(edit,m.getCreatedAt(),new Date(), m.username);
                 System.out.println("this message has been deleted successfully");
             }else{
                 System.out.println("Message not found");
@@ -116,7 +116,7 @@ public class User {
         friendList.add(user);
     }
 
-    public void inviterFirend(User user){
+    public void inviterFriend(User user){
         if (joinedChannels.contains(user)) {
             System.out.println(this.toString() + " envoie une demande d'amis à " + user.toString() + " dans le serveur " + joinedChannels.toString());
         } else {
