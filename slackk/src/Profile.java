@@ -72,7 +72,6 @@ public class Profile {
 
     /* accessors */
 
-
     // getters
     public String getActualWorkPosition() {
         return actualWorkPosition;
