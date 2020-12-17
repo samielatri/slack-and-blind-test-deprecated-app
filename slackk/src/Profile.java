@@ -11,6 +11,9 @@ public class Profile {
     String profilePicture; // profile picture in a specific workspace
 
     /* constructor */
+
+    private Profile(){}
+
     public Profile(User user, Workspace workspace){
         this.user = user;
         this.workspace = workspace;
@@ -29,6 +32,7 @@ public class Profile {
 
 
     /* toString */
+    @Override
     public String toString(){
         return "\nProfile de l'utilisateur " + user.toString() + " dans l'espace de travail" + workspace.toString() + "\n"
                 + "\t"  + "Status : " + currentStatus

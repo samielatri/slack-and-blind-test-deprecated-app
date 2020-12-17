@@ -3,20 +3,23 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class User {
+    private ArrayList<Profile> profiles; // list of all profiles related to specific workspaces
     private ArrayList<Channel> createdChannels; // list of all channels created by the user
     private ArrayList<Channel> joinedChannels; // list of all channels joined by the user
     private ArrayList<Message> sentMessages; // list of all messages sent by the user
-    private ArrayList<User> friendList; // COLLABORATEURS
-    private String username;
-    private String password;
-    private boolean isAdmin;
+    private ArrayList<User> friendList; // list of all collaborators
+    private String mailAddress; // mail address of the user
+    private String username;  // username of the user
+    private String password; // password of the user
 
-    public User(String username, String password){
-        this.username=username;
+    public User(String mailAddress, String username, String password){
+        this.mailAddress = mailAddress;
+        this.username = username;
         this.password = password;
-        this.createdChannels=new ArrayList<>();
-        this.joinedChannels= new ArrayList<>();
-        this.sentMessages=new ArrayList<>();
+        this.createdChannels = new ArrayList<Channel>();
+        this.joinedChannels =  new ArrayList<Channel>();
+        this.sentMessages = new ArrayList<Message>();
+        this.profiles = new ArrayList<Profile>();
     }
 
     public String getUsername() {
@@ -30,12 +33,7 @@ public class User {
     public ArrayList<Channel> getCreatedChannels() {
         return createdChannels;
     }
-// workspace
-    // liste collabateur
-        //sin
-    // liste user
-        //sin
-            //
+
     public Message sendMsg(){
         String msg;
         Date date = new Date();
@@ -139,5 +137,12 @@ public class User {
         return "Bienvenue" + username;
     }
 
+    /* Accessors */
+    public ArrayList<Profile> getProfiles() {
+        return profiles;
+    }
 
+    private void setProfiles(ArrayList<Profile> profiles) {
+        this.profiles = profiles;
+    }
 }
