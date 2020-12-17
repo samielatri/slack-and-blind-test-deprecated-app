@@ -9,6 +9,7 @@ public class Workspace {
     private String workspaceName;
     private ArrayList<User> workspaceUsers; // workspace users
     private ArrayList<User> workspaceAdmins ; // workspace admins
+    private ArrayList<User> bannedUsers; //users banned from workspace
     private ArrayList<WorkspaceChannel> workspaceChannels;
 
     public Workspace(String workspaceName){
@@ -25,6 +26,23 @@ public class Workspace {
             }
         }
     }
+
+    public boolean isBannedUser(User user){
+        for (User u: bannedUsers){
+            if (u==user){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void banFromWorkspace(User user){
+        if (isBannedUser(user)){
+            deleteUserFromWorkspace(user);
+        }
+    }
+
+
 
     public String getWorkspaceName(){
         return workspaceName;

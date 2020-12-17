@@ -72,6 +72,6 @@ public class SlackSystem {
     }
 
     public void deleteWorkspace (Workspace workspace){
-        
+
     }
 }
