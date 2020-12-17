@@ -29,6 +29,16 @@ public class Profile {
 
 
     /* toString */
+    public String toString(){
+        return "\nProfile de l'utilisateur " + user.toString() + " dans l'espace de travail" + workspace.toString() + "\n"
+                + "\t"  + "Status : " + currentStatus
+                        + "Nom complet : " + completeName
+                        + "Nom montré : " + shownName
+                        + "Poste actuel : " + actualWorkPosition
+                        + "Numéro de téléphone : " + phoneNumber
+                        + "fuseau horaire : " + timezone
+                + "\n";
+    }
 
     /* accessors */
 
