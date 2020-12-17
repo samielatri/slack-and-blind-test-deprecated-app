@@ -157,6 +157,30 @@ public class User {
         return new Message(this, msg, canal);
     }
 
+    /** send message in the channel
+     * method added by Nahidath
+     * @param wc
+     * @return
+     */
+    public Message sendMsgChannel(WorkspaceChannel wc){
+        if(joinedWorkspaceChannels.contains(wc)){
+            return sendMsg(this);
+        }
+    }
+
+    /** send message to the collaborator
+     *  methode added by Nahidath
+     * @param collab
+     * @return
+     */
+    public Message sendMsgCollaborator(User collab){
+        if(collaborators.contains(collab)){
+            return sendMsg(this);
+        }
+    }
+
+
+
     /***
      *
      * @return

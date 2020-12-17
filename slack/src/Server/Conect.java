@@ -16,10 +16,10 @@ public class Conect {
         Connection conn = null;
         try {
             conn= DriverManager.getConnection(url, user, pwd);
-            System.out.println("Connexion etablie");
+            System.out.println("Connection established");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("erreur");
+            System.out.println("Error cannot connect to database...");
             System.exit(0);
         }
     }
