@@ -92,7 +92,7 @@ public class Workspace {
      */
     public void banFromWorkspace(User user){
         if (isBannedUser(user)){
-            System.out.println(user.toString() + " est banni !");
+            System.out.println(user.toString() + " is banned !");
             deleteUserFromWorkspace(user);
         }
     }
