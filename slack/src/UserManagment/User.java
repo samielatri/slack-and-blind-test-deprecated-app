@@ -116,7 +116,16 @@ public class User {
 
 
     /* Methods */
-
+    /**
+     *
+     */
+    public User addCollaborator(User user){
+        if (!collaborators.contains(user)){
+            collaborators.add(user);
+            return user;
+        }
+        return null;
+    }
 
     /***
      *
