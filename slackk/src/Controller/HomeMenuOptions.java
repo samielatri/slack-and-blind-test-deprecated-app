@@ -1,3 +1,5 @@
+package Controller;
+
 public enum HomeMenuOptions {
     REGISTRATION(1, "S'inscrire"),
     SIGNIN(2, "Se connecter");
@@ -10,6 +12,8 @@ public enum HomeMenuOptions {
         this.optionNumber = optionNumber ;
         this.optionName = optionName ;
     }
+
+    /* accessors */
 
     // getter for optionNumber
     public int getOptionNumber(){
@@ -30,6 +34,8 @@ public enum HomeMenuOptions {
     private void setOptionName(String optionName){
         this.optionName = optionName ;
     }
+
+    /* to String */
 
     // return string describing the menu option following this pattern : [optionNumber] optionName
     public String toString(){

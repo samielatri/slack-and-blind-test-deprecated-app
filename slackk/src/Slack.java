@@ -1,5 +1,7 @@
+import Controller.SlackSystem;
+
 public class Slack {
     public static void main(String[] args) {
-        //toutes les opérations
+       SlackSystem slackSystem = new SlackSystem();
     }
 }
