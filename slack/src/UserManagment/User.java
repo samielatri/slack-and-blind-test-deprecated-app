@@ -5,6 +5,7 @@ import Group.Message;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class User {
@@ -113,8 +114,28 @@ public class User {
         this.joinedWorkspaceChannels = joinedWorkspaceChannels;
     }
 
+
     /* Methods */
 
+
+    /***
+     *
+     */
+    public boolean equals(Object o) {
+        // self check
+        if (this == o)
+            return true;
+        // null check
+        if (o == null)
+            return false;
+        // type check and cast
+        if (getClass() != o.getClass())
+            return false;
+        User user = (User) o;
+        // field comparison
+        return  user.equals(user.username)
+                && user.equals(user.password);
+    }
     /***
      *
      * @param canal

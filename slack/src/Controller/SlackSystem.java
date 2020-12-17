@@ -35,10 +35,29 @@ public class SlackSystem {
         }
     }
 
+    public User deleteUser(User userToDelete){
+        userToDelete = exists(userToDelete);
+
+        if (userToDelete != null){
+            users.remove(userToDelete);
+        }
+
+        return userToDelete;
+    }
+
+    public User exists(User searchedUser){
+        for(User user : users){
+            if(user.equals(searchedUser)){
+                return user;
+            }
+        }
+        return null;
+    }
+
     /**
      *
      */
-    public void registragtion(){
+    public void register(String name, String password){
 
     }
     /**

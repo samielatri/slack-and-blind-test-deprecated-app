@@ -49,11 +49,11 @@ public class Profile {
         this(user, workspace);
     }
 
-    @Override
+
     /***
      *
      */
-    public boolean equals(Object o) {
+    public boolean equals(Profile o) {
         // self check
         if (this == o)
             return true;
