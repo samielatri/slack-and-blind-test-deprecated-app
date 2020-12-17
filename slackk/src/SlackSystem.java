@@ -97,10 +97,14 @@ public class SlackSystem {
         connectedUser.getCollaborators().indexOf(input);
     }
 
+    /**
+     *
+     * @return
+     */
     public String workspacesToString(){
         String workspacesString = "";
-        for (Workspace wsp : workspaces) {
-            workspacesString += wsp.getWorkspaceName();
+        for (Workspace workspace : workspaces) {
+            workspacesString += workspace.getWorkspaceName();
         }
         return workspacesString;
     }
