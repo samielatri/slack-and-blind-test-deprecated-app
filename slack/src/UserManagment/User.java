@@ -116,7 +116,16 @@ public class User {
 
 
     /* Methods */
-
+    /**
+     *
+     */
+    public User addCollaborator(User user){
+        if (!collaborators.contains(user)){
+            collaborators.add(user);
+            return user;
+        }
+        return null;
+    }
 
     /***
      *
@@ -166,6 +175,7 @@ public class User {
         if(joinedWorkspaceChannels.contains(wc)){
             return sendMsg(this);
         }
+        return null;
     }
 
     /** send message to the collaborator
@@ -177,6 +187,7 @@ public class User {
         if(collaborators.contains(collab)){
             return sendMsg(this);
         }
+        return new Message(null, null, null);
     }
 
 
