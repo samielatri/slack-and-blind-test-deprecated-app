@@ -1,3 +1,4 @@
+import Group.Workspace;
 import UserManagment.User;
 
 import java.util.ArrayList;
@@ -5,12 +6,14 @@ import java.util.Scanner;
 
 public class SlackSystem {
     private ArrayList<User> users;
+    private ArrayList<Workspace> workspaces;
     private User connectedUser;
+
 
     /**
      * Constructor
      */
-    public SlackSystem(){
+    public SlackSystem() {
         users = new ArrayList<User>();
         connectedUser = null;
     }
@@ -21,11 +24,11 @@ public class SlackSystem {
      * @param password
      * @return
      */
-    public void connection(String username, String password) {
-        for(User u : users) {
-            if (u.getUsername().equals(username) && u.getPassword().equals(password)){
+    public void connection (String username, String password){
+        for (User u : users) {
+            if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
                 connectedUser = u;
-                return ;
+                return;
             }
         }
     }
@@ -34,7 +37,7 @@ public class SlackSystem {
      * getUsers()
      * @return
      */
-    public ArrayList<User> getUsers() {
+    public ArrayList<User> getUsers () {
         return users;
     }
 
@@ -42,7 +45,7 @@ public class SlackSystem {
      * setConnectedUser
      * @param connectedUser
      */
-    public void setConnectedUser(User connectedUser) {
+    public void setConnectedUser (User connectedUser){
         this.connectedUser = connectedUser;
     }
 
@@ -50,7 +53,7 @@ public class SlackSystem {
      * getConnectedUser
      * @return
      */
-    public User getConnectedUser() {
+    public User getConnectedUser () {
         return connectedUser;
     }
 
@@ -92,5 +95,17 @@ public class SlackSystem {
             input = buffer.nextInt();
         } while (input > 0 && input < connectedUser.getNumberOfCollaborators());
         connectedUser.getCollaborators().indexOf(input);
+    }
+
+    public String workspacesToString(){
+        String workspacesString = "";
+        for (Workspace wsp : workspaces) {
+            workspacesString += wsp.getWorkspaceName();
+        }
+        return workspacesString;
+    }
+
+    public void deleteWorkspace (Workspace workspace){
+
     }
 }

@@ -6,16 +6,47 @@ import java.util.ArrayList;
 
 public class Workspace {
 
+    private String workspaceName;
     private ArrayList<User> workspaceUsers; // workspace users
     private ArrayList<User> workspaceAdmins ; // workspace admins
+    private ArrayList<User> bannedUsers; //users banned from workspace
     private ArrayList<WorkspaceChannel> workspaceChannels;
 
-    public Workspace(){
+    public Workspace(String workspaceName){
         workspaceUsers = new ArrayList<User>();
         workspaceAdmins = new ArrayList<User>();
         workspaceChannels = new ArrayList<WorkspaceChannel>();
+        this.workspaceName = workspaceName;
     }
 
+    public void deleteUserFromWorkspace(User user){
+        for (User u: workspaceUsers){
+            if (u==user){
+                workspaceUsers.remove(user);
+            }
+        }
+    }
+
+    public boolean isBannedUser(User user){
+        for (User u: bannedUsers){
+            if (u==user){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void banFromWorkspace(User user){
+        if (isBannedUser(user)){
+            deleteUserFromWorkspace(user);
+        }
+    }
+
+
+
+    public String getWorkspaceName(){
+        return workspaceName;
+    }
     public ArrayList<User> getWorkspaceUsers() {
         return workspaceUsers;
     }
