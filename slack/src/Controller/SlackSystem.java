@@ -12,20 +12,12 @@ public class SlackSystem {
     private User connectedUser;
 
 
-    /**
-     * Constructor
-     */
+
     public SlackSystem() {
         users = new ArrayList<User>();
         connectedUser = null;
     }
 
-    /**
-     * Connection
-     * @param username
-     * @param password
-     * @return
-     */
     public void connection (String username, String password){
         for (User u : users) {
             if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
@@ -54,9 +46,7 @@ public class SlackSystem {
         return null;
     }
 
-    /**
-     *
-     */
+
     public User register(String email, String password){
         User user = new User(email, email, password);
         if (exists(user) == null){
@@ -66,34 +56,20 @@ public class SlackSystem {
         return null;
     }
 
-    /**
-     * getUsers()
-     * @return
-     */
+
     public ArrayList<User> getUsers () {
         return users;
     }
 
-    /**
-     * setConnectedUser
-     * @param connectedUser
-     */
     public void setConnectedUser (User connectedUser){
         this.connectedUser = connectedUser;
     }
 
-    /**
-     * getConnectedUser
-     * @return
-     */
+
     public User getConnectedUser () {
         return connectedUser;
     }
 
-
-    /**
-     * checkProfile
-     */
     public void checkProfile(){
         if(connectedUser != null) {
             System.out.println(connectedUser.toString());
@@ -102,24 +78,14 @@ public class SlackSystem {
         }
     }
 
-    /**
-     *
-     */
     private void connectionRequired() {
         System.out.println("Connection requise !");
     }
 
-    /**
-     *
-     */
     public void printAllCollaborators(){
         System.out.println(connectedUser.collaboratorsToString());
     }
 
-
-    /***
-     *
-     */
     public void checkCollaboratorProfile(){
         printAllCollaborators();
         int input = -1;
@@ -130,10 +96,6 @@ public class SlackSystem {
         connectedUser.getCollaborators().indexOf(input);
     }
 
-    /**
-     *
-     * @return
-     */
     public String workspacesToString(){
         String workspacesString = "";
         for (Workspace workspace : workspaces) {
