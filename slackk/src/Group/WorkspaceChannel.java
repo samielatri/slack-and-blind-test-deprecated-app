@@ -12,8 +12,8 @@ public class WorkspaceChannel {
     private User adminWorkspace;
 
     public WorkspaceChannel(String nomCh, User adminCh){
-        this.nomCh=nomCh;
-        this.adminCh=adminCh;
+        this.nomCh = nomCh;
+        this.adminCh = adminCh;
     }
 
     public void deleteMessageChannel(String idMessage){
