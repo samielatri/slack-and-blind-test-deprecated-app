@@ -1,4 +1,5 @@
 import Controller.SlackSystem;
+import Controller.ClavierInput;
 
 import java.util.Scanner;
 
@@ -16,8 +17,7 @@ public class Slack {
                 System.out.println("2- Sign up");
                 System.out.println("0- Exit");
 
-                buff = new Scanner(System.in);
-                choice = buff.nextInt();
+                choice = readInt();
                 switch(choice){
                     case 1:
                         //slackSystem.connection();
@@ -45,8 +45,7 @@ public class Slack {
                 System.out.println("0- Exit");
 
 
-                buff = new Scanner(System.in);
-                choice = buff.nextInt();
+                choice = readInt();
 
                 switch (choice) {
                     case 1:
@@ -68,8 +67,7 @@ public class Slack {
                         System.out.println("8- Delete a collaborator");
                         System.out.println("9- Visit a collaborator's profile");
                         System.out.println("0- Exit workspace");
-                        buff = new Scanner(System.in);
-                        wsChoice = buff.nextInt();
+                        wsChoice = readInt();
                         switch (wsChoice) {
                             case 1:
                                 break;
@@ -82,8 +80,7 @@ public class Slack {
                                 System.out.println("2- Edit a message in the channel");
                                 System.out.println("3- Delete a message from the channel");
                                 System.out.println("0- Exit the channel");
-                                buff = new Scanner(System.in);
-                                chChoice = buff.nextInt();
+                                chChoice = readInt();
                                 switch (chChoice) {
                                     case 1:
                                         break;
@@ -126,6 +123,6 @@ public class Slack {
 
                 }
             }
-        }while(globalChoice==0);
+        }while(globalChoice == 0);
     }
 }
