@@ -32,7 +32,7 @@ public class User {
 
 
     public User(String mailAddress, String password) {
-        super(mailAddress, mailAddress, password); // mailAdress to modify with static id name
+        this(mailAddress, mailAddress, password); // mailAdress to modify with static id name
     }
 
     /* accessors */
