@@ -11,12 +11,14 @@ public class Workspace {
     private ArrayList<User> workspaceAdmins ; // workspace admins
     private ArrayList<User> bannedUsers; //users banned from workspace
     private ArrayList<WorkspaceChannel> workspaceChannels;
+    private static int idWs = 0;
 
     public Workspace(String workspaceName){
         workspaceUsers = new ArrayList<User>();
         workspaceAdmins = new ArrayList<User>();
         workspaceChannels = new ArrayList<WorkspaceChannel>();
         this.workspaceName = workspaceName;
+        idWs++;
     }
 
     public void addUserToWorkspace(User user){

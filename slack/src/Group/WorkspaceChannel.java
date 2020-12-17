@@ -5,32 +5,30 @@ import UserManagment.User;
 import java.util.ArrayList;
 
 public class WorkspaceChannel {
-    private ArrayList <Message> msg;
-    private String nomCh;
+    private ArrayList <Message> conversation;
+    private String nameCh;
+    private ArrayList<User> adminCh;
 
-    private User adminCh;
-    private User adminWorkspace;
-
-    public WorkspaceChannel(String nomCh, User adminCh){
-        this.nomCh = nomCh;
+    public WorkspaceChannel(String nameCh, ArrayList<User> adminCh){
+        this.nameCh = nameCh;
         this.adminCh = adminCh;
     }
 
     public void deleteMessageChannel(String idMessage){
-        for (Message messageChannel : msg){
+        for (Message messageChannel : conversation){
             if (messageChannel.getIdMessage()==idMessage) {
-                msg.remove(messageChannel);
+                conversation.remove(messageChannel);
             }
         }
     }
 
     @Override
     public String toString() {
-        return "Group.Channel " + nomCh;
+        return "Group.Channel " + nameCh;
     }
 
     public String getChannelName() {
-        return nomCh;
+        return nameCh;
     }
     public User getAdminChannel(){
         return adminCh;

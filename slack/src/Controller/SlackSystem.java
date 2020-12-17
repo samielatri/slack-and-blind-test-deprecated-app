@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package Controller;
 
 import Group.Workspace;
@@ -141,7 +140,6 @@ public class SlackSystem {
 
     }
 }
-=======
 package Controller;
 
 import Group.Workspace;
