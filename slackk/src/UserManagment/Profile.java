@@ -1,3 +1,7 @@
+package UserManagment;
+
+import Group.Workspace;
+
 import java.util.Objects;
 
 public class Profile {
@@ -14,8 +18,16 @@ public class Profile {
 
     /* constructor */
 
+    /**
+     *
+     */
     private Profile(){}
 
+    /**
+     *
+     * @param user
+     * @param workspace
+     */
     public Profile(User user, Workspace workspace){
         this.user = user;
         this.workspace = workspace;
@@ -24,15 +36,23 @@ public class Profile {
         this.shownName="";
         this.actualWorkPosition="";
         this.phoneNumber = "";
-        this.timezone="";
-        this.profilePicture="";
+        this.timezone = "";
+        this.profilePicture = "";
     }
 
+    /**
+     *
+     * @param workspace
+     * @param user
+     */
     public Profile(Workspace workspace, User user){
         this(user, workspace);
     }
 
     @Override
+    /***
+     *
+     */
     public boolean equals(Object o) {
         // self check
         if (this == o)
@@ -59,8 +79,11 @@ public class Profile {
 
     /* toString */
     @Override
+    /***
+     *
+     */
     public String toString(){
-        return "\nProfile de l'utilisateur " + user.toString() + " dans l'espace de travail" + workspace.toString() + "\n"
+        return "\nUserManagment.Profile de l'utilisateur " + user.toString() + " dans l'espace de travail" + workspace.toString() + "\n"
                 + "\t"  + "Status : " + currentStatus
                         + "Nom complet : " + completeName
                         + "Nom montré : " + shownName
@@ -73,75 +96,134 @@ public class Profile {
     /* accessors */
 
     // getters
+
+    /**
+     *
+     * @return
+     */
     public String getActualWorkPosition() {
         return actualWorkPosition;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCompleteName() {
         return completeName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCurrentStatus() {
         return currentStatus;
     }
-
+    /**
+     *
+     * @return
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
+    /**
+     *
+     * @return
+     */
     public String getProfilePicture() {
         return profilePicture;
     }
-
+    /**
+     *
+     * @return
+     */
     public String getShownName() {
         return shownName;
     }
-
+    /**
+     *
+     * @return
+     */
     public String getTimezone() {
         return timezone;
     }
-
+    /**
+     *
+     * @return
+     */
     public User getUser() {
         return user;
     }
-
+    /**
+     *
+     * @return
+     */
     public Workspace getWorkspace() {
         return workspace;
     }
 
     // setters
+    /**
+     *
+     * @return
+     */
     private void setActualWorkPosition(String actualWorkPosition) {
         this.actualWorkPosition = actualWorkPosition;
     }
-
+    /**
+     *
+     * @return
+     */
     private void setCompleteName(String completeName) {
         this.completeName = completeName;
     }
-
+    /**
+     *
+     * @return
+     */
     private void setCurrentStatus(String currentStatus) {
         this.currentStatus = currentStatus;
     }
-
+    /**
+     *
+     * @return
+     */
     private void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
+    /**
+     *
+     * @return
+     */
     private void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
     }
-
+    /**
+     *
+     * @return
+     */
     private void setShownName(String shownName) {
         this.shownName = shownName;
     }
-
+    /**
+     *
+     * @return
+     */
     private void setTimezone(String timezone) {
         this.timezone = timezone;
     }
-
+    /**
+     *
+     * @return
+     */
     private void setUser(User user) {
         this.user = user;
     }
-
+    /**
+     *
+     * @return
+     */
     private void setWorkspace(Workspace workspace) {
         this.workspace = workspace;
     }

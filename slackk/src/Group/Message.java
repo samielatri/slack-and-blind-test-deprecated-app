@@ -1,3 +1,7 @@
+package Group;
+
+import UserManagment.User;
+
 import java.util.Date;
 
 public class Message{
@@ -6,7 +10,7 @@ public class Message{
     private String content;
     private String idMessage;
     private String senderMessage;
-    private Channel channel;
+    private WorkspaceChannel workspaceChannel;
     public Message(User sender, String content, Object Canal){
         this.content = content;
 

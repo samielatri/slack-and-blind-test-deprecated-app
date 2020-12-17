@@ -1,13 +1,17 @@
+package Group;
+
+import UserManagment.User;
+
 import java.util.ArrayList;
 
-public class Channel {
+public class WorkspaceChannel {
     private ArrayList <Message> msg;
     private String nomCh;
 
     private User adminCh;
     private User adminWorkspace;
 
-    public Channel(String nomCh,User adminCh){
+    public WorkspaceChannel(String nomCh, User adminCh){
         this.nomCh=nomCh;
         this.adminCh=adminCh;
     }
@@ -22,7 +26,7 @@ public class Channel {
 
     @Override
     public String toString() {
-        return "Channel " + nomCh;
+        return "Group.Channel " + nomCh;
     }
 
     public String getChannelName() {

@@ -1,3 +1,7 @@
+package Group;
+
+import UserManagment.User;
+
 import java.util.ArrayList;
 
 public class Workspace {
@@ -9,6 +13,6 @@ public class Workspace {
 
 
     private User admin ;
-    private ArrayList<Channel> workspaceChannels;
+    private ArrayList<WorkspaceChannel> workspaceWorkspaceChannels;
 
 }

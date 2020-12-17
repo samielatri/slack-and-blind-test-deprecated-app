@@ -1,3 +1,8 @@
+package UserManagment;
+
+import Group.WorkspaceChannel;
+import Group.Message;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -5,10 +10,10 @@ import java.util.Scanner;
 public class User {
     /* attributes */
     private ArrayList<Profile> profiles; // list of all profiles related to specific workspaces
-    private ArrayList<Channel> createdChannels; // list of all channels created by the user
-    private ArrayList<Channel> joinedChannels; // list of all channels joined by the user
+    private ArrayList<WorkspaceChannel> createdWorkspaceChannels; // list of all channels created by the user
+    private ArrayList<WorkspaceChannel> joinedWorkspaceChannels; // list of all channels joined by the user
     private ArrayList<Message> sentMessages; // list of all messages sent by the user
-    private ArrayList<User> friendList; // list of all collaborators
+    private ArrayList<User> collaborators; // list of all collaborators
     private String mailAddress; // mail address of the user
     private String username;  // username of the user
     private String password; // password of the user
@@ -18,8 +23,8 @@ public class User {
         this.mailAddress = mailAddress;
         this.username = username;
         this.password = password;
-        this.createdChannels = new ArrayList<Channel>();
-        this.joinedChannels =  new ArrayList<Channel>();
+        this.createdWorkspaceChannels = new ArrayList<WorkspaceChannel>();
+        this.joinedWorkspaceChannels =  new ArrayList<WorkspaceChannel>();
         this.sentMessages = new ArrayList<Message>();
         this.profiles = new ArrayList<Profile>();
     }
@@ -27,16 +32,16 @@ public class User {
     /* accessors */
 
     // gettors
-    public ArrayList<Channel> getJoinedChannels() {
-        return joinedChannels;
+    public ArrayList<WorkspaceChannel> getJoinedChannels() {
+        return joinedWorkspaceChannels;
     }
 
     public ArrayList<Message> getSentMessages() {
         return sentMessages;
     }
 
-    public ArrayList<User> getFriendList() {
-        return friendList;
+    public ArrayList<User> getCollaborators() {
+        return collaborators;
     }
 
     public String getMailAddress() {
@@ -51,8 +56,8 @@ public class User {
         return password;
     }
 
-    public ArrayList<Channel> getCreatedChannels() {
-        return createdChannels;
+    public ArrayList<WorkspaceChannel> getCreatedChannels() {
+        return createdWorkspaceChannels;
     }
 
     public ArrayList<Profile> getProfiles() {
@@ -60,16 +65,16 @@ public class User {
     }
 
     // setters
-    private void setCreatedChannels(ArrayList<Channel> createdChannels) {
-        this.createdChannels = createdChannels;
+    private void setCreatedChannels(ArrayList<WorkspaceChannel> createdWorkspaceChannels) {
+        this.createdWorkspaceChannels = createdWorkspaceChannels;
     }
 
-    private void setFriendList(ArrayList<User> friendList) {
-        this.friendList = friendList;
+    private void setCollaborators(ArrayList<User> collaborators) {
+        this.collaborators = collaborators;
     }
 
-    private void setJoinedChannels(ArrayList<Channel> joinedChannels) {
-        this.joinedChannels = joinedChannels;
+    private void setJoinedChannels(ArrayList<WorkspaceChannel> joinedWorkspaceChannels) {
+        this.joinedWorkspaceChannels = joinedWorkspaceChannels;
     }
 
     private void setMailAddress(String mailAddress) {
@@ -108,14 +113,14 @@ public class User {
        // }
         return new Message(this, msg, canal);
     }
-    public Channel createCh(){
+    public WorkspaceChannel createCh(){
         String nom;
         Scanner buffer;
         do{
             buffer = new Scanner(System.in);
             nom = buffer.next();
-            Channel chan = new Channel(nom,this);
-            if(createdChannels.contains(chan)){
+            WorkspaceChannel chan = new WorkspaceChannel(nom,this);
+            if(createdWorkspaceChannels.contains(chan)){
                 System.out.println("this channel already exist");
             }
         }while(true);//createdChannels.contains(chan));
@@ -123,15 +128,15 @@ public class User {
         //return chan;
     }
     public void deleteCh(){
-        if(createdChannels.isEmpty()){
+        if(createdWorkspaceChannels.isEmpty()){
             System.out.println("you don't have any right on channel, call jesus");
         }else{
             System.out.println("please enter the name of the channel to delete :");
             Scanner buffer = new Scanner(System.in);
             String nom = buffer.next();
-            Channel c=new Channel(nom,this);
-            if(createdChannels.contains(c)){
-                createdChannels.remove(c);
+            WorkspaceChannel c=new WorkspaceChannel(nom,this);
+            if(createdWorkspaceChannels.contains(c)){
+                createdWorkspaceChannels.remove(c);
                 System.out.println("this channel has been deleted successfully");
             }else{
                 System.out.println("this channel doesn't exist");
@@ -151,7 +156,7 @@ public class User {
                 sentMessages.remove(m);
                 System.out.println("this message has been deleted successfully");
             }else{
-                System.out.println("Message not found");
+                System.out.println("Group.Message not found");
             }
 
         }
@@ -167,22 +172,26 @@ public class User {
                 Message m=sentMessages.get(idmsg);
                 System.out.println("Edit your message here: ");
                 String edit=buffer.next();
-                //m= new Message(edit,m.getCreatedAt(),new Date(), m.username);
+                //m= new Group.Message(edit,m.getCreatedAt(),new Date(), m.username);
                 System.out.println("this message has been deleted successfully");
             }else{
-                System.out.println("Message not found");
+                System.out.println("Group.Message not found");
             }
 
         }
     }
 
     public void addFriend(User user){
-        friendList.add(user);
+        collaborators.add(user);
     }
 
+    /**
+     *
+     * @param user
+     */
     public void inviterFriend(User user){
-        if (joinedChannels.contains(user)) {
-            System.out.println(this.toString() + " envoie une demande d'amis à " + user.toString() + " dans le serveur " + joinedChannels.toString());
+        if (joinedWorkspaceChannels.contains(user)) {
+            System.out.println(this.toString() + " envoie une demande d'amis à " + user.toString() + " dans le serveur " + joinedWorkspaceChannels.toString());
         } else {
             System.out.println("Utilisateur inexistant dans le channel actuel");
         }
@@ -197,8 +206,32 @@ public class User {
 
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isCollaborator(User user){
+        return collaborators.contains(user);
+    }
+
+    /**
+     *
+     * @param collaborator
+     * @return
+     */
+    public User getCollaborator(User collaborator){
+       if (isCollaborator(collaborator)) {
+           return collaborator;
+       }
+       return null;
+    }
     /* toString */
+
     @Override
+    /**
+     *
+     */
     public String toString() {
         return "Bienvenue" + username;
     }
