@@ -30,6 +30,11 @@ public class User {
         this.profiles = new ArrayList<Profile>();
     }
 
+
+    public User(String mailAddress, String password) {
+        super(mailAddress, mailAddress, password); // mailAdress to modify with static id name
+    }
+
     /* accessors */
 
     // gettors
