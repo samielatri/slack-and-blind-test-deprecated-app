@@ -11,9 +11,24 @@ public class Profile {
     String profilePicture; // profile picture in a specific workspace
 
     /* constructor */
-    public Profile(){
-
+    public Profile(User user, Workspace workspace){
+        this.user = user;
+        this.workspace = workspace;
+        this.currentStatus = "";
+        this.completeName = "";
+        this.shownName="";
+        this.actualWorkPosition="";
+        this.phoneNumber = "";
+        this.timezone="";
+        this.profilePicture="";
     }
+
+    public Profile(Workspace workspace, User user){
+        this(user, workspace);
+    }
+
+
+    /* toString */
 
     /* accessors */
 
