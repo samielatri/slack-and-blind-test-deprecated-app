@@ -7,11 +7,18 @@ import java.util.ArrayList;
 public class WorkspaceChannel {
     private ArrayList <Message> conversation;
     private String nameCh;
+    private User creator;
     private ArrayList<User> adminCh;
+    private ArrayList<User> channelMembers;
 
-    public WorkspaceChannel(String nameCh, ArrayList<User> adminCh){
+    public WorkspaceChannel(String nameCh, User creator){
         this.nameCh = nameCh;
-        this.adminCh = adminCh;
+        this.creator = creator;
+        this.adminCh = new ArrayList<>();
+        this.channelMembers = new ArrayList<>();
+        this.conversation = new ArrayList<>();
+        adminCh.add(creator);
+        channelMembers.add(creator);
     }
 
     public void deleteMessageChannel(String idMessage){
@@ -27,14 +34,17 @@ public class WorkspaceChannel {
         return "Group.Channel " + nameCh;
     }
 
-    public String getChannelName() {
+    public String getNameCh() {
         return nameCh;
     }
-    public User getAdminChannel(){
+    public ArrayList<User> getAdminChannel(){
         return adminCh;
     }
-    public User getAdminWorkspace(){
-        return adminWorkspace;
+    public ArrayList<User> getChannelMembers(){
+        return channelMembers;
+    }
+    public void setNameCh(String name){
+        this.nameCh = name;
     }
 
 }
