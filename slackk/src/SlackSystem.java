@@ -4,11 +4,59 @@ import java.util.ArrayList;
 
 public class SlackSystem {
     private ArrayList<User> users;
-    public User connection(String username, String password) {
+    private User connectedUser;
+
+    /**
+     *
+     */
+    public SlackSystem(){
+        users = new ArrayList<User>();
+        connectedUser = null;
+    }
+
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    public void connection(String username, String password) {
         for(User u : users) {
-            if (u.getUsername().equals(username) && u.getPassword().equals(password))
-                return u;
+            if (u.getUsername().equals(username) && u.getPassword().equals(password)){
+                connectedUser = u;
+                return ;
+            }
         }
-        return null;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    /**
+     *
+     * @param connectedUser
+     */
+    public void setConnectedUser(User connectedUser) {
+        this.connectedUser = connectedUser;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public User getConnectedUser() {
+        return connectedUser;
+    }
+
+    /**
+     *
+     */
+    public void checkProfile(){
+        System.out.println(getConnectedUser().toString());
     }
 }

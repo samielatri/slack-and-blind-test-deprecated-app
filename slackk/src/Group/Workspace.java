@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public class Workspace {
 
-
-
     private ArrayList<User> workspaceUsers; // workspace users
     private ArrayList<User> workspaceAdmins ; // workspace admins
     private ArrayList<WorkspaceChannel> workspaceChannels;
