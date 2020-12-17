@@ -202,8 +202,12 @@ public class User {
     public void leaveChannel(){
 
     }
-    public void deleteFriend(){
-
+    public void deleteCollaborator(User user){
+        for (User u : collaborators) {
+            if (isCollaborator(user)) {
+                collaborators.remove(user);
+            }
+        }
     }
 
     /**
