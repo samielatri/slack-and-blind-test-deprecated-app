@@ -20,7 +20,8 @@ public class Slack {
                 choice = readInt();
                 switch(choice){
                     case 1:
-                        //slackSystem.connection();
+                        slackSystem.connection(printRead("your email adress", Types.STRING.getValue()),
+                                printRead("your password", Types.STRING.getValue()));
                         break;
                     case 2:
                         break;
