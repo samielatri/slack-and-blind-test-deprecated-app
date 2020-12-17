@@ -57,8 +57,13 @@ public class SlackSystem {
     /**
      *
      */
-    public void register(String name, String password){
-
+    public User register(String email, String password){
+        User user = new User(email, password);
+        if (!users.exists(user)){
+            users.add(user);
+            return user;
+        }
+        return null;
     }
     /**
      * getUsers()
