@@ -1,13 +1,14 @@
 import UserManagment.User;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SlackSystem {
     private ArrayList<User> users;
     private User connectedUser;
 
     /**
-     *
+     * Constructor
      */
     public SlackSystem(){
         users = new ArrayList<User>();
@@ -15,7 +16,7 @@ public class SlackSystem {
     }
 
     /**
-     *
+     * Connection
      * @param username
      * @param password
      * @return
@@ -30,7 +31,7 @@ public class SlackSystem {
     }
 
     /**
-     *
+     * getUsers()
      * @return
      */
     public ArrayList<User> getUsers() {
@@ -38,7 +39,7 @@ public class SlackSystem {
     }
 
     /**
-     *
+     * setConnectedUser
      * @param connectedUser
      */
     public void setConnectedUser(User connectedUser) {
@@ -46,17 +47,50 @@ public class SlackSystem {
     }
 
     /**
-     *
+     * getConnectedUser
      * @return
      */
     public User getConnectedUser() {
         return connectedUser;
     }
 
+
+    /**
+     * checkProfile
+     */
+    public void checkProfile(){
+        if(connectedUser != null) {
+            System.out.println(connectedUser.toString());
+        } else {
+            connectionRequired();
+        }
+    }
+
     /**
      *
      */
-    public void checkProfile(){
-        System.out.println(getConnectedUser().toString());
+    private void connectionRequired() {
+        System.out.println("Connection requise !");
+    }
+
+    /**
+     *
+     */
+    public void printAllCollaborators(){
+        System.out.println(connectedUser.collaboratorsToString());
+    }
+
+
+    /***
+     *
+     */
+    public void checkCollaboratorProfile(){
+        printAllCollaborators();
+        int input = -1;
+        Scanner buffer = new Scanner(System.in);
+        do {
+            input = buffer.nextInt();
+        } while (input > 0 && input < connectedUser.getNumberOfCollaborators());
+        connectedUser.getCollaborators().indexOf(input);
     }
 }
