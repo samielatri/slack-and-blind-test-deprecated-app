@@ -40,6 +40,7 @@ public class Workspace {
         chan = new WorkspaceChannel(chName,creator);
         creator.getCreatedChannels().add(chan);
         chan.getChannelMembers().addAll(workspaceAdmins);
+        workspaceChannels.add(chan);
         //choose if you want it to be private or not
         int choix;
         System.out.println("do you want this channel to be private ?");
