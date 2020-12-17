@@ -230,8 +230,30 @@ public class User {
        }
        return null;
     }
-    /* toString */
 
+    /**
+     *
+     */
+    public int getNumberOfCollaborators(){
+        return collaborators.size();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String collaboratorsToString(){
+        int id = 0 ;
+        String collaboratorsString = "";
+        for (User collaborator : collaborators){
+            id ++;
+            collaboratorsString += id + " - " + collaborator.toString() + "\n";
+        }
+        return collaboratorsString;
+    }
+
+
+    /* toString */
     @Override
     /**
      *
