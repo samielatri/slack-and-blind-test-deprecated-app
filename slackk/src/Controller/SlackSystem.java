@@ -36,6 +36,12 @@ public class SlackSystem {
     }
 
     /**
+     *
+     */
+    public void registragtion(){
+
+    }
+    /**
      * getUsers()
      * @return
      */

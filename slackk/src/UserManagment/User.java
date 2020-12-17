@@ -64,6 +64,14 @@ public class User {
         return profiles;
     }
 
+    public ArrayList<WorkspaceChannel> getCreatedWorkspaceChannels() {
+        return createdWorkspaceChannels;
+    }
+
+    public ArrayList<WorkspaceChannel> getJoinedWorkspaceChannels() {
+        return joinedWorkspaceChannels;
+    }
+
     // setters
     private void setCreatedChannels(ArrayList<WorkspaceChannel> createdWorkspaceChannels) {
         this.createdWorkspaceChannels = createdWorkspaceChannels;
@@ -96,8 +104,22 @@ public class User {
     private void setProfiles(ArrayList<Profile> profiles) {
         this.profiles = profiles;
     }
+
+    public void setCreatedWorkspaceChannels(ArrayList<WorkspaceChannel> createdWorkspaceChannels) {
+        this.createdWorkspaceChannels = createdWorkspaceChannels;
+    }
+
+    public void setJoinedWorkspaceChannels(ArrayList<WorkspaceChannel> joinedWorkspaceChannels) {
+        this.joinedWorkspaceChannels = joinedWorkspaceChannels;
+    }
+
     /* Methods */
 
+    /***
+     *
+     * @param canal
+     * @return
+     */
     public Message sendMsg(Object canal){
         // determine which canal it is
         String msg;
@@ -113,6 +135,11 @@ public class User {
        // }
         return new Message(this, msg, canal);
     }
+
+    /***
+     *
+     * @return
+     */
     public WorkspaceChannel createCh(){
         String nom;
         Scanner buffer;
@@ -127,6 +154,10 @@ public class User {
         //createdChannels.add(chan);
         //return chan;
     }
+
+    /***
+     *
+     */
     public void deleteCh(){
         if(createdWorkspaceChannels.isEmpty()){
             System.out.println("you don't have any right on channel, call jesus");
@@ -144,6 +175,10 @@ public class User {
 
         }
     }
+
+    /***
+     *
+     */
     public void deleteMsg(){
         if(sentMessages.isEmpty()){
             System.out.println("you don't have any message");
@@ -161,6 +196,10 @@ public class User {
 
         }
     }
+
+    /***
+     *
+     */
     public void editMsg(){
         if(sentMessages.isEmpty()){
             System.out.println("you don't have any message");
@@ -181,6 +220,10 @@ public class User {
         }
     }
 
+    /***
+     *
+     * @param user
+     */
     public void addFriend(User user){
         collaborators.add(user);
     }
@@ -196,12 +239,25 @@ public class User {
             System.out.println("Utilisateur inexistant dans le channel actuel");
         }
     }
+
+    /**
+     *
+     */
     public void inviteChannel(){
 
     }
+
+    /**
+     *
+     */
     public void leaveChannel(){
 
     }
+
+    /**
+     *
+     * @param user
+     */
     public void deleteCollaborator(User user){
         for (User u : collaborators) {
             if (isCollaborator(user)) {
