@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Profile {
     User user; // user that has the profile
     Workspace workspace; // the workspace that is related to the user
@@ -30,6 +32,30 @@ public class Profile {
         this(user, workspace);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        // self check
+        if (this == o)
+            return true;
+        // null check
+        if (o == null)
+            return false;
+        // type check and cast
+        if (getClass() != o.getClass())
+            return false;
+        Profile profile = (Profile) o;
+        // field comparison
+        return  user.equals(profile.user)
+                && workspace.equals(profile.workspace)
+                && Objects.equals(currentStatus, profile.currentStatus)
+                && Objects.equals(completeName, profile.completeName)
+                && Objects.equals(shownName, profile.shownName)
+                && Objects.equals(actualWorkPosition, profile.actualWorkPosition)
+                && Objects.equals(phoneNumber, profile.phoneNumber)
+                && Objects.equals(timezone, profile.timezone)
+                && Objects.equals(profilePicture, profile.profilePicture);
+
+    }
 
     /* toString */
     @Override
