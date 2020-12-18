@@ -87,6 +87,9 @@ public class User {
         return stringInput;
     }
 
+    public void editProfile(){
+
+    }
     public void editAccount(){
         String newEmailAddress = "";
         String newPasswordConfirm = "";
@@ -322,8 +325,30 @@ public class User {
     }
 
 
-    public void addFriend(User user){
-        collaborators.add(user);
+    public void addCollaborator(WorkspaceChannel currentWorkspaceChannel){
+        for(WorkspaceChannel workspaceChannel : joinedWorkspaceChannels){
+            if(currentWorkspaceChannel.equals(joinedWorkspaceChannels)){
+                ArrayList<User> listOfMembers = currentWorkspaceChannel.getChannelMembers();
+                int i = 0;
+                for(User user : listOfMembers){
+                    System.out.println("[" + i + "] " + " " + user.toString() + "\n");
+                    i++;
+                }
+                int choice = 0;
+                do {
+                    choice = readInt("the collaborator to add");
+                } while(choice >= 0 && choice < i);
+                User collaboratorToAdd = listOfMembers.get(choice);
+                if (!collaborators.contains(collaboratorToAdd)) {
+                    listOfMembers.add(collaboratorToAdd);
+                    System.out.println("Collaborator added.");
+                }else {
+                    System.out.println("Collaborator already exists!");
+                }
+            } else {
+                System.out.println("Channel not allowed");
+            }
+        }
     }
 
     public void inviterFriend(User user){
