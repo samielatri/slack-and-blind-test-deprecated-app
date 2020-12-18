@@ -1,7 +1,8 @@
 package controller;
 
-import group.*;
-import userManagment.*;
+import model.group.Workspace;
+import model.group.WorkspaceChannel;
+import model.user.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -49,7 +50,7 @@ public class SlackSystem {
 
 
     public User register(String email, String password){
-        User user = new User(email, email, password);
+        User user = new User(email, password);
         if (exists(user) == null){
             users.add(user);
             return user;
@@ -64,6 +65,9 @@ public class SlackSystem {
 
     public void setConnectedUser (User connectedUser){
         this.connectedUser = connectedUser;
+    }
+    public ArrayList<Workspace> getWorkspaces(){
+        return this.workspaces;
     }
 
 
