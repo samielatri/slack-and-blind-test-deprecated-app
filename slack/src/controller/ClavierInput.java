@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Scanner;
+
 public class ClavierInput {
 
     public void printRead(String printable, int type){
