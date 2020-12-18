@@ -1,7 +1,7 @@
 package controller;
 
-import group.Workspace;
-import userManagment.User;
+import group.*;
+import userManagment.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,7 +10,8 @@ public class SlackSystem {
     private ArrayList<User> users;
     private ArrayList<Workspace> workspaces;
     private User connectedUser;
-
+    private Workspace currentWorkspace;
+    private WorkspaceChannel currentWorkspaceChannel;
 
 
     public SlackSystem() {
@@ -87,6 +88,18 @@ public class SlackSystem {
 
     public void printAllCollaborators(){
         System.out.println(connectedUser.collaboratorsToString());
+    }
+
+    public void addCollaborator(){
+        connectedUser.addCollaborator(currentWorkspaceChannel);
+    }
+
+    public void editProfile(){
+        connectedUser.editProfile(currentWorkspace);
+    }
+
+    public void editAccount(){
+        connectedUser.editAccount();
     }
 
     public void checkCollaboratorProfile(){

@@ -1,12 +1,14 @@
 import controller.*;
 import group.Workspace;
 
+
 import java.util.Scanner;
 
 public class Slack {
     public static void main(String[] args) {
         SlackSystem slackSystem = new SlackSystem();
         Workspace selectedWs;
+        KeybordInput keybordInput = new KeybordInput();
         Scanner buff;
         int choice, globalChoice=0;
         int wsChoice,chChoice;
@@ -17,42 +19,21 @@ public class Slack {
                 System.out.println("1- Login");
                 System.out.println("2- Sign up");
                 System.out.println("0- Exit");
-                String email, pwd;
-                buff = new Scanner(System.in);
-                choice = buff.nextInt();
+
+                choice = keybordInput.readInt("choix");
                 switch(choice){
                     case 1:
-                        System.out.println("Enter your email");
-                        buff = new Scanner(System.in);
-                        email = buff.nextLine();
-                        System.out.println("Enter your password");
-                        buff = new Scanner(System.in);
-                        pwd = buff.nextLine();
-                        slackSystem.connection(email,pwd);
+
+                        slackSystem.connection(keybordInput.readString("your email adress"),
+                                keybordInput.readString("your passwword")
+                               );
                         break;
                     case 2:
-                        System.out.println("Enter your email");
-                        buff = new Scanner(System.in);
-                        email = buff.nextLine();
-                        System.out.println("Create a password");
-                        buff = new Scanner(System.in);
-                        pwd = buff.nextLine();
-
-                        String pwdConf;
-                        do{
-                            System.out.println("Confirm your password");
-                            buff = new Scanner(System.in);
-                            pwdConf = buff.nextLine();
-                        }while(!pwd.equals(pwdConf));
-                        slackSystem.register(email,pwd);
-
                         break;
                     case 0:
-                        System.out.println("see you later !");
                         globalChoice = 1;
                         break;
                     default:
-                        System.out.println("Please enter a valid choice");
                         break;
                 }
 
@@ -70,8 +51,7 @@ public class Slack {
                 System.out.println("0- Exit");
 
 
-                buff = new Scanner(System.in);
-                wsChoice = buff.nextInt();
+                wsChoice = keybordInput.readInt("choix");
 
                 switch (wsChoice) {
                     case 1:
@@ -80,7 +60,7 @@ public class Slack {
                         slackSystem.getConnectedUser().editAccount();
                         break;
                     case 3:
-                        slackSystem.getConnectedUser().createWs();
+                        slackSystem.getConnectedUser().creatWs();
                         break;
                     case 4:
                         slackSystem.getConnectedUser().joinWorkSpace();
@@ -100,9 +80,8 @@ public class Slack {
                         System.out.println("9- Visit a collaborator's profile");
                         System.out.println("10- Leave a channel");
                         System.out.println("0- Exit workspace");
-                        buff = new Scanner(System.in);
-                        wsChoice = buff.nextInt();
-                        switch (wsChoice) {
+                        chChoice = keybordInput.readInt("choix");
+                        switch (chChoice) {
                             case 1:
                                 selectedWs.createCh(slackSystem.getConnectedUser());
                                 break;
@@ -119,8 +98,7 @@ public class Slack {
                                 System.out.println("3- Edit a message in the channel");
                                 System.out.println("4- Delete a message from the channel");
                                 System.out.println("0- Exit the channel");
-                                buff = new Scanner(System.in);
-                                chChoice = buff.nextInt();
+                                chChoice = keybordInput.readInt("choix");
                                 switch (chChoice) {
                                     case 1:
 

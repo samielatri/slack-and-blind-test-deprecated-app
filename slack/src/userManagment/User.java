@@ -1,8 +1,7 @@
 package userManagment;
 
-import group.Workspace;
-import group.WorkspaceChannel;
-import group.Message;
+import group.*;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,7 +32,7 @@ public class User {
         this.profiles = new ArrayList<Profile>();
     }
 
-    public Workspace createWs(){
+    public Workspace creatWs(){
         Workspace workspace;
         String wsName;
         Scanner buff;
@@ -72,19 +71,85 @@ public class User {
             }
         }
     }
+
+    // need to use keyboardInput in future
+    private int readInt(String printable) {
+        System.out.println("Please enter " + printable + ": > ");
+        Scanner scanner = new Scanner(System.in);
+        int intInput = scanner.nextInt();
+        return intInput;
+    }
+
+    private String readString(String printable) {
+        System.out.println("Please enter " + printable + ": > ");
+        Scanner scanner = new Scanner(System.in);
+        String stringInput = scanner.nextLine();
+        return stringInput;
+    }
+
+    public void editProfile(Workspace currentWorkspace){
+
+    }
+    public void editAccount(){
+        String newEmailAddress = "";
+        String newPasswordConfirm = "";
+        String newPassword = "";
+        boolean passwordConfirmed = false;
+        String currentPassword = "";
+        int intInput = 0;
+        do {
+            System.out.println("edit :\n\t1- email address\n\t2- password\n\t 3-return");
+            intInput = readInt("your choice");
+        } while (intInput > 0 && intInput < 3);
+        if (intInput == 1){
+            do {
+                newEmailAddress = readString("new email address");
+                setMailAddress(newEmailAddress);
+                System.out.println("Email Address changed successfully");
+            }while(! isValidEmailAddress(newEmailAddress));
+        }
+        if (intInput== 2) {
+            currentPassword = readString("current password");
+            if (currentPassword == password) {
+                do {
+                    newPassword = readString("new password");
+                    newPasswordConfirm = readString("new password confirmation");
+                    passwordConfirmed = (newPassword == newPasswordConfirm);
+                    if (passwordConfirmed) {
+                        setPassword(newPassword);
+                        System.out.println("Password changed successfully");
+                    }
+                } while (!passwordConfirmed);
+            } else {
+                System.out.println("Password does not match");
+                // return
+            }
+        }
+        // 3
+        // return
+    }
+
+    public boolean isValidEmailAddress(String email){
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
+
     public void ShowListOfWs(ArrayList<Workspace> workspaces){
         for(Workspace workspace: workspaces){
             System.out.println(workspaces.indexOf(workspace)+"-"+workspace);
         }
     }
-    public void editAccount(){}
-    public void editProfile(){}
     public void joinWorkSpace(){}
     public Workspace selectWorkspace(){return null;}
-    public WorkspaceChannel selectChannel(){return null;}
     /* accessors */
 
     //gettors
+    public ArrayList<WorkspaceChannel> getJoinedChannels() {
+
+        return joinedWorkspaceChannels;
+    }
 
     public ArrayList<Message> getSentMessages() {
 
@@ -110,6 +175,7 @@ public class User {
 
         return password;
     }
+
     public ArrayList<WorkspaceChannel> getCreatedChannels() {
         return createdWorkspaceChannels;
     }
@@ -266,10 +332,39 @@ public class User {
     }
 
 
-    public void addCollaborator(User user){
-        collaborators.add(user);
+    public void addCollaborator(WorkspaceChannel currentWorkspaceChannel){
+        for(WorkspaceChannel workspaceChannel : joinedWorkspaceChannels){
+            if(currentWorkspaceChannel.equals(joinedWorkspaceChannels)){
+                ArrayList<User> listOfMembers = currentWorkspaceChannel.getChannelMembers();
+                int i = 0;
+                for(User user : listOfMembers){
+                    System.out.println("[" + i + "] " + " " + user.toString() + "\n");
+                    i++;
+                }
+                int choice = 0;
+                do {
+                    choice = readInt("the collaborator to add");
+                } while(choice >= 0 && choice < i);
+                User collaboratorToAdd = listOfMembers.get(choice);
+                if (!collaborators.contains(collaboratorToAdd)) {
+                    listOfMembers.add(collaboratorToAdd);
+                    System.out.println("Collaborator added.");
+                }else {
+                    System.out.println("Collaborator already exists!");
+                }
+            } else {
+                System.out.println("Channel not allowed");
+            }
+        }
     }
 
+    public void inviterFriend(User user){
+        if (joinedWorkspaceChannels.contains(user)) {
+            System.out.println(this.toString() + " envoie une demande d'amis à " + user.toString() + " dans le serveur " + joinedWorkspaceChannels.toString());
+        } else {
+            System.out.println("Utilisateur inexistant dans le channel actuel");
+        }
+    }
 
     public void inviteChannel(){
 

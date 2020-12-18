@@ -1,6 +1,6 @@
 package group;
 
-import userManagment.User;
+import userManagment.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;

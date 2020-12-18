@@ -1,21 +1,19 @@
 package controller;
 
 public enum ReadableType {
-    /*INT(1),
+    INT(1),
     STRING(2);
-
+    /* accessors */
     private int typeValue;
 
-
-
     // constructor
-    ReadableType(int optionNumber){
-        this.typeValue = optionNumber ;
+     ReadableType(int typeValue){
+        this.typeValue = typeValue;
     }
 
     // getter for optionNumber
     public int getTypeValue(){
-        return this.typeValue ;
+        return this.typeValue;
     }
 
 
@@ -25,8 +23,11 @@ public enum ReadableType {
     }
 
 
+
+    /* to String */
+
     // return string describing the menu option following this pattern : [optionNumber] optionName
     public String toString(){
-        return new String("[" + this.optionNumber + "] ");
-    }*/
+        return new String("[" + this.typeValue + "] ");
+    }
 }
