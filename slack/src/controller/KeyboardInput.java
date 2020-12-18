@@ -1,5 +1,5 @@
 
-class ClavierInput {
+public class ClavierInput {
 
     public void printRead(String printable, int type){
         System.out.println("Please enter " + printable + ": > ");
