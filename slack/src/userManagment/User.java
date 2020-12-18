@@ -87,7 +87,8 @@ public class User {
         return stringInput;
     }
 
-    public void editProfile(){
+    public void editProfile(Workspace currentWorkspace){
+        editProfile();
 
     }
     public void editAccount(){

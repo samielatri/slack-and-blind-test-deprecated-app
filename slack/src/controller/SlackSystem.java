@@ -92,7 +92,7 @@ public class SlackSystem {
     }
 
     public void editProfile(){
-        //connectedUser.editProfile(currentWorkspace);
+        connectedUser.editProfile(currentWorkspace);
     }
 
     public void editAccount(){
