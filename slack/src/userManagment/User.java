@@ -12,10 +12,10 @@ public class User {
     /* attributes */
     private ArrayList<Workspace> createdWS; // list of all Workspaces created by the user
     private ArrayList<Workspace> joinedWS; // list of all Workspaces joined by the user
-    private ArrayList<Profile> profiles; // list of all profiles related to specific workspaces
+        private ArrayList<Profile> profiles; // list of all profiles related to specific workspaces
     private ArrayList<WorkspaceChannel> createdWorkspaceChannels; // list of all channels created by the user
     private ArrayList<WorkspaceChannel> joinedWorkspaceChannels; // list of all channels joined by the user
-    private ArrayList<Message> sentMessages; // list of all messages sent by the user
+        private ArrayList<Message> sentMessages; // list of all messages sent by the user
     private ArrayList<User> collaborators; // list of all collaborators
     private String mailAddress; // mail address of the user
     private String username;  // username of the user
@@ -88,6 +88,10 @@ public class User {
     }
 
     public void editProfile(Workspace currentWorkspace){
+        // we need a hash for the workspace
+        // old methods do not work
+        // because edit profile
+        // we have one profile in a workspace
         editProfile();
 
     }
@@ -236,7 +240,7 @@ public class User {
 
     /* Methods */
 
-    /*public boolean equals(Object o) {
+    public boolean equals(Object o) {
         // self check
         if (this == o)
             return true;
@@ -250,7 +254,7 @@ public class User {
         // field comparison
         return  username.equals(user.username)
                 && password.equals(user.password);
-    }*/
+    }
 
     public Message sendMsg(Object canal){
         // determine which canal it is
@@ -272,7 +276,7 @@ public class User {
         if(joinedWorkspaceChannels.contains(wc)){
             return sendMsg(this);
         }
-        return null; // qui a developper cette methode ?
+        return null;
     }
 
     public Message sendMsgCollaborator(User collab){
@@ -326,6 +330,7 @@ public class User {
     }
 
 
+    // ! : we have collaboratorstostring
     public void addCollaborator(WorkspaceChannel currentWorkspaceChannel){
         for(WorkspaceChannel workspaceChannel : joinedWorkspaceChannels){
             if(currentWorkspaceChannel.equals(joinedWorkspaceChannels)){
@@ -352,6 +357,7 @@ public class User {
         }
     }
 
+    // inviteFriend
     public void inviteFriend(User user){
         if (joinedWorkspaceChannels.contains(user)) {
             System.out.println(this.toString() + " envoie une demande d'amis à " + user.toString() + " dans le serveur " + joinedWorkspaceChannels.toString());
@@ -387,6 +393,7 @@ public class User {
        return null;
     }
 
+    // inviteNumberOfCollaborators
     public int getNumberOfCollaborators(){
         return collaborators.size();
     }
