@@ -1,34 +1,32 @@
+package controller;
+
 public enum ReadableType {
-    INT(1);
+    /*INT(1),
     STRING(2);
-    /* accessors */
+
+    private int typeValue;
+
 
 
     // constructor
-    HomeMenuOptions(int optionNumber){
-        this.optionNumber = optionNumber ;
+    ReadableType(int optionNumber){
+        this.typeValue = optionNumber ;
     }
 
     // getter for optionNumber
-    public int getOptionNumber(){
-        return this.optionNumber ;
+    public int getTypeValue(){
+        return this.typeValue ;
     }
 
 
     // setter for optionNumber
-    private void setOptionValue(int optionNumber){
-        this.optionNumber = optionNumber ;
+    private void setTypeValue(int optionNumber){
+        this.typeValue = optionNumber ;
     }
 
-    // setter for optionNumber
-    private void setOptionName(String optionName){
-        this.optionName = optionName ;
-    }
-
-    /* to String */
 
     // return string describing the menu option following this pattern : [optionNumber] optionName
     public String toString(){
-        return new String("[" + this.optionNumber + "] " + this.optionName);
-    }
+        return new String("[" + this.optionNumber + "] ");
+    }*/
 }

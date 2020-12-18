@@ -1,6 +1,6 @@
 package group;
 
-import UserManagment.User;
+import userManagment.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -76,16 +76,37 @@ public class Workspace {
             }
         }
     }
-    public void editChannel(WorkspaceChannel channel,User user){//faire un switch case si l'usr veux supprimer un membre
-        if((channel.getAdminChannel()).contains(user)) {
-            String newName;
-            Scanner buff = new Scanner(System.in);
-            newName = buff.nextLine();
-            channel.setNameCh(newName);
+    public void editChannel(User user){//faire un switch case si l'usr veux supprimer un membre
+        if(user.getJoinedWorkspaceChannels().isEmpty()){
+            System.out.println("you are not participating in any channel");
         }else{
-            System.out.println("you have no right on this workspace");
+            ShowListOfChannel(user.getJoinedWorkspaceChannels());
+            System.out.println("please enter the name of the channel you want to delete :");
+            Scanner buffer = new Scanner(System.in);
+            String chName = buffer.nextLine();
+            for(WorkspaceChannel channel: user.getJoinedWorkspaceChannels()) {
+                if (channel.getNameCh().equals(chName)) {
+                    if((channel.getAdminChannel()).contains(user)) {
+                        String newName;
+                        Scanner buff = new Scanner(System.in);
+                        newName = buff.nextLine();
+                        channel.setNameCh(newName);
+                    }else{
+                        System.out.println("you have no right on this channel");
+                    }
+
+                }else {
+                    System.out.println("this channel doesn't exist");
+                }
+            }
         }
     }
+    public void ShowListOfChannel(ArrayList<WorkspaceChannel> channels){
+        for(WorkspaceChannel channel: channels){
+            System.out.println(channel);
+        }
+    }
+    public void joinChannel(){}
 
     public void addUserToWorkspace(User user){
         workspaceUsers.add(user);
@@ -181,5 +202,8 @@ public class Workspace {
     }
     public int getIdWs(){
         return idWs;
+    }
+    public String toString(){
+        return idWs+"-"+workspaceName;
     }
 }

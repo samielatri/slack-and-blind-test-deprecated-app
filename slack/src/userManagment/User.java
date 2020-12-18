@@ -1,8 +1,8 @@
-package UserManagment;
+package userManagment;
 
-import Group.Workspace;
-import Group.WorkspaceChannel;
-import Group.Message;
+import group.Workspace;
+import group.WorkspaceChannel;
+import group.Message;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,7 +33,7 @@ public class User {
         this.profiles = new ArrayList<Profile>();
     }
 
-    public Workspace creatWs(){
+    public Workspace createWs(){
         Workspace workspace;
         String wsName;
         Scanner buff;
@@ -72,13 +72,19 @@ public class User {
             }
         }
     }
+    public void ShowListOfWs(ArrayList<Workspace> workspaces){
+        for(Workspace workspace: workspaces){
+            System.out.println(workspace);
+        }
+    }
+    public void editAccount(){}
+    public void editProfile(){}
+    public void joinWorkSpace(){}
+    public Workspace selectWorkspace(){return null;}
+    public WorkspaceChannel selectChannel(){return null;}
     /* accessors */
 
     //gettors
-    public ArrayList<WorkspaceChannel> getJoinedChannels() {
-
-        return joinedWorkspaceChannels;
-    }
 
     public ArrayList<Message> getSentMessages() {
 
@@ -104,7 +110,6 @@ public class User {
 
         return password;
     }
-
     public ArrayList<WorkspaceChannel> getCreatedChannels() {
         return createdWorkspaceChannels;
     }
@@ -261,17 +266,10 @@ public class User {
     }
 
 
-    public void addFriend(User user){
+    public void addCollaborator(User user){
         collaborators.add(user);
     }
 
-    public void inviterFriend(User user){
-        if (joinedWorkspaceChannels.contains(user)) {
-            System.out.println(this.toString() + " envoie une demande d'amis à " + user.toString() + " dans le serveur " + joinedWorkspaceChannels.toString());
-        } else {
-            System.out.println("Utilisateur inexistant dans le channel actuel");
-        }
-    }
 
     public void inviteChannel(){
 

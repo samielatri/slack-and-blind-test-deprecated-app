@@ -1,6 +1,6 @@
 package group;
 
-import UserManagment.User;
+import userManagment.User;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class WorkspaceChannel {
 
     @Override
     public String toString() {
-        return "Group.Channel " + nameCh;
+        return "#" + nameCh;
     }
     public boolean getPrivateCh(){
         return  privateCh;

@@ -1,7 +1,7 @@
 package controller;
 
-import Group.Workspace;
-import UserManagment.User;
+import group.Workspace;
+import userManagment.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -63,6 +63,9 @@ public class SlackSystem {
 
     public void setConnectedUser (User connectedUser){
         this.connectedUser = connectedUser;
+    }
+    public ArrayList<Workspace> getWorkspaces(){
+        return this.workspaces;
     }
 
 
