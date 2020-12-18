@@ -17,11 +17,13 @@ public class Slack {
                 System.out.println("2- Sign up");
                 System.out.println("0- Exit");
 
-                choice = keybordInput.readInt();
+                choice = keybordInput.readInt("choix");
                 switch(choice){
                     case 1:
-                        slackSystem.connection(keybordInput.printRead("your email adress", 2),
-                                keybordInput.printRead("your password", 2);
+
+                        slackSystem.connection(keybordInput.readString("your email adress"),
+                                keybordInput.readString("your passwword")
+                               );
                         break;
                     case 2:
                         break;
@@ -46,7 +48,7 @@ public class Slack {
                 System.out.println("0- Exit");
 
 
-                choice = keybordInput.readInt();
+                choice = keybordInput.readInt("choix");
 
                 switch (choice) {
                     case 1:
@@ -68,7 +70,7 @@ public class Slack {
                         System.out.println("8- Delete a collaborator");
                         System.out.println("9- Visit a collaborator's profile");
                         System.out.println("0- Exit workspace");
-                        wsChoice = keybordInput.readInt();
+                        wsChoice = keybordInput.readInt("choix");
                         switch (wsChoice) {
                             case 1:
                                 break;
@@ -81,7 +83,7 @@ public class Slack {
                                 System.out.println("2- Edit a message in the channel");
                                 System.out.println("3- Delete a message from the channel");
                                 System.out.println("0- Exit the channel");
-                                chChoice = keybordInput.readInt();
+                                chChoice = keybordInput.readInt("choix");
                                 switch (chChoice) {
                                     case 1:
                                         break;

@@ -4,25 +4,15 @@ import java.util.Scanner;
 
 public class KeybordInput {
 
-    public void printRead(String printable, int type){
+    public int readInt(String printable) {
         System.out.println("Please enter " + printable + ": > ");
-        switch (type) {
-            case 1: // int
-                readInt();
-                break;
-            case 2: // String
-                readString();
-                break;
-        }
-    }
-
-    public int readInt() {
         Scanner scanner = new Scanner(System.in);
         int intInput = scanner.nextInt();
         return intInput;
     }
 
-    public String readString() {
+    public String readString(String printable) {
+        System.out.println("Please enter " + printable + ": > ");
         Scanner scanner = new Scanner(System.in);
         String stringInput = scanner.nextLine();
         return stringInput;

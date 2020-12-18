@@ -1,6 +1,6 @@
 package userManagment;
 
-import group.Workspace;
+import group.*;
 
 import java.util.Objects;
 

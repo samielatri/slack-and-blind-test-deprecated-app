@@ -1,8 +1,7 @@
 package userManagment;
 
-import group.Workspace;
-import group.WorkspaceChannel;
-import group.Message;
+import group.*;
+
 
 import java.util.ArrayList;
 import java.util.Date;
