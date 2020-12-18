@@ -17,4 +17,5 @@ public class KeybordInput {
         String stringInput = scanner.nextLine();
         return stringInput;
     }
+
 }

@@ -71,6 +71,68 @@ public class User {
             }
         }
     }
+
+    // need to use keyboardInput in future
+    private int readInt(String printable) {
+        System.out.println("Please enter " + printable + ": > ");
+        Scanner scanner = new Scanner(System.in);
+        int intInput = scanner.nextInt();
+        return intInput;
+    }
+
+    private String readString(String printable) {
+        System.out.println("Please enter " + printable + ": > ");
+        Scanner scanner = new Scanner(System.in);
+        String stringInput = scanner.nextLine();
+        return stringInput;
+    }
+
+    public void editAccount(){
+        String newEmailAddress = "";
+        String newPasswordConfirm = "";
+        String newPassword = "";
+        boolean passwordConfirmed = false;
+        String currentPassword = "";
+        int intInput = 0;
+        do {
+            System.out.println("edit :\n\t1- email address\n\t2- password\n\t 3-return");
+            intInput = readInt("your choice");
+        } while (intInput > 0 && intInput < 3);
+        if (intInput == 1){
+            do {
+                newEmailAddress = readString("new email address");
+                setMailAddress(newEmailAddress);
+                System.out.println("Email Address changed successfully");
+            }while(! isValidEmailAddress(newEmailAddress));
+        }
+        if (intInput== 2) {
+            currentPassword = readString("current password");
+            if (currentPassword == password) {
+                do {
+                    newPassword = readString("new password");
+                    newPasswordConfirm = readString("new password confirmation");
+                    passwordConfirmed = (newPassword == newPasswordConfirm);
+                    if (passwordConfirmed) {
+                        setPassword(newPassword);
+                        System.out.println("Password changed successfully");
+                    }
+                } while (!passwordConfirmed);
+            } else {
+                System.out.println("Password does not match");
+                // return
+            }
+        }
+        // 3
+        // return
+    }
+
+    public boolean isValidEmailAddress(String email){
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
+
     /* accessors */
 
     //gettors
