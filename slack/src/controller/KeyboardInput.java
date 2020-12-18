@@ -1,3 +1,4 @@
+package controller;
 
 public class ClavierInput {
 
@@ -19,7 +20,7 @@ public class ClavierInput {
         return intInput;
     }
 
-    public int readString() {
+    public String readString() {
         Scanner scanner = new Scanner(System.in);
         String stringInput = scanner.nextLine();
         return stringInput;

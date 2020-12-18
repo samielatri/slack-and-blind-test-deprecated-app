@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
-import Group.Workspace;
-import UserManagment.User;
+import group.Workspace;
+import userManagment.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;

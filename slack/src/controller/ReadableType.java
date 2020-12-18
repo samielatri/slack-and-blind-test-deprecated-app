@@ -1,3 +1,5 @@
+package controller;
+
 public enum ReadableType {
     INT(1);
     STRING(2);

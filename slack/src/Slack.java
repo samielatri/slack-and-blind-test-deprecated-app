@@ -1,11 +1,12 @@
-import Controller.SlackSystem;
-import Controller.ClavierInput;
+import controller.SlackSystem;
+//import controller.ClavierInput;
 
 import java.util.Scanner;
 
 public class Slack {
     public static void main(String[] args) {
         SlackSystem slackSystem = new SlackSystem();
+        /*
         Scanner buff;
         int choice, globalChoice=0;
         int wsChoice,chChoice;
@@ -125,5 +126,7 @@ public class Slack {
                 }
             }
         }while(globalChoice == 0);
+    }
+    */
     }
 }

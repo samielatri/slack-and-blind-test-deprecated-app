@@ -1,6 +1,6 @@
-package Group;
+package group;
 
-import UserManagment.User;
+import userManagment.User;
 
 import java.util.ArrayList;
 
