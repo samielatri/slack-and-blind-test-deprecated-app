@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Slack {
     public static void main(String[] args) {
         SlackSystem slackSystem = new SlackSystem();
-        ClavierInput clavierInput= new ClavierInput();
+        KeybordInput keybordInput = new KeybordInput();
         Scanner buff;
         int choice, globalChoice=0;
         int wsChoice,chChoice;
@@ -17,11 +17,11 @@ public class Slack {
                 System.out.println("2- Sign up");
                 System.out.println("0- Exit");
 
-                choice = clavierInput.readInt();
+                choice = keybordInput.readInt();
                 switch(choice){
                     case 1:
-                        slackSystem.connection(clavierInput.printRead("your email adress", 2),
-                                clavierInput.printRead("your password", 2);
+                        slackSystem.connection(keybordInput.printRead("your email adress", 2),
+                                keybordInput.printRead("your password", 2);
                         break;
                     case 2:
                         break;
@@ -46,7 +46,7 @@ public class Slack {
                 System.out.println("0- Exit");
 
 
-                choice = clavierInput.readInt();
+                choice = keybordInput.readInt();
 
                 switch (choice) {
                     case 1:
@@ -68,7 +68,7 @@ public class Slack {
                         System.out.println("8- Delete a collaborator");
                         System.out.println("9- Visit a collaborator's profile");
                         System.out.println("0- Exit workspace");
-                        wsChoice = clavierInput.readInt();
+                        wsChoice = keybordInput.readInt();
                         switch (wsChoice) {
                             case 1:
                                 break;
@@ -81,7 +81,7 @@ public class Slack {
                                 System.out.println("2- Edit a message in the channel");
                                 System.out.println("3- Delete a message from the channel");
                                 System.out.println("0- Exit the channel");
-                                chChoice = clavierInput.readInt();
+                                chChoice = keybordInput.readInt();
                                 switch (chChoice) {
                                     case 1:
                                         break;

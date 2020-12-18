@@ -2,7 +2,7 @@ package controller;
 
 import java.util.Scanner;
 
-public class ClavierInput {
+public class KeybordInput {
 
     public void printRead(String printable, int type){
         System.out.println("Please enter " + printable + ": > ");
