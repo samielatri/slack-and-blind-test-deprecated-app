@@ -74,7 +74,7 @@ public class User {
     }
     public void ShowListOfWs(ArrayList<Workspace> workspaces){
         for(Workspace workspace: workspaces){
-            System.out.println(workspace);
+            System.out.println(workspaces.indexOf(workspace)+"-"+workspace);
         }
     }
     public void editAccount(){}

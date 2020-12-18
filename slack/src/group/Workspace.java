@@ -103,7 +103,7 @@ public class Workspace {
     }
     public void ShowListOfChannel(ArrayList<WorkspaceChannel> channels){
         for(WorkspaceChannel channel: channels){
-            System.out.println(channel);
+            System.out.println(channels.indexOf(channel)+"-"+channel);
         }
     }
     public void joinChannel(){}
