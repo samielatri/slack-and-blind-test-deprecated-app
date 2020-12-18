@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import Group.Workspace;
 import UserManagment.User;

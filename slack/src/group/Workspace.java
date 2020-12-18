@@ -1,4 +1,4 @@
-package Group;
+package group;
 
 import UserManagment.User;
 
@@ -49,8 +49,10 @@ public class Workspace {
         Scanner buff = new Scanner(System.in);
         choix = buff.nextInt();
         if(choix == 1) {
+            chan.setPrivateCh(true);
             System.out.println("this created channel is private");
         }else{
+            chan.setPrivateCh(false);
             chan.getChannelMembers().addAll(workspaceUsers);
         }
         return chan;

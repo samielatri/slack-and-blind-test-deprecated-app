@@ -1,4 +1,4 @@
-package Group;
+package group;
 
 import UserManagment.User;
 
@@ -10,6 +10,7 @@ public class WorkspaceChannel {
     private User creator;
     private ArrayList<User> adminCh;
     private ArrayList<User> channelMembers;
+    private boolean privateCh ;
 
     public WorkspaceChannel(String nameCh, User creator){
         this.nameCh = nameCh;
@@ -33,7 +34,13 @@ public class WorkspaceChannel {
     public String toString() {
         return "Group.Channel " + nameCh;
     }
-
+    public boolean getPrivateCh(){
+        return  privateCh;
+    }
+    public void setPrivateCh(boolean privateCh){
+        this.privateCh = privateCh;
+        this.privateCh = privateCh;
+    }
     public String getNameCh() {
         return nameCh;
     }

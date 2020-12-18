@@ -1,4 +1,4 @@
-package Group;
+package group;
 
 import UserManagment.User;
 

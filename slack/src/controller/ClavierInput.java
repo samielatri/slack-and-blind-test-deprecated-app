@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 public class ClavierInput {
 
     public void printRead(String printable, int type){
@@ -18,7 +18,7 @@ public class ClavierInput {
         return choice;
     }
 
-    public int readString() {
+    public String readString() {
         Scanner scanner = new Scanner(System.in);
         String string = scanner.nextLine();
         return string;

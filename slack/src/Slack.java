@@ -1,5 +1,5 @@
-import Controller.SlackSystem;
-import Controller.ClavierInput;
+import controller.SlackSystem;
+import controller.ClavierInput;
 
 import java.util.Scanner;
 
@@ -24,8 +24,11 @@ public class Slack {
                                 printRead("your password", Types.STRING.getValue()));
                         break;
                     case 2:
+                        slackSystem.register(printRead("your email adress", Types.STRING.getValue()),
+                                printRead("your password", Types.STRING.getValue()));
                         break;
                     case 0:
+                        System.out.println("See you later !");
                         globalChoice = 1;
                         break;
                     default:
@@ -117,6 +120,7 @@ public class Slack {
                     case 7:
                         break;
                     case 0:
+                        System.out.println("See you later !");
                         globalChoice = 1;
                         break;
                     default:
