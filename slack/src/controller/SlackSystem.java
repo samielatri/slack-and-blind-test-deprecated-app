@@ -1,7 +1,8 @@
 package controller;
 
-import group.*;
-import userManagment.*;
+import model.group.Workspace;
+import model.group.WorkspaceChannel;
+import model.user.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,6 +1,6 @@
-import controller.*;
-import group.Workspace;
-
+import controller.KeybordInput;
+import controller.SlackSystem;
+import model.group.Workspace;
 
 import java.util.Scanner;
 

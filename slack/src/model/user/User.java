@@ -1,11 +1,11 @@
-package userManagment;
+package model.user;
 
-import group.*;
-
+import model.group.Message;
+import model.group.Workspace;
+import model.group.WorkspaceChannel;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class User {
