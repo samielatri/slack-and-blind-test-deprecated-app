@@ -351,7 +351,7 @@ public class User {
         }
     }
 
-    public void inviterFriend(User user){
+    public void inviteFriend(User user){
         if (joinedWorkspaceChannels.contains(user)) {
             System.out.println(this.toString() + " envoie une demande d'amis à " + user.toString() + " dans le serveur " + joinedWorkspaceChannels.toString());
         } else {

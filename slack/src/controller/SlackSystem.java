@@ -91,6 +91,14 @@ public class SlackSystem {
         connectedUser.addCollaborator(currentWorkspaceChannel);
     }
 
+    public void editProfile(){
+        //connectedUser.editProfile(currentWorkspace);
+    }
+
+    public void editAccount(){
+        connectedUser.editAccount();
+    }
+
     public void checkCollaboratorProfile(){
         printAllCollaborators();
         int input = -1;
