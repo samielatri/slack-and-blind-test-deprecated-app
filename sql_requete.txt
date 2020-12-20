@@ -1,0 +1,43 @@
+Connection conn=null;
+conn=ConnectionBuilder.createConnection();
+Statement state=null;
+state=conn.createStatement();
+ResultSet res=null;
+
+
+//nouvelle version de la fonction connection
+
+public String connection(String username, String password){
+	try{
+		res=state.executeQuery("SELECT username, password FROM user");
+		while(res.next()){
+			usernameDB=res.getString("username");
+			passwordDB=res.getString("password");
+		
+			if(username.equals(usernameDB) && password.equals(passwordDB)){
+				return "Success";
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return "user not found";
+	}
+}
+
+//nouvelle version def la fonction register
+public User register(String email, String username, String password){
+	try{
+		res=state.executeQuery("SELECT mail FROM user");
+		while(res.next()){
+			mailDB=res.getString("mail");
+			if(email.equals(mailDB)){
+				System.out.println("Email already exists, please enter another one");
+			}
+			res=state.executeQuery("INSERT INTO user VALUES (username, mail, MD5(password))");
+			System.out.println("Successfully registred !\nWelcome +",username);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return new User(email,password);
+	}
+}
