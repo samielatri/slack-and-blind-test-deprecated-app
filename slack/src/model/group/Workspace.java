@@ -15,7 +15,7 @@ public class Workspace implements HasId {
     private ArrayList<User> bannedUsers; // list of the banned users of the workspace
 
     /* constructors */
-    Workspace(String name){
+    public Workspace(String name){
         this.name = name;
     }
 
