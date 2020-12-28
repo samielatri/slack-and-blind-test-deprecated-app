@@ -19,12 +19,12 @@ unique index idProfile_unique (idProfile)
 );
 
 create table workspace(
-idProfile varchar(255),
+/*idProfile varchar(255),*/
 nameWK varchar(255),
-primary key(nameWK),
-index fk_idProfile_idx (idProfile)
+primary key(nameWK)/*,*/
+/*index fk_idProfile_idx (idProfile)*/
 );
-alter table workspace add constraint fk_idProfile foreign key(idProfile) references profile(idProfile) on delete cascade on update cascade;
+/*alter table workspace add constraint fk_idProfile foreign key(idProfile) references profile(idProfile) on delete cascade on update cascade;*/
 
 create table workspaceChannel(
 nameWK varchar(255),
@@ -36,7 +36,7 @@ foreign key(nameWK) references workspace(nameWK)
 create table messageChannel(
 idMsg varchar(255),
 nameWC varchar(255),
-contenu varchar(500),
+msgContent varchar(500),
 createDate date,
 updateDate date,
 sender varchar(255),
@@ -48,7 +48,7 @@ create table messageDirect(
 idMsg varchar(255),
 idProfile varchar(255),
 nameWK varchar(255),
-contenu varchar(500),
+msgContent varchar(500),
 createDate date,
 updateDate date,
 primary key(idMsg),

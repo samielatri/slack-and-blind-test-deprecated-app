@@ -18,13 +18,12 @@ public class Message implements HasId {
     private WorkspaceChannel workspaceChannel;
 
     /* constructor */
-    public Message(Profile sender, String content, Object Canal) {
+    public Message(Profile sender, String content) {
         this.id = Long.toString(ID_GENERATOR.incrementAndGet());
         this.senderMessage = sender.getUsername();
         this.createdAt = new Date();
         this.updatedAt = new Date();
         this.content = content;
-        //TODO : Mettre le workspace channel - Canal
     }
 
     /* accessors */

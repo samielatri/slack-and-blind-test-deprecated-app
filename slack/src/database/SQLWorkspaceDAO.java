@@ -5,6 +5,7 @@ import model.user.Profile;
 import model.user.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * @author Olivier Pitton <olivier@indexima.com> on 18/12/2020
@@ -15,8 +16,12 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 	Statement state = conn.createStatement();
 	ResultSet res=null;
 
+	public SQLWorkspaceDAO() throws SQLException {
+	}
+
+
 	@Override
-	public Workspace insert(Workspace obj, Profile p) { //create a workspace for the profile in the database
+	public Workspace insert(Workspace obj) {//create a workspace for the profile in the database
 		String workDB="";
 		try{
 			res=state.executeQuery("SELECT nameWK FROM workspace");
@@ -28,14 +33,14 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 			}
 			String sql= "INSERT INTO workspace (idProfile, nameWK) VALUES (?,?)";
 			PreparedStatement pstate= conn.prepareStatement(sql);
-			pstate.setString(1,p.getUsername());
+			//pstate.setString(1,obj.getidProfile());
 			pstate.setString(2,obj.getName());
 			res=pstate.executeQuery();
 			System.out.println("Workspace successfully created !");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		return new Workspace(obj.getName());
+		return obj;
 	}
 
 	@Override
@@ -52,26 +57,28 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 
 	}
 
+	//a voir
 	@Override
-	public Workspace update(Workspace obj, String newName) { //update the name of the workspace
+	public Workspace update(Workspace obj) {//update the name of the workspace
 		try {
 			String sql= "UPDATE workspace SET nameWK = ? WHERE nameWK= ?";
 			PreparedStatement pstate= conn.prepareStatement(sql);
-			pstate.setString(1,newName);
+			pstate.setString(1,obj.getName());
 			pstate.setString(2, obj.getName());
 			res=pstate.executeQuery();
 			System.out.println("Workspace updated ! ");
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
-		return new Workspace(newName);
+		return obj;
 	}
 
+
 	@Override
-	public Workspace select(String key) { //return all workspace of the profile
+	public Workspace select(String key) { //return a workspace
 		Workspace w=null;
 		try{
-			String sql= "SELECT nameWK FROM workspace WHERE idProfile=?";
+			String sql= "SELECT * FROM workspace WHERE nameWK=?";
 			PreparedStatement pstate= conn.prepareStatement(sql);
 			pstate.setString(1,key);
 			res=pstate.executeQuery();

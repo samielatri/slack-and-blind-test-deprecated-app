@@ -3,6 +3,7 @@ package database;
 import model.HasId;
 
 import java.io.Closeable;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public interface DAO<T extends HasId> extends Closeable {
 
 	T update(T obj);
 
-	T select(String key);
+	T select(String key) throws SQLException;
 
 	List<T> selectAll();
 
