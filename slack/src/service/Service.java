@@ -7,7 +7,7 @@ import model.group.Workspace;
 import model.group.WorkspaceChannel;
 import model.user.Profile;
 import model.user.User;
-import database.DAO;
+import database.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,12 +16,14 @@ import java.util.Scanner;
 //import static java.awt.MediaEntry.insert;
 
 public class Service {
+
     private SlackSystem system;
     private User usr;
 
     public Workspace createWs(){
         ArrayList<Profile> admins= new ArrayList<>();
         ArrayList<User> members= new ArrayList<>();
+        DAO<Workspace> list = DAOFactory.workspace();
 
         Workspace workspace,ws;
         String wsName;
