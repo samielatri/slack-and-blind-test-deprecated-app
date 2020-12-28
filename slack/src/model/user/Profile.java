@@ -21,10 +21,12 @@ public class Profile {
     private String timezone; // timezone in a specific workspace
     private File profilePicture; // profile picture in a specific workspace
 
+
     /* constructors */
     public Profile(Workspace workspace, User user) {
         this.workspace = workspace;
         this.user = user;
+
     }
 
     /* accessors */

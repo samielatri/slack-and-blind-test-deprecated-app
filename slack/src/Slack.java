@@ -9,7 +9,6 @@ public class Slack {
         SlackSystem slackSystem = new SlackSystem();
         Workspace selectedWs;
         KeybordInput keybordInput = new KeybordInput();
-        Scanner buff;
         int choice, globalChoice=0;
         int wsChoice,chChoice;
         do {
@@ -23,10 +22,8 @@ public class Slack {
                 choice = keybordInput.readInt("choix");
                 switch(choice){
                     case 1:
-
                         slackSystem.connection(keybordInput.readString("your email adress"),
-                                keybordInput.readString("your passwword")
-                               );
+                                keybordInput.readString("your passwword"));
                         break;
                     case 2:
                         break;

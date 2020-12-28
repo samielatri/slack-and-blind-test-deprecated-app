@@ -9,13 +9,13 @@ public class Workspace implements HasId {
 
     /* attributes */
     private String name; // name of the workspace
-    private ArrayList<WorkspaceChannel> workspaceChannels; // list of the channels of the workspace
-    private ArrayList<User> members; // list of the users of the workspace
-    private ArrayList<User> admins; // list of the administrators of the workspace
-    private ArrayList<User> bannedUsers; // list of the banned users of the workspace
+    private ArrayList<WorkspaceChannel> workspaceChannels = new ArrayList<>(); // list of the channels of the workspace
+    private ArrayList<User> members = new ArrayList<>(); // list of the users of the workspace
+    private ArrayList<User> admins = new ArrayList<>(); // list of the administrators of the workspace
+    private ArrayList<User> bannedUsers = new ArrayList<>(); // list of the banned users of the workspace
 
     /* constructors */
-    Workspace(String name){
+    public Workspace(String name){
         this.name = name;
     }
 

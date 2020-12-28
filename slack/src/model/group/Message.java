@@ -2,7 +2,6 @@ package model.group;
 
 import model.HasId;
 import model.user.Profile;
-import model.user.User;
 
 import java.util.Date;
 import java.util.Objects;

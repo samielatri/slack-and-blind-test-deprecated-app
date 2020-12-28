@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class SlackSystem {
     private ArrayList<User> users;
-    private ArrayList<Workspace> workspaces;
+    private ArrayList<Workspace> workspaces;//all workspaces of this platform
     private User connectedUser;
     private Workspace currentWorkspace;
     private WorkspaceChannel currentWorkspaceChannel;
