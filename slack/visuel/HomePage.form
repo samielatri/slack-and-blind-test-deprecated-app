@@ -14,6 +14,7 @@
         </constraints>
         <properties>
           <font name="Century Gothic" size="22" style="1"/>
+          <foreground color="-4513742"/>
           <text value="Welcome to LEGO Slack"/>
         </properties>
       </component>

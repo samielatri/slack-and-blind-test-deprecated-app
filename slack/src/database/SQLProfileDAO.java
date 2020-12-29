@@ -94,6 +94,8 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
     @Override
     public Profile select(String key) throws SQLException { //return a profile
         SQLUserDAO us=new SQLUserDAO();
+        SQLWorkspaceDAO wp=new SQLWorkspaceDAO();
+        Workspace wks=null;
         User uss=null;
         Profile p=null;
         try{
@@ -102,8 +104,9 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
             pstate.setString(1,key);
             res=pstate.executeQuery();
             while (res.next()){
+                wks= wp.select(res.getString("idWK"));
                 uss=us.select(res.getString("mail"));
-                p=new Profile(this,uss);// TODO: trouver un lien entre la table workspace et la table profile pour le premier paramètre de la classe Profile
+                p=new Profile(wks,uss);
             }
         }catch (SQLException e){
             e.printStackTrace();
