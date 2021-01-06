@@ -19,7 +19,7 @@ public class Conect {
             System.out.println("Connection established");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error cannot connect to database...");
+            System.out.println("Error cannot connect to tool.database...");
             System.exit(0);
         }
     }

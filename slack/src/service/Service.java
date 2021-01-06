@@ -1,13 +1,12 @@
 package service;
 
 
-import controller.SlackSystem;
 import model.group.Message;
 import model.group.Workspace;
 import model.group.WorkspaceChannel;
 import model.user.Profile;
 import model.user.User;
-import database.*;
+import tool.database.*;
 
 import java.util.ArrayList;
 import java.util.Date;

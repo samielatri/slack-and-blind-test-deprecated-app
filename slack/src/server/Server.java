@@ -1,4 +1,3 @@
-package server;
 
 import java.io.*;
 import java.net.*;
@@ -20,7 +19,7 @@ public class Server extends JFrame {
 
     // constructor
     public Server(){
-        super("Instant Messenger");
+        super("Serveur");
         userText = new JTextField();
         userText.setEditable(false); // if no connection is established, the user is not allowed to text
         userText.addActionListener(
