@@ -6,10 +6,6 @@ import model.group.WorkspaceChannel;
 import model.user.Profile;
 import model.user.User;
 
-/**
- * @author Olivier Pitton <olivier@indexima.com> on 18/12/2020
- */
-
 public class DAOFactory {
 
 	private static final boolean isSQL = false;

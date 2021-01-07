@@ -1,7 +1,5 @@
 package service;
 
-
-import controller.SlackSystem;
 import model.group.Conversation;
 import model.group.Message;
 import model.group.Workspace;
@@ -10,6 +8,7 @@ import model.user.Profile;
 import model.user.User;
 import database.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -23,10 +22,9 @@ public class Service {
     DAO<Message> DAOMessageDirect = DAOFactory.messageDirect();
     DAO<Message> DAOMessageChannel = DAOFactory.messageChannel();
 
-    private SlackSystem system;
     private User usr;
 
-    public Workspace createWs(){//function called by a user
+    public Workspace createWs() throws SQLException {//function called by a user
         Workspace workspace,ws;
 
         String wsName;
@@ -60,7 +58,7 @@ public class Service {
         return workspace;
     }
 
-    public WorkspaceChannel createCh(Workspace workspace){//function called by a profile
+    public WorkspaceChannel createCh(Workspace workspace) throws SQLException {//function called by a profile
         WorkspaceChannel channel,ch;
         String chName;
         Scanner buffer;
@@ -107,7 +105,7 @@ public class Service {
         return channel;
     }
 
-    public void quitWs(Workspace workspace){//called by a user
+    public void quitWs(Workspace workspace) throws SQLException {//called by a user
         String id = usr.getId()+"."+workspace.getId();
         Profile profile = DAOProfile.select(id);
         DAOProfile.delete(profile);
@@ -118,7 +116,7 @@ public class Service {
     }
 
 
-    public void deleteWs(Workspace workspace){//called by a user
+    public void deleteWs(Workspace workspace) throws SQLException {//called by a user
         ArrayList<WorkspaceChannel> wsChannel = new ArrayList<WorkspaceChannel>();
         ArrayList<Profile> wsProfiles = new ArrayList<Profile>();
 
@@ -169,7 +167,7 @@ public class Service {
         }
     }
 
-    public void editWs(Workspace workspace){//called by a user
+    public void editWs(Workspace workspace) throws SQLException {//called by a user
         Workspace ws;
         ArrayList<Profile> wsProfiles = new ArrayList<Profile>();
         ArrayList<WorkspaceChannel> wsChannels = new ArrayList<WorkspaceChannel>();
@@ -216,7 +214,7 @@ public class Service {
     }
 
 
-    public void editCh(WorkspaceChannel channel){//called by a profile
+    public void editCh(WorkspaceChannel channel) throws SQLException {//called by a profile
         String newName;
         Scanner buff;
         WorkspaceChannel wsChannel;
@@ -341,4 +339,5 @@ public class Service {
         return profile;
     }
 }
+
 

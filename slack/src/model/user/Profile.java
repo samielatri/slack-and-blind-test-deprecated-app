@@ -18,7 +18,7 @@ public class Profile implements HasId {
     private String currentStatus; // current status in a specific workspace
     private String completeName; // complete name of the user in a specific workspace
     private String shownName; // shown name in a specific workspace
-    //private String actualWorkPosition; // actual work position in a specific workspace
+    private String actualWorkPosition; // actual work position in a specific workspace
     private String phoneNumber; // phone number in a specific workspace
     private String timezone; // timezone in a specific workspace
     private File profilePicture; // profile picture in a specific workspace
@@ -68,11 +68,11 @@ public class Profile implements HasId {
     }
 
     public String getIdUser() {
-        return IdUser;
+        return idUser;
     }
 
     public void setIdUser(String idUser) {
-        this.user = user;
+        this.idUser = idUser;
     }
 
     public String getUsername() {

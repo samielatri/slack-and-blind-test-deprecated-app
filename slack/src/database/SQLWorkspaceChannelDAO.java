@@ -1,8 +1,6 @@
 package database;
 
-import model.group.Workspace;
 import model.group.WorkspaceChannel;
-import model.user.User;
 
 import java.sql.*;
 
@@ -11,9 +9,12 @@ import java.sql.*;
  */
 
 public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
-	Connection conn = ConnectionBuilder.createConnection();
+	Connection conn = DBConnection.createConnection();
 	Statement state = conn.createStatement();
 	ResultSet res=null;
+
+	public SQLWorkspaceChannelDAO() throws SQLException {
+	}
 
 	@Override
 	protected WorkspaceChannel create(ResultSet rs) {
@@ -26,7 +27,7 @@ public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
 	}
 
 	@Override
-	public WorkspaceChannel insert(WorkspaceChannel obj, Workspace w) { //create a channel in the database
+	public WorkspaceChannel insert(WorkspaceChannel obj) { //add a workspace
 		String wcDB="";
 		try{
 			res=state.executeQuery("SELECT nameWC FROM workspacechannel");
@@ -38,7 +39,7 @@ public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
 			}
 			String sql= "INSERT INTO workspacechannel (nameWK, nameWC) VALUES (?,?)";
 			PreparedStatement pstate= conn.prepareStatement(sql);
-			pstate.setString(1,w.getName());
+			//pstate.setString(1,obj.g);
 			pstate.setString(2,obj.getName());
 			res=pstate.executeQuery();
 			System.out.println("Channel created !");
@@ -63,22 +64,22 @@ public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
 	}
 
 	@Override
-	public WorkspaceChannel update(WorkspaceChannel obj, String newName) { //update the channel
+	public WorkspaceChannel update(WorkspaceChannel obj) {//update the channel
 		try {
 			String sql= "UPDATE workspacechannel SET nameWK = ? WHERE nameWK= ?";
 			PreparedStatement pstate= conn.prepareStatement(sql);
-			pstate.setString(1,newName);
-			pstate.setString(2, obj.getName());
+			pstate.setString(1,obj.getName());
+			//pstate.setString(2, obj.getName());
 			res=pstate.executeQuery();
 			System.out.println("Channel updated ! ");
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
-		return new WorkspaceChannel(newName);
+		return new WorkspaceChannel(obj.getName());
 	}
 
 	@Override
-	public WorkspaceChannel select(String key) { //return all the workspace of the channel
+	public WorkspaceChannel select(String key) { //return a workspace of the channel
 		WorkspaceChannel wC=null;
 		try{
 			String sql= "SELECT nameWK FROM workspacechannel WHERE nameWC=?";

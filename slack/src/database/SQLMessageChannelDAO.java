@@ -1,13 +1,18 @@
 package database;
 
 import model.group.Message;
+import model.user.Profile;
 
 import java.sql.*;
 
 public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
-    Connection conn = ConnectionBuilder.createConnection();
+    Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
     ResultSet res=null;
+
+    public SQLMessageChannelDAO() throws SQLException {
+    }
+
     @Override
     protected Message create(ResultSet rs) {
         return null;
@@ -21,6 +26,7 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
     @Override
     public Message insert(Message obj) { //add the message in the channel (database)
         try{
+
             String sql= "INSERT INTO messagechannel (idMsg, nameWC, contenu, createDate,updateDate, sender) VALUES (?,?,?,?,?,?)";
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1,obj.getId());
@@ -34,7 +40,7 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
         }catch(SQLException e){
             e.printStackTrace();
         }
-        return new Message(obj.getSenderMessage(),obj.getContent(),this);
+        return obj;
     }
 
     @Override
@@ -64,27 +70,27 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return new Message(obj.getSenderMessage(),obj.getContent(),this);
+        return obj;
     }
 
     @Override
-    public Message select(String key) { //return all the message in the channel
+    public Message select(String key) throws SQLException { //return a message
         Message msgC=null;
-        String sender="";
-        String content="";
+        SQLProfileDAO sp=new SQLProfileDAO();
+        Profile p=null;
         try{
-            String sql= "SELECT sender, contenu FROM messagechannel WHERE nameWC=?";
+            String sql= "SELECT * FROM messagechannel WHERE idMsg=?";
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1,key);
             res=pstate.executeQuery();
             while (res.next()){
-                sender=res.getString("sender");
-                content=res.getString("contenu");
-                msgC=new Message(sender,content,this);
+                p=sp.select(res.getString("idProfile"));
+                msgC=new Message(p,res.getString("msgContent"));
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
         return msgC;
+
     }
 }

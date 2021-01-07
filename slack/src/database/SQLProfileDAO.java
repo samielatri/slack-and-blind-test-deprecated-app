@@ -7,9 +7,12 @@ import model.user.User;
 import java.sql.*;
 
 public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
-    Connection conn = ConnectionBuilder.createConnection();
+    Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
     ResultSet res=null;
+
+    public SQLProfileDAO() throws SQLException {
+    }
 
     @Override
     protected Profile create(ResultSet rs) {
@@ -21,34 +24,34 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
         return null;
     }
 
+
     @Override
-    public Profile insert(User obj, String nameProfile, String currentStatus,
-                          String completeName,String shownName,String actualWorkPosition,String phoneNumber,String timezone) {
+    public Profile insert(Profile obj) {
         String pf="";
         try{
             res=state.executeQuery("SELECT idProfile FROM profile");
             while (res.next()){
                 pf=res.getString("idProfile");
-                if(nameProfile.equals(pf)){
+                if(obj.getCompleteName().equals(pf)){
                     System.out.println("This profile is already exist");
                 }
             }
             String sql= "INSERT INTO profile (mail, idProfile, currentStatus, completeName, shownName, actualWorkPosition, phoneNumber, timezone) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pstate= conn.prepareStatement(sql);
-            pstate.setString(1,obj.getEmail());
-            pstate.setString(2,nameProfile);
-            pstate.setString(3,currentStatus);
-            pstate.setString(4,completeName);
-            pstate.setString(5,shownName);
-            pstate.setString(6,actualWorkPosition);
-            pstate.setString(7,phoneNumber);
-            pstate.setString(8,timezone);
+            //pstate.setString(1,obj.getEmail());
+            //pstate.setString(2,obj.getidProfile());
+            pstate.setString(3,obj.getCurrentStatus());
+            pstate.setString(4,obj.getCompleteName());
+            pstate.setString(5,obj.getShownName());
+            pstate.setString(6,obj.getActualWorkPosition());
+            pstate.setString(7,obj.getPhoneNumber());
+            pstate.setString(8,obj.getTimezone());
             res=pstate.executeQuery();
             System.out.println("Profile successfully registred !");
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return new Profile(this,obj);
+        return obj;
     }
 
     @Override
@@ -83,12 +86,31 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return new Profile(this, obj.getUser());
+        return obj;
     }
 
+
     @Override
-    public Profile select(String key) {
-        return null;
+    public Profile select(String key) throws SQLException { //return a profile
+        SQLUserDAO us=new SQLUserDAO();
+        SQLWorkspaceDAO wp=new SQLWorkspaceDAO();
+        Workspace wks=null;
+        User uss=null;
+        Profile p=null;
+        try{
+            String sql= "SELECT * FROM profile WHERE idProfile=?";
+            PreparedStatement pstate= conn.prepareStatement(sql);
+            pstate.setString(1,key);
+            res=pstate.executeQuery();
+            while (res.next()){
+                wks= wp.select(res.getString("idWK"));
+                uss=us.select(res.getString("mail"));
+                p=new Profile(wks,uss);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return p;
 
     }
 }

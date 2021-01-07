@@ -21,7 +21,7 @@ public class Message implements HasId {
     /* constructor */
     public Message(Profile sender, String content){
         this.id = Long.toString(ID_GENERATOR.incrementAndGet());
-        this.senderMessage = sender.getUsername();
+        this.idSenderMessage = sender.getId();
         this.createdAt = new Date();
         this.updatedAt = new Date();
         this.content = content;
@@ -37,11 +37,11 @@ public class Message implements HasId {
     }
 
     public String getIdSenderMessage() {
-        return senderMessage;
+        return idSenderMessage;
     }
 
     public void setIdSenderMessage(String senderMessage) {
-        this.senderMessage = senderMessage;
+        this.idSenderMessage = senderMessage;
     }
 
     public Date getCreatedAt() {
@@ -76,11 +76,11 @@ public class Message implements HasId {
         this.idCh = idCh;
     }
 
-    public String getIdConversation() {
+    public int getIdConversation() {
         return idConversation;
     }
 
-    public void setIdConversation(String idConversation) {
+    public void setIdConversation(int idConversation) {
         this.idConversation = idConversation;
     }
 
