@@ -11,22 +11,21 @@ public class Message implements HasId {
 
     private static final AtomicLong ID_GENERATOR = new AtomicLong();
     private String id;
-    private String senderMessage;
+    private String idSenderMessage;
     private Date createdAt;
     private Date updatedAt;
     private String content;
-    private WorkspaceChannel workspaceChannel;
+    private String idCh;
+    private int idConversation;
 
     /* constructor */
-    public Message(Profile sender, String content, Object Canal) {
+    public Message(Profile sender, String content){
         this.id = Long.toString(ID_GENERATOR.incrementAndGet());
         this.senderMessage = sender.getUsername();
         this.createdAt = new Date();
         this.updatedAt = new Date();
         this.content = content;
-        //TODO : Mettre le workspace channel - Canal
     }
-
     /* accessors */
     @Override
     public String getId() {
@@ -37,11 +36,11 @@ public class Message implements HasId {
         this.id = id;
     }
 
-    public String getSenderMessage() {
+    public String getIdSenderMessage() {
         return senderMessage;
     }
 
-    public void setSenderMessage(String senderMessage) {
+    public void setIdSenderMessage(String senderMessage) {
         this.senderMessage = senderMessage;
     }
 
@@ -69,12 +68,20 @@ public class Message implements HasId {
         this.content = content;
     }
 
-    public WorkspaceChannel getWorkspaceChannel() {
-        return workspaceChannel;
+    public String getIdCh() {
+        return idCh;
     }
 
-    public void setWorkspaceChannel(WorkspaceChannel workspaceChannel) {
-        this.workspaceChannel = workspaceChannel;
+    public void setIdCh(String idCh) {
+        this.idCh = idCh;
+    }
+
+    public String getIdConversation() {
+        return idConversation;
+    }
+
+    public void setIdConversation(String idConversation) {
+        this.idConversation = idConversation;
     }
 
     @Override

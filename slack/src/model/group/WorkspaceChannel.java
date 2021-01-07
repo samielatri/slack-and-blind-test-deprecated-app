@@ -12,7 +12,7 @@ public class WorkspaceChannel implements HasId {
     private ArrayList<Message> conversation; // list of messages in a workspace channel
     private ArrayList<User> members; // list of the users of the workspace
     private ArrayList<User> admins; // list of the administrators of the workspace
-    private boolean privateCh; //private or not
+    private int privateCh; //1 private / 0 not private
     private String WsId;
 
     public String getWsId() {
@@ -23,11 +23,11 @@ public class WorkspaceChannel implements HasId {
         WsId = wsId;
     }
 
-    public boolean isPrivateCh() {
+    public int isPrivateCh() {
         return privateCh;
     }
 
-    public void setPrivateCh(boolean privateCh) {
+    public void setPrivateCh(int privateCh) {
         this.privateCh = privateCh;
     }
 

@@ -10,9 +10,9 @@ public class Workspace implements HasId {
     /* attributes */
     private String name; // name of the workspace
     private ArrayList<WorkspaceChannel> workspaceChannels = new ArrayList<>(); // list of the channels of the workspace
-    private ArrayList<User> members = new ArrayList<>(); // list of the users of the workspace
-    private ArrayList<User> admins = new ArrayList<>(); // list of the administrators of the workspace
-    private ArrayList<User> bannedUsers = new ArrayList<>(); // list of the banned users of the workspace
+    private ArrayList<Profile> members = new ArrayList<>(); // list of the users of the workspace
+    private ArrayList<Profile> admins = new ArrayList<>(); // list of the administrators of the workspace
+    private ArrayList<Profile> bannedUsers = new ArrayList<>(); // list of the banned users of the workspace
 
     /* constructors */
     public Workspace(String name){
@@ -41,27 +41,27 @@ public class Workspace implements HasId {
         this.workspaceChannels = workspaceChannels;
     }
 
-    public ArrayList<User> getMembers() {
+    public ArrayList<Profile> getMembers() {
         return members;
     }
 
-    public void setMembers(ArrayList<User> members) {
+    public void setMembers(ArrayList<Profile> members) {
         this.members = members;
     }
 
-    public ArrayList<User> getAdmins() {
+    public ArrayList<Profile> getAdmins() {
         return admins;
     }
 
-    public void setAdmins(ArrayList<User> admins) {
+    public void setAdmins(ArrayList<Profile> admins) {
         this.admins = admins;
     }
 
-    public ArrayList<User> getBannedUsers() {
+    public ArrayList<Profile> getBannedUsers() {
         return bannedUsers;
     }
 
-    public void setBannedUsers(ArrayList<User> bannedUsers) {
+    public void setBannedUsers(ArrayList<Profile> bannedUsers) {
         this.bannedUsers = bannedUsers;
     }
 }

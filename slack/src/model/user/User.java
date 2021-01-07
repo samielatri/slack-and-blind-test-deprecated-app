@@ -1,10 +1,11 @@
 package model.user;
 
+import model.HasId;
 import model.group.*;
 
 import java.util.ArrayList;
 
-public class User {
+public class User implements HasId {
     /* attributes */
     private String email; // email address of the user
     private String password; // password of the user
@@ -48,5 +49,9 @@ public class User {
 
     public void setWorkspaces(ArrayList<Workspace> workspaces) {
         this.workspaces = workspaces;
+    }
+
+    public String getId(){
+        return this.email;
     }
 }

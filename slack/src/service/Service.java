@@ -2,6 +2,7 @@ package service;
 
 
 import controller.SlackSystem;
+import model.group.Conversation;
 import model.group.Message;
 import model.group.Workspace;
 import model.group.WorkspaceChannel;
@@ -16,62 +17,71 @@ import java.util.Scanner;
 //import static java.awt.MediaEntry.insert;
 
 public class Service {
+    DAO<WorkspaceChannel> DAOChannel = DAOFactory.workspaceChannel();
+    DAO<Workspace> DAOWorkspace = DAOFactory.workspace();
+    DAO<Profile> DAOProfile = DAOFactory.profile();
+    DAO<Message> DAOMessageDirect = DAOFactory.messageDirect();
+    DAO<Message> DAOMessageChannel = DAOFactory.messageChannel();
 
     private SlackSystem system;
     private User usr;
 
-    public Workspace createWs(){
-        ArrayList<Profile> admins= new ArrayList<>();
-        ArrayList<User> members= new ArrayList<>();
-        DAO<Workspace> list = DAOFactory.workspace();
-
+    public Workspace createWs(){//function called by a user
         Workspace workspace,ws;
-        String wsName;
 
+        String wsName;
         Scanner buff;
+
         System.out.println("Enter the name of the workspace");
         do {
             buff = new Scanner(System.in);
             wsName = buff.nextLine();
-            ws = select(wsName);
+            ws = DAOWorkspace.select(wsName);
             if(ws != null){
                 System.out.println("This name already exist please enter another one");
             }
-        }while(ws != null);//comment le referer au workspaces?
+        }while(ws != null);
+
         workspace = new Workspace(wsName);
-        ws = insert(workspace);
-        admins = select(Profile)//selecttionner tous les profiles qui contiennent l'id du workspace
+        ws = DAOWorkspace.insert(workspace);
+        if(ws!=null){
+            System.out.println("this workspace has been created succefully");
+        }else{
+            System.out.println("this workspace hasn't been created ! please try again");
+        }
+        //create a profile for the user who's creating the workspace
+        Profile profile;
+        profile = createProfile(usr.getId(),workspace.getId());
 
-
-        /*workspace.getAdmins().add(this.usr);
-        workspace.getMembers().add(this.usr);
-        usr.getWorkspaces().add(workspace);*/
-
+        //put the creator as an admin
+        profile.setIsAdminWS(1);
+        DAOProfile.update(profile);
 
         return workspace;
     }
 
-    public WorkspaceChannel createCh(Workspace workspace){
-        ArrayList<Profile> admins= new ArrayList<>();
-        ArrayList<User> members= new ArrayList<>();
-        WorkspaceChannel channel;
+    public WorkspaceChannel createCh(Workspace workspace){//function called by a profile
+        WorkspaceChannel channel,ch;
         String chName;
-
         Scanner buffer;
+
+        System.out.println("Enter the name of the channel");
         do{
             buffer = new Scanner(System.in);
             chName = buffer.nextLine();
-            if(!select(chName)) {
+            ch = DAOChannel.select(chName);
+            if(ch != null) {
                 System.out.println("this channel name already exist, please choose another name");
             }
-        }while(!select(chName));
+        }while(ch != null);
         channel = new WorkspaceChannel(chName);
+        channel.setWsId(workspace.getId());
 
-        /*channel.getAdmins().add(usr);
-        channel.getMembers().add(usr);
-        channel.setWsId(workspace.getId());*/
-        Profile profile = new Profile(user.get);
-        admins = select(Profile)//selecttionner tous les profiles qui contiennent l'id du workspace
+        //putting the profile that created it as an admin (to change !)
+        String id = usr.getId()+"."+workspace.getId();
+        Profile profile = DAOProfile.select(id);
+        profile.setIsAdminCh(1);
+        DAOProfile.update(profile);
 
         //choose if you want it to be private or not
         int choice;
@@ -81,97 +91,161 @@ public class Service {
         buffer = new Scanner(System.in);
         choice = buffer.nextInt();
         if(choice == 1) {
-            channel.setPrivateCh(true);
+            channel.setPrivateCh(1);
             System.out.println("this created channel is private");
         }else{
-            channel.setPrivateCh(false);
-            channel.getMembers().addAll(workspace.getMembers());
+            channel.setPrivateCh(0);
         }
+
+        ch = DAOChannel.insert(channel);
+        if(ch!=null){
+            System.out.println("this channel has been created succefully");
+        }else{
+            System.out.println("this channel hasn't been created ! please try again");
+        }
+
         return channel;
     }
 
-    public void deleteWs(Workspace workspace){
-        if(!workspace.getAdmins().contains(usr)){
-            System.out.println("you don't have any right on this workspace");
-        }else{
-            System.out.println("this workspace has been deleted successfully");
-            usr.getWorkspaces().remove(workspace);
-            system.getWorkspaces().remove(workspace);
-        }
-
+    public void quitWs(Workspace workspace){//called by a user
+        String id = usr.getId()+"."+workspace.getId();
+        Profile profile = DAOProfile.select(id);
+        DAOProfile.delete(profile);
     }
 
-    public void deleteCh(WorkspaceChannel channel){
-        if(!channel.getAdmins().contains(usr)){
-            System.out.println("you don't have any right on this channel");
-        }else {
-            for(Workspace workspace: system.getWorkspaces()){
-                if(workspace.getId().equals(channel.getWsId())){
-                    workspace.getWorkspaceChannels().remove(channel);
-                    System.out.println("this channel has been deleted successfully");
-                    break;
+    public void quitCh(WorkspaceChannel channel){//called by a profile
+        //we actually can't quit a channel
+    }
+
+
+    public void deleteWs(Workspace workspace){//called by a user
+        ArrayList<WorkspaceChannel> wsChannel = new ArrayList<WorkspaceChannel>();
+        ArrayList<Profile> wsProfiles = new ArrayList<Profile>();
+
+        String idProfile = usr.getId()+"."+workspace.getId();
+        Profile profile = DAOProfile.select(idProfile);
+
+        if(profile.getIsAdminWS()==1){
+            //delete all channels of this workspace
+            wsChannel = (ArrayList<WorkspaceChannel>) DAOChannel.selectAll();
+            for(WorkspaceChannel channel : wsChannel){
+                if(channel.getWsId()==workspace.getId()){
+                    DAOChannel.delete(channel);
                 }
             }
+            wsProfiles = (ArrayList<Profile>) DAOProfile.selectAll();
+            //delete all it's profiles
+            for(Profile p : wsProfiles){
+                if(p.getIdWs()==workspace.getId()){
+                    DAOProfile.delete(p);
+                }
+            }
+            //delete the workspace
+            DAOWorkspace.delete(workspace);
+            System.out.println("this workspace has been deleted successfully");
+
+        }else{
+            System.out.println("you don't have any right on this workspace");
+        }
+
+    }
+
+    public void deleteCh(WorkspaceChannel channel){//called by a profile
+        ArrayList<Profile> chProfiles = new ArrayList<Profile>();
+
+        if(this.getAdminCH()==0){
+            System.out.println("you don't have any right on this channel");
+        }else {
+            //take the role of admin from the profiles that are admins on this channel
+            chProfiles = (ArrayList<Profile>) DAOProfile.selectAll();
+            for(Profile profile : chProfiles){
+                if(profile.getIsAdminCh()==1){
+                    profile.setIsAdminCh(0);
+                }
+            }
+            //delete the channel
+            DAOChannel.delete(channel);
+            System.out.println("this channel has been deleted successfully");
         }
     }
 
-    public void editWs(Workspace workspace){
+    public void editWs(Workspace workspace){//called by a user
         Workspace ws;
+        ArrayList<Profile> wsProfiles = new ArrayList<Profile>();
+        ArrayList<WorkspaceChannel> wsChannels = new ArrayList<WorkspaceChannel>();
         String newName;
+        boolean exist = false;
+        String idProfile = usr.getId()+"."+workspace.getId();
+        Profile profile = DAOProfile.select(idProfile);
+
         Scanner buff;
-        if(!workspace.getAdmins().contains(usr)){
+        if(profile.getIsAdminWS()==0){
             System.out.println("you don't have any right on this workspace");
         }else{
             System.out.println("Enter the new name of this workspace");
             do {
                 buff = new Scanner(System.in);
                 newName = buff.nextLine();
-                ws = new Workspace(newName);
-                if(system.getWorkspaces().contains(ws)){
+                ws = DAOWorkspace.select(newName);
+                if(ws != null){
+                    exist = true;
                     System.out.println("This name is taken, please choose another one");
                 }
-            }while(system.getWorkspaces().contains(ws));
-            workspace.setName(newName);
-            System.out.println("The workspace name has been changed successfully");
-            for(WorkspaceChannel channel: workspace.getWorkspaceChannels()){
-                channel.setWsId(newName);
+            }while(exist);
+            //change the id workspace for all the channels
+            wsChannels = (ArrayList<WorkspaceChannel>) DAOChannel.selectAll();
+            for(WorkspaceChannel channel: wsChannels){
+                if(channel.getWsId()==workspace.getId()){
+                    channel.setWsId(newName);
+                    DAOChannel.update(channel);
+                }
             }
+            //change the id workspace for all the profiles
+            wsProfiles = (ArrayList<Profile>) DAOProfile.selectAll();
+            for(Profile p: wsProfiles){
+                if(p.getIdWs()==workspace.getId()){
+                    p.setIdWs(newName);
+                    DAOProfile.update(p);
+                }
+            }
+            //update the workspace
+            workspace.setName(newName);
+            ws = DAOWorkspace.update(workspace);
+            System.out.println("The workspace informations has been changed successfully");
         }
     }
 
 
-    public void editCh(WorkspaceChannel channel){
-        WorkspaceChannel newChannel;
+    public void editCh(WorkspaceChannel channel){//called by a profile
         String newName;
         Scanner buff;
+        WorkspaceChannel wsChannel;
+
         boolean exist = false;
-        if(!channel.getAdmins().contains(usr)){
+        if(this.getIsAdminCH()==0){
             System.out.println("you don't have any right on this channel");
         }else{
             System.out.println("Enter the new name of this channel");
             do {
                 buff = new Scanner(System.in);
                 newName = buff.nextLine();
-                newChannel = new WorkspaceChannel(newName);
-                for(Workspace workspace: system.getWorkspaces()){
-                    if(workspace.getId().equals(channel.getWsId())){
-                        if(workspace.getWorkspaceChannels().contains(newChannel)){
-                            System.out.println("this channel name already exist, please choose another one");
-                            exist = true;
-                            break;
-                        }
-                    }
+                wsChannel = DAOChannel.select(newName);
+                if(channel!=null) {
+                    exist=true;
+                    System.out.println("this channel name already exist, please choose another one");
                 }
+
             }while(exist);
+            //updating the id channel for all the messages
             channel.setName(newName);
-            System.out.println("The channel name has been changed successfully");
+            wsChannel = DAOChannel.update(channel);
+            System.out.println("The channel informations has been changed successfully");
 
         }
     }
 
-    public void sendChannelMsg(WorkspaceChannel channel,Profile profile){
+    public Message sendChannelMsg(WorkspaceChannel channel){//called by a profile
         Message message;
-        Object o = null;//quel est l'objet canal??
         String content;
         Scanner buffer;
         Date date = new Date();
@@ -179,20 +253,24 @@ public class Service {
         System.out.println("Enter the content of your message");
         buffer = new Scanner(System.in);
         content = buffer.next();
-        message = new Message(profile,content,o);
+        message = new Message(this,content);
         message.setCreatedAt(date);
-        channel.getConversation().add(message);
+        message.setIdCh(channel.getId());
+        //channel.getConversation().add(message);
+        return DAOMessageChannel.insert(message);
     }
 
-    public void deleteChannelMsg(Message msg,WorkspaceChannel channel){
-        if(channel.getConversation().isEmpty()){
-            System.out.println("This conversation is already empty");
+    public void deleteChannelMsg(Message msg){//called by a profile
+        if(msg.getIdSenderMessage()==this.getId()){
+            DAOMessageChannel.delete(msg);
+            System.out.println("the message has been deleted succefully");
         }else{
-            channel.getConversation().remove(msg);
+            System.out.println("The message that you are trying to delete is not yours, please select a message that has been sent by you");
         }
     }
 
-    public void editChannelMsg(Message msg){
+    public Message editChannelMsg(Message msg){
+        Message message;
         String newContent;
         Scanner buffer;
         Date date = new Date();
@@ -202,6 +280,65 @@ public class Service {
         msg.setCreatedAt(date);
 
         msg.setContent(newContent);
+        message = DAOMessageChannel.update(msg);
         System.out.println("your content has been changed successfully");
+        return message;
+    }
+    public Conversation createConversation(){
+        Conversation conversation;
+        String name;
+        Scanner buffer;
+        Date date = new Date();
+        buffer = new Scanner(System.in);
+        name = buffer.nextLine();
+        conversation = new Conversation(name,date);
+        return conversation;
+    }
+    public Message sendConversationMsg(Conversation conversation){
+        Message message;
+        String content;
+        Scanner buffer;
+        Date date = new Date();
+
+        System.out.println("Enter the content of your message");
+        buffer = new Scanner(System.in);
+        content = buffer.next();
+        message = new Message(this,content);
+        message.setCreatedAt(date);
+        message.setIdConversation(conversation.getId());
+        return DAOMessageDirect.insert(message);
+    }
+    public Message editConversationMsg(Message msg){
+        Message message;
+        String newContent;
+        Scanner buffer;
+        Date date = new Date();
+        System.out.println("Enter the new content of your message");
+        buffer = new Scanner(System.in);
+        newContent = buffer.next();
+        msg.setCreatedAt(date);
+
+        msg.setContent(newContent);
+        message = DAOMessageDirect.update(msg);
+        System.out.println("your content has been changed successfully");
+        return message;
+    }
+
+    public void addWsCollaborator(User collab,Workspace workspace) {//called to add a collaborator
+        Profile profileCollab = createProfile(collab.getId(),workspace.getId());
+        DAOProfile.insert(profileCollab);
+    }
+
+    public void addChCollaborator(Profile collab) {//called by a user to add a collaborator
+        //How to add a collab in a channel ?
+        //How can we know that a profile /user is in a "X" channel
+    }
+
+    public Profile createProfile(String idUsr,String idWs){//called by a user
+        Profile profile = new Profile(idWs,idUsr);
+        String id = idUsr+"."+idWs;
+        profile.setId(id);
+        return profile;
     }
 }
+
