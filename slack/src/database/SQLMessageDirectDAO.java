@@ -1,6 +1,6 @@
 package database;
 
-import model.group.Message;
+import model.communication.Message;
 import model.user.Profile;
 
 import java.sql.*;

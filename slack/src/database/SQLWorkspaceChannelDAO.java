@@ -1,6 +1,6 @@
 package database;
 
-import model.group.WorkspaceChannel;
+import model.communication.WorkspaceChannel;
 
 import java.sql.*;
 

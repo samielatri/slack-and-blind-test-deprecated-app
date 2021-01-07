@@ -1,8 +1,8 @@
-package tool;
+package controller;
 
 public enum HomeMenuOptions {
     REGISTRATION(1, "S'inscrire"),
-    SIGNIN(2, "Se connecter");
+    SIGNING(2, "Se connecter");
 
     private int optionNumber;
     private String optionName;

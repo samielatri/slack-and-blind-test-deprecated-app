@@ -1,6 +1,6 @@
 package database;
 
-import model.group.Message;
+import model.communication.Message;
 
 import java.util.List;
 

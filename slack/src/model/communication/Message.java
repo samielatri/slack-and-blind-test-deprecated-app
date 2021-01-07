@@ -1,4 +1,4 @@
-package model.group;
+package model.communication;
 
 import model.HasId;
 import model.user.Profile;

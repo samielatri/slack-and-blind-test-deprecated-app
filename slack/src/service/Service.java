@@ -1,9 +1,9 @@
 package service;
 
-import model.group.Conversation;
-import model.group.Message;
-import model.group.Workspace;
-import model.group.WorkspaceChannel;
+import model.communication.Conversation;
+import model.communication.Message;
+import model.communication.Workspace;
+import model.communication.WorkspaceChannel;
 import model.user.Profile;
 import model.user.User;
 import database.*;
@@ -511,22 +511,22 @@ public class Service {
     public void banMemberFromWorkspace(){
         User connectedUser = slackSystem.getConnectedUser();
         Workspace connectedWorkspace = connectedUser.getCurrentWorkspace();
-        ArrayList<User> admins = connectedWorkspace.getAdmins();
+        ArrayList<User> admins = connectedWorkspace.getAdminProfiles();
         if (!admins.contains(connectedUser)) {
             System.out.println("Action not authorized ! The user is not admin");
             return;
         }
         // admin
-        ArrayList<User> members = connectedWorkspace.getMembers();
+        ArrayList<User> members = connectedWorkspace.getMemberProfiles();
         String memberId = readString("member's email to ban");
         for(User member : members){
             if (member.getEmail() == memberId) {
                 System.out.println("Banning member...");
-                connectedWorkspace.getMembers().remove(member);
+                connectedWorkspace.getMemberProfiles().remove(member);
                 if(admins.contains(member)) {
-                    connectedWorkspace.getAdmins().remove(member);
+                    connectedWorkspace.getAdminProfiles().remove(member);
                 }
-                connectedWorkspace.getBannedUsers().add(member);
+                connectedWorkspace.getBannedProfiles().add(member);
                 System.out.println("Member banned");
                 return;
             }
@@ -537,20 +537,20 @@ public class Service {
     public void kickMemberFromWorkspace(){
         User connectedUser = slackSystem.getConnectedUser();
         Workspace connectedWorkspace = connectedUser.getCurrentWorkspace();
-        ArrayList<User> admins = connectedWorkspace.getAdmins();
+        ArrayList<User> admins = connectedWorkspace.getAdminProfiles();
         if (!admins.contains(connectedUser)) {
             System.out.println("Action not authorized ! The user is not admin");
             return;
         }
         // admin
-        ArrayList<User> members = connectedWorkspace.getMembers();
+        ArrayList<User> members = connectedWorkspace.getMemberProfiles();
         String memberId = readString("member's email to kick");
         for(User member : members){
             if (member.getEmail() == memberId) {
                 System.out.println("kicking member...");
-                connectedWorkspace.getMembers().remove(member);
+                connectedWorkspace.getMemberProfiles().remove(member);
                 if(admins.contains(member)) {
-                    connectedWorkspace.getAdmins().remove(member);
+                    connectedWorkspace.getAdminProfiles().remove(member);
                 }
                 System.out.println("Member kicked");
                 return;
@@ -563,7 +563,7 @@ public class Service {
         User user = slackSystem.getConnectedUser();
         Profile profile = user.getCurrentProfile();
         Workspace currentWorkspace = profile.getWorkspace();
-        ArrayList<User> members = currentWorkspace.getMembers();
+        ArrayList<User> members = currentWorkspace.getMemberProfiles();
 
         ArrayList<Profile> collaborators = profile.getCollaborators();
         String collaboratorShownName = readString("name of the collaborator");
@@ -591,7 +591,7 @@ public class Service {
         User user = slackSystem.getConnectedUser();
         Profile profile = user.getCurrentProfile();
         Workspace currentWorkspace = profile.getWorkspace();
-        ArrayList<User> members = currentWorkspace.getMembers();
+        ArrayList<User> members = currentWorkspace.getMemberProfiles();
 
         ArrayList<Profile> collaborators = profile.getCollaborators();
         String collaboratorShownName = readString("name of the collaborator");
@@ -610,7 +610,7 @@ public class Service {
         User user = slackSystem.getConnectedUser();
         Profile profile = user.getCurrentProfile();
         Workspace currentWorkspace = profile.getWorkspace();
-        ArrayList<User> members = currentWorkspace.getMembers();
+        ArrayList<User> members = currentWorkspace.getMemberProfiles();
 
         ArrayList<Profile> collaborators = profile.getCollaborators();
         String collaboratorShownName = readString("name of the collaborator");
@@ -694,10 +694,10 @@ public class Service {
         buffer = new Scanner(System.in);
         choice = buffer.nextInt();
         if(choice == 1) {
-            channel.setPrivateCh(1);
+            channel.setPrivate(1);
             System.out.println("this created channel is private");
         }else{
-            channel.setPrivateCh(0);
+            channel.setPrivate(0);
         }
 
         ch = DAOChannel.insert(channel);
@@ -730,7 +730,7 @@ public class Service {
         String idProfile = currentConnectedUser.getId()+"."+workspace.getId();
         Profile profile = DAOProfile.select(idProfile);
 
-        if( profile.getIsAdminWS() == 1 ){
+        if( profile.isAdminWS() == 1 ){
             //delete all channels of this workspace
             wsChannel = (ArrayList<WorkspaceChannel>) DAOChannel.selectAll();
             for(WorkspaceChannel channel : wsChannel){
@@ -742,7 +742,7 @@ public class Service {
 
             //delete all its profiles
             for(Profile p : wsProfiles){
-                if(p.getIdWs()==workspace.getId()){
+                if(p.getWorkspaceId()==workspace.getId()){
                     DAOProfile.delete(p);
                 }
             }
@@ -767,7 +767,7 @@ public class Service {
             //take the role of admin from the profiles that are admins on this channel
             chProfiles = (ArrayList<Profile>) DAOProfile.selectAll();
             for(Profile profile : chProfiles){
-                if(profile.getIsAdminCh()==1){
+                if(profile.isAdminCh()==1){
                     profile.setIsAdminCh(0);
                 }
             }
@@ -787,7 +787,7 @@ public class Service {
         Profile profile = DAOProfile.select(idProfile);
 
         Scanner buff;
-        if(profile.getIsAdminWS()==0){
+        if(profile.isAdminWS()==0){
             System.out.println("you don't have any right on this workspace");
         }else{
             System.out.println("Enter the new name of this workspace");
@@ -811,8 +811,8 @@ public class Service {
             //change the id workspace for all the profiles
             wsProfiles = (ArrayList<Profile>) DAOProfile.selectAll();
             for(Profile p: wsProfiles){
-                if(p.getIdWs()==workspace.getId()){
-                    p.setIdWs(newName);
+                if(p.getWorkspaceId()==workspace.getId()){
+                    p.setWorkspaceId(newName);
                     DAOProfile.update(p);
                 }
             }

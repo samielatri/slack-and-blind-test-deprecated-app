@@ -1,5 +1,7 @@
 package database;
 
+import model.HasId;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,11 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Olivier Pitton <olivier@indexima.com> on 18/12/2020
- */
 
-public abstract class AbstractSQLDAO<T> implements DAO<T> {
+public abstract class AbstractSQLDAO<T extends HasId> implements DAO<T> {
 
 	protected final Connection connection = DBConnection.createConnection();
 
@@ -37,7 +36,7 @@ public abstract class AbstractSQLDAO<T> implements DAO<T> {
 	public void close() {
 		try {
 			connection.close();
-		} catch (SQLException throwables) {
+		} catch (SQLException throwable) {
 		}
 	}
 }

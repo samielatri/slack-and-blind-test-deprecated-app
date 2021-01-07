@@ -1,6 +1,6 @@
 package database;
 
-import model.group.Message;
+import model.communication.Message;
 import model.user.Profile;
 
 import java.sql.*;
@@ -24,23 +24,23 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
     }
 
     @Override
-    public Message insert(Message obj) { //add the message in the channel (database)
+    public Message insert(Message message) { //add the message in the channel (database)
         try{
 
             String sql= "INSERT INTO messagechannel (idMsg, nameWC, contenu, createDate,updateDate, sender) VALUES (?,?,?,?,?,?)";
             PreparedStatement pstate= conn.prepareStatement(sql);
-            pstate.setString(1,obj.getId());
-            pstate.setString(2,obj.getWorkspaceChannel().getName());
-            pstate.setString(3,obj.getContent());
-            pstate.setObject(4,obj.getCreatedAt());
-            pstate.setObject(5,obj.getUpdatedAt());
-            pstate.setString(6,obj.getSenderMessage());
+            pstate.setString(1,message.getId());
+            pstate.setString(2,message.getWorkspaceChannel().getName());
+            pstate.setString(3,message.getContent());
+            pstate.setObject(4,message.getCreatedAt());
+            pstate.setObject(5,message.getUpdatedAt());
+            pstate.setString(6,message.getSenderMessage());
             res=pstate.executeQuery();
             System.out.println("Message added !");
         }catch(SQLException e){
             e.printStackTrace();
         }
-        return obj;
+        return message;
     }
 
     @Override
