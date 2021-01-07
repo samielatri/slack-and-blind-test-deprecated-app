@@ -1,9 +1,9 @@
-package controller;
+package Controllers;
 
 import java.io.IOException;
 
-import Model.User;
-import Utils.LoginDao;
+import model.User;
+import utils.LoginDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 /**
  *
  * @author user
@@ -23,8 +22,8 @@ import javafx.stage.Stage;
  *         their role
  *
  */
-
 public class LoginController {
+
     @FXML
     private TextField username;
 
@@ -39,19 +38,19 @@ public class LoginController {
         String passString = password.getText();
 
         // password length should greater then 6 else give error
-        if (passString.length() >= 6) {
+//		if (passString.length() >= 6) {
 
-            user = LoginDao.login(nameString, passString);
+        user = LoginDao.login(nameString, passString);
 
-            if (user != null) {
-                new Alert(Alert.AlertType.INFORMATION, "Login Successfully").showAndWait();
-                loadMenu();
-            } else {
-                new Alert(Alert.AlertType.INFORMATION, "Wrong Username or Password").showAndWait();
-            }
+        if (user != null) {
+            new Alert(Alert.AlertType.INFORMATION, "Login Successfully").showAndWait();
+            loadMenu();
         } else {
-            new Alert(Alert.AlertType.INFORMATION, "Password Shoul Greater then 6").showAndWait();
+            new Alert(Alert.AlertType.INFORMATION, "Wrong Username or Password").showAndWait();
         }
+//		} else {
+//			new Alert(Alert.AlertType.INFORMATION, "Password Shoul Greater then 6").showAndWait();
+//		}
 
     }
 
@@ -59,7 +58,7 @@ public class LoginController {
 
         try {
             FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../View/Menu.fxml"));
-            ChatController deController = fxmlloader.getController();
+            Controllers.ChatController deController = fxmlloader.getController();
             deController.setUser(user);
 
             // load the other stage
@@ -77,7 +76,7 @@ public class LoginController {
 
     @FXML
     void register(ActionEvent event) {
-        loadStage("view/register.fxml", "Register");
+        loadStage("../view/register.fxml", "Register");
         closeStage();
     }
 
@@ -101,4 +100,5 @@ public class LoginController {
     public void closeStage() {
         ((Stage) username.getScene().getWindow()).close();
     }
+
 }

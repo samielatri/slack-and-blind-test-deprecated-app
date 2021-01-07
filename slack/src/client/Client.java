@@ -1,129 +1,95 @@
 package client;
 
-import java.io.*;
-import java.net.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.util.ArrayList;
 
-// home computer
-public class Client extends JFrame {
-    private JTextField userText;
-    private JTextArea chatWindow;
-    private ObjectOutputStream output; // client to server
-    private ObjectInputStream input; // server to client
-    private String message = "";
-    private String serverIP;
-    private Socket connection;
+import Controllers.ChatController;
+import model.Message;
+import javafx.scene.control.TextArea;
 
-    // constructor
-    public Client(String host) {
-        super("client.Client message app!");
-        serverIP = host;
-        userText = new JTextField();
-        userText.setEditable(false);
-        userText.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent event) {
-                        sendMessage(event.getActionCommand());
-                        userText.setText("");
-                    }
-                }
-        );
-        add(userText, BorderLayout.NORTH);
-        chatWindow = new JTextArea();
-        add(new JScrollPane(chatWindow), BorderLayout.CENTER);
-        setSize(300, 150);
-        setVisible(true);
+public class Client implements Runnable {
+
+    // User defined Fields
+    private String host = "localhost";
+    private int port = 62000;
+    private Message message;
+
+    // For Socket Connection
+    Socket socket;
+    ObjectInputStream input = null;
+    ObjectOutputStream output = null;
+
+    TextArea M_output;
+    private static ArrayList<Message> messages = new ArrayList<>();
+
+    public Client(Message message, TextArea M_output) {
+        this.message = message;
+        this.M_output = M_output;
     }
 
-    // connect to server
-    public void startRunning() {
+    @Override
+    public void run() {
         try {
-            connectToServer(); // no wait -> connect to direct computer
-            setupStreams();
-            whileChatting();
-        } catch (EOFException eofException) {
-            showMessage("\n client.Client terminated connection");
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        } finally {
-            closeCrap();
+            InetAddress ip = InetAddress.getByName(host);
+
+            socket = new Socket(ip, port);
+
+            output = new ObjectOutputStream(socket.getOutputStream());
+            input = new ObjectInputStream(socket.getInputStream());
+
+            output.writeObject(message);
+            resetStream();
+
+            while (!(socket.isClosed())) {
+                Message message = (Message) input.readObject();
+                messages.add(message);
+                ChatController.setMessages(messages);
+                M_output.appendText(message.getSender().getProfile().getShownName() + ":" + message.getContent() + "\n");
+                System.out.println(message.toString());
+            }
+
+//			closeConnection();
+
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println("client" + ex.getMessage());
+
         }
     }
 
-    //connect to server
-    private void connectToServer() throws IOException {
-        showMessage("Attempting connection...\n");
-        // creating a socket this computer with the other
-        connection = new Socket(InetAddress.getByName(serverIP), 6789);
-        showMessage("Connected to:" + connection.getInetAddress().getHostName());
-    }
-
-    //set up streams to send and receive messages
-    private void setupStreams() throws IOException {
-        output = new ObjectOutputStream(connection.getOutputStream());
-        output.flush();
-        input = new ObjectInputStream(connection.getInputStream());
-        showMessage("\n message ready to go");
-    }
-
-    //while chatting with server
-    private void whileChatting() throws IOException {
-        ableToType(true);
-        do {
-            try {
-                message = (String) input.readObject();
-                showMessage("\n" + message);
-            } catch (ClassNotFoundException classNotFoundException) {
-                showMessage("\n unknown object type");
-            }
-        } while (!message.equals("SERVER - END"));
-    }
-
-    //close the streams and sockets
-    private void closeCrap() {
-        showMessage("\n closing crap down...");
-        ableToType(false);
+    public void closeConnection() {
         try {
+            socket.close();
             output.close();
             input.close();
-            connection.close();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
+            System.out.println("Client Closed Connection");
+
+        } catch (IOException ex) {
+            System.out.println("client" + ex.getMessage());
         }
     }
 
-    //send messages to Server
-    private void sendMessage(String message) {
+    public void sendMessage(Message message) {
+
         try {
-            output.writeObject("CLIENT - " + message);
-            output.flush();
-            showMessage("\nCLIENT - " + message);
-        } catch (IOException ioException) {
-            chatWindow.append(("\n error while sending client message"));
+            output.writeObject(message);
+            resetStream();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
-    //change or update chatWindow
-    private void showMessage(final String m) {
-        SwingUtilities.invokeLater(
-            new Runnable() {
-                public void run() {
-                    chatWindow.append(m);
-                }
-            }
-        );
+    public void resetStream() {
+        try {
+            output.flush();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
-    //gives user permission to type into the text box
-    private void ableToType(final boolean tof) {
-        SwingUtilities.invokeLater(
-            new Runnable(){
-                public void run() {
-                    userText.setEditable(tof);
-                }
-            }
-        );
-    } // end of ableToType
-} // end of client.Client
+}

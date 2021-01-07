@@ -7,7 +7,7 @@ public class Conversation{
     private String name;
     private Date startedAt;
 
-    /*constroctors*/
+    /* constructors */
 
     public Conversation(String name,Date startedAt) {
         this.name = name;
@@ -15,7 +15,7 @@ public class Conversation{
     }
 
     /* Accessors*/
-    public String getId() {
+    public int getId() {
         return id;
     }
 

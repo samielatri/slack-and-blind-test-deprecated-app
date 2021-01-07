@@ -27,7 +27,6 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
      * @return
      */
     public User signIn(User user) {
-
         try {
             String mailDB = ""; // mail retrieved from database
             String passwordDB = ""; // password retrieved from database

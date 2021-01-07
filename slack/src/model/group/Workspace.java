@@ -1,7 +1,7 @@
 package model.group;
 
 import model.HasId;
-import model.user.*;
+import model.user.Profile;
 
 import java.util.ArrayList;
 

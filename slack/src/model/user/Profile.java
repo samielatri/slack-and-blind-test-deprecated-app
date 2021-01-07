@@ -1,11 +1,8 @@
 package model.user;
 
 import model.HasId;
-import model.group.Workspace;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class Profile implements HasId {
     /* attributes */
