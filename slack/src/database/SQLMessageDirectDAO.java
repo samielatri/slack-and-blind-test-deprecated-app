@@ -42,8 +42,8 @@ public class SQLMessageDirectDAO extends AbstractSQLDAO<Message> {
             pstate2.setObject(6,obj.getUpdatedAt());
             res=pstate2.executeQuery();
             System.out.println("Message added !");
-        }catch(SQLException e){
-            e.printStackTrace();
+        }catch(SQLException exception){
+            exception.printStackTrace();
         }
         return obj;
     }
@@ -52,9 +52,9 @@ public class SQLMessageDirectDAO extends AbstractSQLDAO<Message> {
     public void delete(Message obj) { //delete the message
         try{
             String sql= "DELETE FROM messagedirect WHERE idMsg= ?";
-            PreparedStatement pstate= conn.prepareStatement(sql);
+            PreparedStatement pstate = conn.prepareStatement(sql);
             pstate.setString(1,obj.getId());
-            res=pstate.executeQuery();
+            res = pstate.executeQuery();
             System.out.println("Message deleted");
         }catch (SQLException e){
             e.printStackTrace();
@@ -87,7 +87,7 @@ public class SQLMessageDirectDAO extends AbstractSQLDAO<Message> {
             String sql= "SELECT * FROM messagedirect WHERE idMsg=?";
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1,key);
-            res=pstate.executeQuery();
+            res = pstate.executeQuery();
             while (res.next()){
                 p=sp.select(res.getString("idProfile"));
                 msgC=new Message(p,res.getString("msgContenu"));

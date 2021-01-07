@@ -8,7 +8,7 @@ import java.sql.*;
 public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
     Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
-    ResultSet res=null;
+    ResultSet queryResult = null;
 
     public SQLMessageChannelDAO() throws SQLException {
     }
@@ -25,33 +25,32 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
 
     @Override
     public Message insert(Message message) { //add the message in the channel (database)
-        try{
-
+        try {
             String sql= "INSERT INTO messagechannel (idMsg, nameWC, contenu, createDate,updateDate, sender) VALUES (?,?,?,?,?,?)";
-            PreparedStatement pstate= conn.prepareStatement(sql);
-            pstate.setString(1,message.getId());
-            pstate.setString(2,message.getWorkspaceChannel().getName());
-            pstate.setString(3,message.getContent());
-            pstate.setObject(4,message.getCreatedAt());
-            pstate.setObject(5,message.getUpdatedAt());
-            pstate.setString(6,message.getSenderMessage());
-            res=pstate.executeQuery();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString( 1, message.getId() );
+            preparedStatement.setString( 2, message.getWorkspaceChannel().getName() );
+            preparedStatement.setString( 3, message.getContent() );
+            preparedStatement.setObject( 4, message.getCreatedAt() );
+            preparedStatement.setObject( 5, message.getUpdatedAt() );
+            preparedStatement.setString( 6, message.getSenderMessage() );
+            queryResult = preparedStatement.executeQuery();
             System.out.println("Message added !");
-        }catch(SQLException e){
-            e.printStackTrace();
+        } catch( SQLException exception ) {
+            exception.printStackTrace();
         }
         return message;
     }
 
     @Override
-    public void delete(Message obj) { //delete the message
-        try{
+    public void delete( Message obj ) { //delete the message
+        try {
             String sql= "DELETE FROM messagechannel WHERE idMsg= ?";
-            PreparedStatement pstate= conn.prepareStatement(sql);
-            pstate.setString(1,obj.getId());
-            res=pstate.executeQuery();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,obj.getId());
+            queryResult = preparedStatement.executeQuery();
             System.out.println("Message deleted");
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -59,38 +58,42 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
 
     @Override
     public Message update(Message obj) { //modifiy the message's content
+
         try {
             String sql= "UPDATE messagechannel SET contenu = ?, updateDate= ? WHERE idMsg= ?";
-            PreparedStatement pstate= conn.prepareStatement(sql);
-            pstate.setString(1, obj.getContent());
-            pstate.setObject(2, obj.getUpdatedAt());
-            pstate.setString(3,obj.getId());
-            res=pstate.executeQuery();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString( 1, obj.getContent() );
+            preparedStatement.setObject( 2, obj.getUpdatedAt() );
+            preparedStatement.setString( 3,obj.getId() );
+            queryResult = preparedStatement.executeQuery();
             System.out.println("Message modified ! ");
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return obj;
+
     }
 
     @Override
     public Message select(String key) throws SQLException { //return a message
-        Message msgC=null;
-        SQLProfileDAO sp=new SQLProfileDAO();
-        Profile p=null;
+
+        Message message = null;
+        SQLProfileDAO sp = new SQLProfileDAO();
+        Profile p = null;
         try{
             String sql= "SELECT * FROM messagechannel WHERE idMsg=?";
-            PreparedStatement pstate= conn.prepareStatement(sql);
-            pstate.setString(1,key);
-            res=pstate.executeQuery();
-            while (res.next()){
-                p=sp.select(res.getString("idProfile"));
-                msgC=new Message(p,res.getString("msgContent"));
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, key);
+            queryResult = preparedStatement.executeQuery();
+            while (queryResult.next()){
+                p = sp.select(queryResult.getString("idProfile"));
+                message = new Message(p, queryResult.getString("msgContent"));
             }
-        }catch (SQLException e){
-            e.printStackTrace();
+        }catch (SQLException exception){
+            exception.printStackTrace();
         }
-        return msgC;
+        return message;
 
     }
+
 }
