@@ -1,10 +1,10 @@
-package tool.database;
+package database;
 
 import model.user.User;
 import java.sql.*;
 
 public class SQLUserDAO extends AbstractSQLDAO<User> {
-    Connection conn = ConnectionBuilder.createConnection();
+    Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
     ResultSet res=null;
 
@@ -21,52 +21,66 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
         return null;
     }
 
-    public User signIn(User obj){ //method for user connection (sign in)
-        String mailDB="";
-        String passwordDB="";
-        try{
-            res=state.executeQuery("SELECT mail, password FROM user");
-            while(res.next()){
-                mailDB=res.getString("mail");
-                passwordDB=res.getString("password");
+    /**
+     * user connection (sign in)
+     * @param user
+     * @return
+     */
+    public User signIn(User user) {
 
-                if(obj.getEmail().equals(mailDB) && obj.getPassword().equals(passwordDB)){
-                    System.out.println("User connected!");
+        try {
+            String mailDB = ""; // mail retrieved from database
+            String passwordDB = ""; // password retrieved from database
+            String sqlQuery = "SELECT mail, password FROM user"; // sql query to execute
+            res = state.executeQuery(sqlQuery);
+            while(res.next()){
+                mailDB = res.getString("mail");
+                passwordDB = res.getString("password");
+
+                if( user.getEmail().equals(mailDB) && user.getPassword().equals(passwordDB) ) {
+                    System.out.println("User found in the database !");
+                    return user ;
                 }
             }
-            System.out.println("User not found");
-        }catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("User not found in the database !");
+        } catch(SQLException exception) {
+            exception.printStackTrace();
         }
-        return obj;
+
+        return null;
     }
 
-
+    /**
+     * method for insert an user in database (sign up)
+     * @param user
+     * @return
+     */
     @Override
-    public User insert(User obj) {//method for insert an user in tool.database (sign up)
+    public User insert(User user) {
         String mailDB="";
+        String sqlQuery = "SELECT mail FROM user"; // sql query to execute
         try{
-            res=state.executeQuery("SELECT mail FROM user");
+            res=state.executeQuery(sqlQuery);
             while(res.next()){
                 mailDB=res.getString("mail");
-                if(obj.getEmail().equals(mailDB)){
+                if(user.getEmail().equals(mailDB)){
                     System.out.println("Email already exists, please enter another one");
                 }
             }
             String sql= "INSERT INTO user (mail, password) VALUES (?,MD5(?))";
             PreparedStatement pstate= conn.prepareStatement(sql);
-            pstate.setString(1,obj.getEmail());
-            pstate.setString(2, obj.getPassword());
+            pstate.setString(1,user.getEmail());
+            pstate.setString(2, user.getPassword());
             res=pstate.executeQuery();
             System.out.println("Successfully registred !");
         }catch(SQLException e){
             e.printStackTrace();
         }
-        return new User(obj.getEmail(),obj.getPassword());
+        return new User(user.getEmail(),user.getPassword());
     }
 
     @Override
-    public void delete(User obj) { //delete an user from the tool.database
+    public void delete(User obj) { //delete an user from the database
         try{
             String sql= "DELETE FROM user WHERE email= ?";
             PreparedStatement pstate= conn.prepareStatement(sql);
@@ -95,7 +109,7 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
     }
 
     @Override
-    public User select(String key) {//select an user in the tool.database
+    public User select(String key) {//select an user in the database
         String uMail="";
         String uPass="";
         User u=null;

@@ -1,4 +1,4 @@
-package tool.database;
+package database;
 
 import model.group.Workspace;
 import model.user.Profile;
@@ -7,7 +7,7 @@ import model.user.User;
 import java.sql.*;
 
 public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
-    Connection conn = ConnectionBuilder.createConnection();
+    Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
     ResultSet res=null;
 

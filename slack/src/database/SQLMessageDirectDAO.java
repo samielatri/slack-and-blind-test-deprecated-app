@@ -1,4 +1,4 @@
-package tool.database;
+package database;
 
 import model.group.Message;
 import model.user.Profile;
@@ -6,9 +6,9 @@ import model.user.Profile;
 import java.sql.*;
 
 public class SQLMessageDirectDAO extends AbstractSQLDAO<Message> {
-    Connection conn = ConnectionBuilder.createConnection();
+    Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
-    ResultSet res=null;
+    ResultSet res = null;
 
     public SQLMessageDirectDAO() throws SQLException {
     }
@@ -24,12 +24,12 @@ public class SQLMessageDirectDAO extends AbstractSQLDAO<Message> {
     }
 
     @Override
-    public Message insert(Message obj) { //add message in the current workspace (tool.database)
+    public Message insert(Message obj) { //add message in the current workspace (database)
 
         try{
             String first= "SELECT nameWK FROM workspace WHERE idProfile=?";
-            PreparedStatement pstate= conn.prepareStatement(first);
-            pstate.setString(1,obj.getSenderMessage());
+            PreparedStatement pstate = conn.prepareStatement(first);
+            pstate.setString(1, obj.getSenderMessage());
             res=pstate.executeQuery();
             String nameWKDB=res.getString("nameWK");
             String sql= "INSERT INTO messagedirect (idMsg, idProfile,nameWK, contenu, createDate,updateDate) VALUES (?,?,?,?,?,?)";

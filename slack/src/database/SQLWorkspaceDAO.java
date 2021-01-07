@@ -1,15 +1,12 @@
-package tool.database;
+package database;
 
 import model.group.Workspace;
 
 import java.sql.*;
 
-/**
- * @author Olivier Pitton <olivier@indexima.com> on 18/12/2020
- */
 
 public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
-	Connection conn = ConnectionBuilder.createConnection();
+	Connection conn = DBConnection.createConnection();
 	Statement state = conn.createStatement();
 	ResultSet res=null;
 
@@ -18,7 +15,7 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 
 
 	@Override
-	public Workspace insert(Workspace obj) {//create a workspace for the profile in the tool.database
+	public Workspace insert(Workspace obj) {//create a workspace for the profile in the database
 		String workDB="";
 		try{
 			res=state.executeQuery("SELECT nameWK FROM workspace");

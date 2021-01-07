@@ -6,7 +6,7 @@ import model.group.Workspace;
 import model.group.WorkspaceChannel;
 import model.user.Profile;
 import model.user.User;
-import tool.database.*;
+import database.*;
 
 import java.util.ArrayList;
 import java.util.Date;

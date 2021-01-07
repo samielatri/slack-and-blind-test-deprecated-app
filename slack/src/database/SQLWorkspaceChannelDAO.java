@@ -1,4 +1,4 @@
-package tool.database;
+package database;
 
 import model.group.WorkspaceChannel;
 
@@ -9,7 +9,7 @@ import java.sql.*;
  */
 
 public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
-	Connection conn = ConnectionBuilder.createConnection();
+	Connection conn = DBConnection.createConnection();
 	Statement state = conn.createStatement();
 	ResultSet res=null;
 

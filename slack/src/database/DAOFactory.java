@@ -1,12 +1,8 @@
-package tool.database;
+package database;
 
 import model.group.Message;
 import model.group.Workspace;
 import model.group.WorkspaceChannel;
-
-/**
- * @author Olivier Pitton <olivier@indexima.com> on 18/12/2020
- */
 
 public class DAOFactory {
 

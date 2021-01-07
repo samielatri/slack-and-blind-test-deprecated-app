@@ -1,4 +1,4 @@
-package tool.database;
+package database;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public abstract class AbstractSQLDAO<T> implements DAO<T> {
 
-	protected final Connection connection = ConnectionBuilder.createConnection();
+	protected final Connection connection = DBConnection.createConnection();
 
 	@Override
 	public List<T> selectAll() {

@@ -1,4 +1,4 @@
-package tool.database;
+package database;
 
 import model.group.Message;
 import model.user.Profile;
@@ -6,7 +6,7 @@ import model.user.Profile;
 import java.sql.*;
 
 public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
-    Connection conn = ConnectionBuilder.createConnection();
+    Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
     ResultSet res=null;
 
@@ -24,8 +24,9 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
     }
 
     @Override
-    public Message insert(Message obj) { //add the message in the channel (tool.database)
+    public Message insert(Message obj) { //add the message in the channel (database)
         try{
+
             String sql= "INSERT INTO messagechannel (idMsg, nameWC, contenu, createDate,updateDate, sender) VALUES (?,?,?,?,?,?)";
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1,obj.getId());
