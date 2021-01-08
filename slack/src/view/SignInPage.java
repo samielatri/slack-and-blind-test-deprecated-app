@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+
+import service.user.UserServiceDAO;
 
 
 
@@ -20,11 +23,11 @@ public class SignInPage extends JFrame{
     private JButton button1;
     private JLabel linkToRegister;
     private String textLink="Not a member? Register";
-    private
+    private UserServiceDAO u=new UserServiceDAO();
 
     public SignInPage(){
         add(loginPage);
-        setSize(600,500);
+        setSize(600,700);
         setTitle("app.Slack Login Page");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
@@ -34,9 +37,15 @@ public class SignInPage extends JFrame{
                 String emailEnter,passwordEnter;
                 emailEnter= emailS.getText();
                 passwordEnter= passwordS.getText();
-                l.login();
-                //on appelle la methode sign in de la classe SQLUser
-                //signIn(emailEnter,passwordEnter);
+                try {
+                    if(u.login(emailEnter,passwordEnter)){
+                        JOptionPane.showMessageDialog(loginPage,"User successfully connected");
+                        dispose();
+                        new WelcomePage();
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
         });
         setVisible(true);
