@@ -1,109 +1,21 @@
-package service.user;
+package controller.user;
 
-import database.SQLMessageDAO;
 import model.communication.Conversation;
 import model.communication.Message;
 import model.communication.Workspace;
 import model.communication.WorkspaceChannel;
 import model.user.Profile;
 import model.user.User;
-import service.AbstractServiceDAO;
-import tool.DataManipulator;
-import tool.Keyboard;
+import controller.AbstractServiceDAO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-/**
- * UserServiceDAO : provide services related to the User
- */
-public class UserServiceDAO extends AbstractServiceDAO {
-
-    /** OK
-     *
-     * @param inputedEmail entered email
-     * @param inputedPassword entered password
-     * @param confirmedInputedPassword entered password
-     * @return user if registrated, null if not
-     * @throws SQLException
-     */
-    public static User register(String inputedEmail, String inputedPassword, String confirmedInputedPassword) throws SQLException {
-            System.out.println("Proceeding to registration...");
-
-            if (!(DataManipulator.verifyInputedEmail(inputedEmail) | DataManipulator.verifyInputedPassword(inputedPassword) | DataManipulator.verifyConfirmedPassword(inputedPassword, confirmedInputedPassword))) {
-                return null;
-            }
-
-            System.out.println("You entered " + inputedEmail + ".");
-            System.out.println("You entered the password: " + inputedPassword);
-
-
-            for (User user : (ArrayList<User>) DAOUser.selectAll()){
-                if (user.getId().equalsIgnoreCase(inputedEmail)){
-                    System.out.println("User already registered ! Please connect to your account");
-                     return null; // failed to register
-                }
-            }
-
-            System.out.println("Proceeding to registration");
-
-            // add the user to the database
-            if (DAOUser.insert(new User(inputedEmail, inputedPassword)) != null){
-                System.out.println("user successfully registered!");
-                return DAOUser.select(inputedEmail);
-            }
-
-            // failed to register
-            System.out.println("Failed to register the user. Please retry.");
-            return null;
-        }
-
-    /** OK
-     *
-     * @param inputedEmail inputedEmail
-     * @param inputedPassword inputedPassword
-     * @return user if signed in, null if not
-     * @throws SQLException
-     */
-
-    public static User login(String inputedEmail, String inputedPassword) throws SQLException {
-
-
-        if (!(DataManipulator.verifyInputedEmail(inputedEmail) | DataManipulator.verifyInputedPassword(inputedPassword) )) {
-            return null;
-        }
-
-        System.out.println("You entered " + inputedEmail + " .");
-        System.out.println("You entered " + inputedPassword + " .");
-
-        User userToRegister = null;
-        for (User user : DAOUser.selectAll()) {
-            if (user.getId().equalsIgnoreCase(inputedEmail)) {
-                userToRegister = user;
-                break;
-            }
-        }
-
-        if (userToRegister == null) {
-            System.out.println("Unexisting user, not connected");
-            return null;
-        }
-
-        if(DAOUser.signIn(userToRegister) != null){
-            System.out.println("Congrates you are now logged in");
-            return userToRegister;
-        }
-
-        System.out.println("Error, you can not log in");
-        return null;
-    }
-
+public class ProfileServiceDAO extends AbstractServiceDAO {
     // you can visit a profile only when you are in the workspace
     public void visitProfile() throws SQLException {
-        String keyPressed = "";
-        Scanner scannerKeyPressed = null;
 
         if (currentConnectedUser == null) {
             System.out.println("No user connected !");
@@ -783,5 +695,7 @@ public class UserServiceDAO extends AbstractServiceDAO {
         profile.setId(id);
         return profile;
     }
+
+}
 
 }
