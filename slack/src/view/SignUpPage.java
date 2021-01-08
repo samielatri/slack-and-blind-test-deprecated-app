@@ -3,6 +3,9 @@ package view;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import service.user.UserServiceDAO;
 
 public class SignUpPage extends JFrame {
     private JPanel SignUp;
@@ -13,40 +16,34 @@ public class SignUpPage extends JFrame {
     private JPasswordField passConfirm;
     private JLabel confirmPwd;
 
+
     public SignUpPage(){
         add(SignUp);
-        setSize(600,400);
+        setSize(600,600);
         setTitle("app.Slack Login Page");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String emailEnter,passwordEnter,passwordEnter2;
-                emailEnter= textField1.getText();
-                passwordEnter=passwordField1.getText();
-                passwordEnter2=passConfirm.getText();
-                if (!comparePassword(passwordEnter,passwordEnter2)){
-                    JOptionPane.showMessageDialog(SignUp,"Password doesn't match !","LEGO Slack warning",
-                            JOptionPane.WARNING_MESSAGE);
+                String emailEnter, passwordEnter, passwordEnter2;
+                emailEnter = textField1.getText();
+                passwordEnter = passwordField1.getText();
+                passwordEnter2 = passConfirm.getText();
+                try {
+                    if (UserServiceDAO.register(emailEnter,passwordEnter,passwordEnter2)==null) {
+                        JOptionPane.showMessageDialog(SignUp,"Password doesn't match !","LEGO Slack warning",
+                                JOptionPane.WARNING_MESSAGE);
+                    }
+                    JOptionPane.showMessageDialog(SignUp,"User successfully registered !");
+                    dispose();
+                    new SignInPage();
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
                 }
-                //on appelle la methode insert de la classe SQLUser
-                //insert(emailEnter,passwordEnter);
+
             }
         });
         setVisible(true);
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                new HomePage();
-            }
-        });
-    }
-
-    public boolean comparePassword(String p1, String p2){
-        if (p1.equals(p2)){
-            return true;
-        }
-        return false;
     }
 }

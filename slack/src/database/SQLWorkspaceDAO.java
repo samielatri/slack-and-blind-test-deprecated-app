@@ -3,6 +3,7 @@ package database;
 import model.communication.Workspace;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
@@ -18,7 +19,7 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 	public Workspace insert(Workspace obj) {//create a workspace for the profile in the database
 		String workDB="";
 		try{
-			res=state.executeQuery("SELECT nameWK FROM workspace");
+			res=state.executeQuery("SELECT * FROM workspace");
 			while(res.next()){
 				workDB=res.getString("nameWK");
 				if(obj.getName().equals(workDB)){
@@ -83,6 +84,22 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 			e.printStackTrace();
 		}
 		return w;
+	}
+
+	public ArrayList<Workspace> selectAll(){
+		ArrayList<Workspace> listWorkspace=new ArrayList<>();
+		Workspace w=null;
+		try {
+			String sql="SELECT * FROM workspace";
+			res=state.executeQuery(sql);
+			while (res.next()){
+				w=new Workspace(res.getString("nameWK"));
+				listWorkspace.add(w);
+			}
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		return listWorkspace;
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class CreateChannel extends JFrame {
         CREATEchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //TODO: ajouter methode qui creer channel par l'user
             }
         });
         setVisible(true);

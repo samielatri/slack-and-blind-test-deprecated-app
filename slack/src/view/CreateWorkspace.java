@@ -20,7 +20,7 @@ public class CreateWorkspace extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String nameOfWorkspace=wkName.getText();
-                u.createWs(nameOfWorkspace);
+                u.createWs(nameOfWorkspace);// TODO: verifier la methode pour creer workspace par l'user
                 dispose();
                 new WelcomePage();
             }

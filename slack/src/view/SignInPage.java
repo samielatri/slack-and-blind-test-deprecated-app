@@ -2,6 +2,8 @@ package view;
 
 
 
+import service.user.UserServiceDAO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,10 +11,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-
-import service.user.UserServiceDAO;
-
-
 
 
 public class SignInPage extends JFrame{
@@ -23,11 +21,10 @@ public class SignInPage extends JFrame{
     private JButton button1;
     private JLabel linkToRegister;
     private String textLink="Not a member? Register";
-    private UserServiceDAO u=new UserServiceDAO();
 
     public SignInPage(){
         add(loginPage);
-        setSize(600,700);
+        setSize(600,500);
         setTitle("app.Slack Login Page");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
@@ -35,14 +32,15 @@ public class SignInPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String emailEnter,passwordEnter;
-                emailEnter= emailS.getText();
-                passwordEnter= passwordS.getText();
+                emailEnter = emailS.getText();
+                passwordEnter = passwordS.getText();
                 try {
-                    if(u.login(emailEnter,passwordEnter)){
-                        JOptionPane.showMessageDialog(loginPage,"User successfully connected");
-                        dispose();
-                        new WelcomePage();
+                    if(UserServiceDAO.login(emailEnter, passwordEnter)==null){
+                        JOptionPane.showMessageDialog(loginPage,"Wrong password or wrong username","LEGO Slack warning",
+                                JOptionPane.WARNING_MESSAGE);
                     }
+                    JOptionPane.showMessageDialog(loginPage,"You're now connected");
+                    new WelcomePage();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -62,5 +60,7 @@ public class SignInPage extends JFrame{
                 linkToRegister.setText("<html><a href=''>" + textLink + "</a></html>");
             }
         });
+
+
     }
 }

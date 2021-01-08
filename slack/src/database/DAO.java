@@ -8,6 +8,10 @@ import java.util.List;
 
 public interface DAO<T extends HasId> extends Closeable {
 
+	default T signIn(T obj){
+		return null;
+	}
+
 	T insert(T obj);
 
 	void delete(T obj);

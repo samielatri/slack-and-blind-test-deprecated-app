@@ -27,4 +27,5 @@ public class ChatPage extends JFrame {
         });
         setVisible(true);
     }
+    //TODO: finaliser la page
 }

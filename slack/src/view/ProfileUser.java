@@ -15,7 +15,7 @@ public class ProfileUser extends JFrame {
         setSize(300,400);
         setTitle("Profil User");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //ajouter fonction qui affiche les info de l'user
+        //TODO: ajouter fonction qui affiche les info de l'user
         OKButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
