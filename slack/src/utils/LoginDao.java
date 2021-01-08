@@ -11,6 +11,12 @@ import javafx.scene.image.Image;
 
 public class LoginDao {
 
+    /**
+     *
+     * @param email
+     * @param password
+     * @return
+     */
     public static User login(String email, String password) {
         User user = null;
         try {

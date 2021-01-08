@@ -6,7 +6,7 @@ import java.sql.*;
 public class SQLUserDAO extends AbstractSQLDAO<User> {
     Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
-    ResultSet res=null;
+    ResultSet queryResult =null;
 
     public SQLUserDAO() throws SQLException {
     }
@@ -31,10 +31,10 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
             String mailDB = ""; // mail retrieved from database
             String passwordDB = ""; // password retrieved from database
             String sqlQuery = "SELECT mail, password FROM user"; // sql query to execute
-            res = state.executeQuery(sqlQuery);
-            while(res.next()){
-                mailDB = res.getString("mail");
-                passwordDB = res.getString("password");
+            queryResult = state.executeQuery(sqlQuery);
+            while(queryResult.next()){
+                mailDB = queryResult.getString("mail");
+                passwordDB = queryResult.getString("password");
 
                 if( user.getEmail().equals(mailDB) && user.getPassword().equals(passwordDB) ) {
                     System.out.println("User found in the database !");
@@ -50,32 +50,42 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
     }
 
     /**
-     * method for insert an user in database (sign up)
+     * method for insert an user in database
      * @param user
      * @return
      */
     @Override
     public User insert(User user) {
-        String mailDB="";
-        String sqlQuery = "SELECT mail FROM user"; // sql query to execute
-        try{
-            res=state.executeQuery(sqlQuery);
-            while(res.next()){
-                mailDB=res.getString("mail");
-                if(user.getEmail().equals(mailDB)){
-                    System.out.println("Email already exists, please enter another one");
+
+        String mailFromDataBase="";
+        String sqlSelectionQuery = "SELECT mail FROM user"; // sql query to execute
+
+        try {
+
+            queryResult = state.executeQuery(sqlSelectionQuery);
+
+            while( queryResult.next() ) {
+                mailFromDataBase = queryResult.getString("mail");
+                if( user.getEmail().equalsIgnoreCase(mailFromDataBase) ) {
+                    System.out.println( "<DB> Email already exists in the database" ) ;
+                    return (User) null ;
                 }
             }
-            String sql= "INSERT INTO user (mail, password) VALUES (?,MD5(?))";
-            PreparedStatement pstate= conn.prepareStatement(sql);
-            pstate.setString(1,user.getEmail());
-            pstate.setString(2, user.getPassword());
-            res=pstate.executeQuery();
+
+            String sqlInsertionQuery= "INSERT INTO user (mail, password) VALUES (?,MD5(?))";
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sqlInsertionQuery);
+            preparedStatement.setString( 1,user.getEmail() );
+            preparedStatement.setString( 2, user.getPassword() );
+
+            queryResult = preparedStatement.executeQuery();
+
             System.out.println("Successfully registred !");
-        }catch(SQLException e){
-            e.printStackTrace();
+        } catch(SQLException exception) {
+            exception.printStackTrace();
         }
-        return new User(user.getEmail(),user.getPassword());
+
+        return user;
     }
 
     @Override
@@ -84,7 +94,7 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
             String sql= "DELETE FROM user WHERE email= ?";
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1,obj.getEmail());
-            res=pstate.executeQuery();
+            queryResult =pstate.executeQuery();
             System.out.println("User deleted successfully");
         }catch (SQLException e){
             e.printStackTrace();
@@ -99,7 +109,7 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1,obj.getEmail());
             pstate.setString(2, obj.getEmail());
-            res=pstate.executeQuery();
+            queryResult =pstate.executeQuery();
             System.out.println("Password modified ! ");
         }catch (SQLException e){
             e.printStackTrace();
@@ -116,10 +126,10 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
             String sql= "SELECT * FROM user WHERE user=?";
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1,key);
-            res=state.executeQuery(sql);
-            while(res.next()){
-                uMail=res.getString(1);
-                uPass=res.getString(2);
+            queryResult =state.executeQuery(sql);
+            while(queryResult.next()){
+                uMail= queryResult.getString(1);
+                uPass= queryResult.getString(2);
                 u=new User(uMail,uPass);
             }
         }catch (SQLException e){

@@ -1,7 +1,12 @@
-package test;
+package test.server;
+
+import server.Server;
 
 import javax.swing.*;
 
+/**
+ *
+ */
 public class ServerTest {
     public static void main(String[] args){
         Server sally = new Server();

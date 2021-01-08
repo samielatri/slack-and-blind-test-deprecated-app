@@ -8,8 +8,15 @@ import java.sql.SQLException;
 import model.Profile;
 import model.User;
 
+/**
+ *
+ */
 public class ProfileDao {
-
+    /**
+     *
+     * @param user
+     * @return
+     */
     public static int createProfile(User user) {
 
         int id = 0;
@@ -51,6 +58,11 @@ public class ProfileDao {
 
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static User getUserProfileById(int id) {
         User user = new User();
         try {
@@ -87,6 +99,11 @@ public class ProfileDao {
 
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Profile getProfileById(int id) {
         Profile profile = null;
         try {

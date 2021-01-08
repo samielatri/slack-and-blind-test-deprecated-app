@@ -36,7 +36,7 @@ public class Keyboard {
      * @return
      */
     public static String readString(String printable) {
-        System.out.println("Please enter " + printable + ": > ");
+        System.out.println("Please enter your " + printable + ": > ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }

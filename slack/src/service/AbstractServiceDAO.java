@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public abstract class AbstractServiceDAO {
 
-    private static DAO<User> DAOUser;
+    protected static DAO<User> DAOUser;
 
     static {
         try {
@@ -22,7 +22,7 @@ public abstract class AbstractServiceDAO {
         }
     }
 
-    private static DAO<WorkspaceChannel> DAOChannel;
+    protected static DAO<WorkspaceChannel> DAOChannel;
 
     static {
         try {
@@ -32,7 +32,7 @@ public abstract class AbstractServiceDAO {
         }
     }
 
-    private static DAO<Workspace> DAOWorkspace;
+    protected static DAO<Workspace> DAOWorkspace;
 
     static {
         try {
@@ -42,7 +42,7 @@ public abstract class AbstractServiceDAO {
         }
     }
 
-    private static DAO<Profile> DAOProfile;
+    protected static DAO<Profile> DAOProfile;
 
     static {
         try {
@@ -52,7 +52,7 @@ public abstract class AbstractServiceDAO {
         }
     }
 
-    private static DAO<Message> DAOMessageDirect;
+    protected static DAO<Message> DAOMessageDirect;
 
     static {
         try {
@@ -62,7 +62,7 @@ public abstract class AbstractServiceDAO {
         }
     }
 
-    private static DAO<Message> DAOMessageChannel;
+    protected static DAO<Message> DAOMessageChannel;
 
     static {
         try {
@@ -72,9 +72,9 @@ public abstract class AbstractServiceDAO {
         }
     }
 
-    private static User currentConnectedUser;
-    private static Profile currentConnectedProfile;
-    private static Workspace currentConnectedWorkspace;
-    private static WorkspaceChannel currentConnectedWorkspaceChannel;
+    protected static User currentConnectedUser;
+    protected static Profile currentConnectedProfile;
+    protected static Workspace currentConnectedWorkspace;
+    protected static WorkspaceChannel currentConnectedWorkspaceChannel;
 
 }

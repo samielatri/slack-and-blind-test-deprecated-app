@@ -1,9 +1,17 @@
-package test;
+package test.client;
 
 import client.Client1;
 
 import javax.swing.JFrame;
+
+/**
+ *
+ */
 public class ClientTest {
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args){
         Client1 charlie;
         charlie = new Client1("127.0.0.1"); // localhost for now

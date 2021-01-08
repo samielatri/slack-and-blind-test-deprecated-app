@@ -1,5 +1,6 @@
 package service.user;
 
+import database.SQLMessageDAO;
 import model.communication.Conversation;
 import model.communication.Message;
 import model.communication.Workspace;
@@ -7,18 +8,25 @@ import model.communication.WorkspaceChannel;
 import model.user.Profile;
 import model.user.User;
 import service.AbstractServiceDAO;
+import tool.DataManipulator;
+import tool.Keyboard;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * UserServiceDAO : provide services related to the User
+ */
 public class UserServiceDAO extends AbstractServiceDAO {
-        public void register(){
-            // debug print
-            System.out.println("Proceeding to registration...");
 
-            Scanner scannerEmail; // scanner for email
+    /**
+     * @return the User that was registered, null if not registered
+     * @throws SQLException
+     */
+    public User register() throws SQLException {
+            System.out.println("Proceeding to registration...");
             Scanner scannerPassword; // scanner for password
             boolean validInputEmail = false; // true if the imputed email is valid, false if not
             String inputedEmail = ""; // email imputed from the user
@@ -27,44 +35,38 @@ public class UserServiceDAO extends AbstractServiceDAO {
 
             // get valid imputed email from the user
             do {
-                System.out.println("Please enter your e-mail : ");
-                scannerEmail = new Scanner(System.in);
-                System.out.print("> ");
-                inputedEmail = scannerEmail.nextLine();
-                validInputEmail = isValidEmailAddress(inputedEmail);
+                inputedEmail = Keyboard.readString("e-mail");
+                validInputEmail = DataManipulator.isValidEmailAddress(inputedEmail);
                 if (!validInputEmail) {
                     System.out.println("Please verify the entered email address!");
                 }
             }while(!validInputEmail);
 
-            System.out.println("You entered " + inputedEmail + " .");
+            System.out.println("You entered " + inputedEmail + ".");
 
             System.out.println("Please enter your password : ");
             scannerPassword = new Scanner(System.in);
             System.out.print("> ");
             inputPassword = scannerPassword.nextLine();
 
-
-            for (User tempUser : DAOUser.selectAll()){
-                if (tempUser.getEmail().equalsIgnoreCase(inputedEmail)){
+            for (User user : DAOUser.selectAll()){
+                if (user.getEmail().equalsIgnoreCase(inputedEmail)){
                     System.out.println("User already registered ! Please connect to your account");
-                    return;
+                     return null; // failed to register
                 }
             }
 
-
             System.out.println("Registering...");
 
-            User user = new User(inputedEmail, inputPassword);
-            DAOUser.insert(user);
-            //DAOUser.signUp(user);
-
-            // verification
-            if(DAOUser.selectAll().contains(user)){
-                System.out.println("user registered!");
-            } else {
-                System.out.println("failed to register the user. Please retry.");
+            // add the user to the database
+            if (DAOUser.insert(new User(inputedEmail, inputPassword)) != null){
+                System.out.println("user successfully registered!");
+                return DAOUser.select(inputedEmail);
             }
+
+            // failed to register
+            System.out.println("failed to register the user. Please retry.");
+            return null;
         }
 
         public void connect() throws SQLException {
