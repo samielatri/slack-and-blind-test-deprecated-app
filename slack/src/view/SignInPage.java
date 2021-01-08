@@ -2,7 +2,7 @@ package view;
 
 
 
-import service.user.UserServiceDAO;
+import controller.user.UserServiceDAO;
 
 import javax.swing.*;
 import java.awt.*;
