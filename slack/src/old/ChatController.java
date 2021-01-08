@@ -113,8 +113,8 @@ public class ChatController implements Initializable {
 
             activeworkspace = userWorkspaces.get(selectedIndex);
 
-            Profile profile = ProfileDao.getProfileById(user.getId());
-            user.setProfile(profile);
+            Profile user = ProfileDao.getProfileById(user.getId());
+            user.setProfile(user);
 
             Message message = new Message(user, "", activeworkspace);
             client.sendMessage(message);
@@ -130,8 +130,8 @@ public class ChatController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Profile profile = ProfileDao.getProfileById(user.getId());
-        user.setProfile(profile);
+        Profile user = ProfileDao.getProfileById(user.getId());
+        user.setProfile(user);
 
         Message message = new Message(user, "New User Connected", activeworkspace);
         client = new Client(message, M_output);
@@ -166,7 +166,7 @@ public class ChatController implements Initializable {
 
     private void loadProfile(Workspace workspace, int mode) {
         try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../View/profile.fxml"));
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../View/user.fxml"));
             ProfileController deController = fxmlloader.getController();
             deController.setUser(user);
             deController.setWorkspace(workspace);

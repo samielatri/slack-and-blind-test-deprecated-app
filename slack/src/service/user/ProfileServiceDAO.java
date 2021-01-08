@@ -1,7 +1,7 @@
 package service.user;
 
 import model.communication.Workspace;
-import model.user.User;
+import model.user.Profile;
 import service.AbstractServiceDAO;
 import tool.Keyboard;
 
@@ -11,12 +11,12 @@ import java.util.Scanner;
 
 public class ProfileServiceDAO extends AbstractServiceDAO {
 
-    // you can visit a profile only when you are in the workspace
+    // you can visit a user only when you are in the workspace
     public void visitProfile() throws SQLException {
         String keyPressed = "";
         Scanner scannerKeyPressed = null;
 
-        if (currentConnectedUser == null) {
+        if (currentConnectedProfile == null) {
             System.out.println("No user connected !");
             return ;
         }
@@ -29,7 +29,7 @@ public class ProfileServiceDAO extends AbstractServiceDAO {
 
         Profile currentProfile = currentConnectedProfile;
         if (currentProfile == null){
-            System.out.println("User does not have a profile in the current workspace !");
+            System.out.println("User does not have a user in the current workspace !");
             return ;
         }
 
@@ -45,9 +45,9 @@ public class ProfileServiceDAO extends AbstractServiceDAO {
     public void updateProfile() throws SQLException {
         String keypressed = "";
         Scanner scannerKeypressed = null;
-        User connectedUser = DAOUser.select(currentConnectedUser.getId());
+        Profile connectedProfile = DAOUser.select(currentConnectedProfile.getId());
 
-        if (connectedUser == null) {
+        if (connectedProfile == null) {
             System.out.println("No user connected !");
             return ;
         }
@@ -60,7 +60,7 @@ public class ProfileServiceDAO extends AbstractServiceDAO {
 
         Profile currentProfile = DAOProfile.select(currentConnectedProfile.getId());
         if (currentProfile == null){
-            System.out.println("User does not have a profile in the current workspace !");
+            System.out.println("User does not have a user in the current workspace !");
             return ;
         }
 
@@ -130,23 +130,23 @@ public class ProfileServiceDAO extends AbstractServiceDAO {
 
 
     public void addCollaborator(){
-        Profile profile = user.getCurrentProfile();
-        Workspace currentWorkspace = profile.getWorkspace();
-        ArrayList<User> members = currentWorkspace.getMemberProfiles();
+        Profile user = user.getCurrentProfile();
+        Workspace currentWorkspace = user.getWorkspace();
+        ArrayList<Profile> members = currentWorkspace.getMemberProfiles();
 
-        ArrayList<Profile> collaborators = profile.getCollaborators();
+        ArrayList<Profile> collaborators = user.getCollaborators();
         String collaboratorShownName = Keyboard.readString("name of the collaborator");
         for(Profile collaborator : collaborators){
             if(collaborator.getShownName() == collaboratorShownName){
                 System.out.println("Collaborator already exists");
                 return;
             }
-            for(User member : members){
+            for(Profile member : members){
                 ArrayList<Profile> memberProfiles = member.getProfiles();
                 for(Profile memberProfile : memberProfiles){
                     if (memberProfile.getShownName() == collaboratorShownName) {
                         System.out.println("Adding collaborator...");
-                        profile.getCollaborators().add(memberProfile);
+                        user.getCollaborators().add(memberProfile);
                         System.out.println("Collaborator added");
                         return;
                     }
@@ -157,11 +157,11 @@ public class ProfileServiceDAO extends AbstractServiceDAO {
     }
 
     public void visitCollaboratorProfile(){
-        Profile profile = user.getCurrentProfile();
-        Workspace currentWorkspace = profile.getWorkspace();
-        ArrayList<User> members = currentWorkspace.getMemberProfiles();
+        Profile user = user.getCurrentProfile();
+        Workspace currentWorkspace = user.getWorkspace();
+        ArrayList<Profile> members = currentWorkspace.getMemberProfiles();
 
-        ArrayList<Profile> collaborators = profile.getCollaborators();
+        ArrayList<Profile> collaborators = user.getCollaborators();
         String collaboratorShownName = Keyboard.readString("name of the collaborator");
         for(Profile collaborator : collaborators){
             if(collaborator.getShownName() == collaboratorShownName){
@@ -175,16 +175,16 @@ public class ProfileServiceDAO extends AbstractServiceDAO {
     }
 
     public void removeCollaborator(){
-        Profile profile = user.getCurrentProfile();
-        Workspace currentWorkspace = profile.getWorkspace();
-        ArrayList<User> members = currentWorkspace.getMemberProfiles();
+        Profile user = user.getCurrentProfile();
+        Workspace currentWorkspace = user.getWorkspace();
+        ArrayList<Profile> members = currentWorkspace.getMemberProfiles();
 
-        ArrayList<Profile> collaborators = profile.getCollaborators();
+        ArrayList<Profile> collaborators = user.getCollaborators();
         String collaboratorShownName = Keyboard.readString("name of the collaborator");
         for(Profile collaborator : collaborators){
             if(collaborator.getShownName() == collaboratorShownName){
                 System.out.println("deleting collaborator...");
-                profile.getCollaborators().remove(collaborator);
+                user.getCollaborators().remove(collaborator);
                 System.out.println("Collaborator deleted");
                 return;
             }

@@ -32,7 +32,7 @@ CREATE TABLE `workspace` (
   `channel` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `created_idx` (`createdby`),
-  CONSTRAINT `created` FOREIGN KEY (`createdby`) REFERENCES `user` (`id`)
+  CONSTRAINT `created` FOREIGN KEY (`createdby`) REFERENCES `profile` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

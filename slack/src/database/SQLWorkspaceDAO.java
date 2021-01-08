@@ -15,7 +15,7 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 
 
 	@Override
-	public Workspace insert(Workspace obj) {//create a workspace for the profile in the database
+	public Workspace insert(Workspace obj) {//create a workspace for the user in the database
 		String workDB="";
 		try{
 			res=state.executeQuery("SELECT nameWK FROM workspace");

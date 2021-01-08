@@ -25,7 +25,7 @@ public class ProfileDao {
             Connection connection = DBConnection.getConnectionToDatabase();
 
             // write the insert query
-            String insertQuery = "insert into profile values(NULL,?,?,?,?,?,?,?);";
+            String insertQuery = "insert into user values(NULL,?,?,?,?,?,?,?);";
 
             // set PreparedStatement
             PreparedStatement statement = connection.prepareStatement(insertQuery);
@@ -43,7 +43,7 @@ public class ProfileDao {
             // execute the statement
             statement.executeUpdate();
 
-            PreparedStatement statement1 = connection.prepareStatement("SELECT MAX( id ) FROM profile;");
+            PreparedStatement statement1 = connection.prepareStatement("SELECT MAX( id ) FROM user;");
 
             ResultSet set = statement1.executeQuery();
 
@@ -70,7 +70,7 @@ public class ProfileDao {
             Connection connection = DBConnection.getConnectionToDatabase();
 
             // write the insert query
-            String sql = "select * from profile where id=" + id;
+            String sql = "select * from user where id=" + id;
 
             // set PreparedStatement
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -79,17 +79,17 @@ public class ProfileDao {
             ResultSet set = statement.executeQuery();
 
             if (set.next()) {
-                Profile profile = new Profile();
-                profile = new Profile();
-                profile.setId(set.getInt("id"));
-                profile.setCurrentStatus(set.getString("currentStatus"));
-                profile.setCompleteName(set.getString("completeName"));
-                profile.setShownName(set.getString("shownName"));
-                profile.setActualWorkPosition(set.getString("actualWorkPosition"));
-                profile.setPhoneNumber(set.getString("phoneNumber"));
-                profile.setTimezone(set.getString("timezone"));
+                Profile user = new Profile();
+                user = new Profile();
+                user.setId(set.getInt("id"));
+                user.setCurrentStatus(set.getString("currentStatus"));
+                user.setCompleteName(set.getString("completeName"));
+                user.setShownName(set.getString("shownName"));
+                user.setActualWorkPosition(set.getString("actualWorkPosition"));
+                user.setPhoneNumber(set.getString("phoneNumber"));
+                user.setTimezone(set.getString("timezone"));
                 user.setId(set.getInt("userid"));
-                user.setProfile(profile);
+                user.setProfile(user);
             }
 
         } catch (SQLException exception) {
@@ -105,13 +105,13 @@ public class ProfileDao {
      * @return
      */
     public static Profile getProfileById(int id) {
-        Profile profile = null;
+        Profile user = null;
         try {
             // get the connection for the database
             Connection connection = DBConnection.getConnectionToDatabase();
 
             // write the insert query
-            String sql = "select * from profile where userid =" + id;
+            String sql = "select * from user where userid =" + id;
 
             // set PreparedStatement
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -120,20 +120,20 @@ public class ProfileDao {
             ResultSet set = statement.executeQuery();
 
             if (set.next()) {
-                profile = new Profile();
-                profile.setId(set.getInt("id"));
-                profile.setCurrentStatus(set.getString("currentStatus"));
-                profile.setCompleteName(set.getString("completeName"));
-                profile.setShownName(set.getString("shownName"));
-                profile.setActualWorkPosition(set.getString("actualWorkPosition"));
-                profile.setPhoneNumber(set.getString("phoneNumber"));
-                profile.setTimezone(set.getString("timezone"));
+                user = new Profile();
+                user.setId(set.getInt("id"));
+                user.setCurrentStatus(set.getString("currentStatus"));
+                user.setCompleteName(set.getString("completeName"));
+                user.setShownName(set.getString("shownName"));
+                user.setActualWorkPosition(set.getString("actualWorkPosition"));
+                user.setPhoneNumber(set.getString("phoneNumber"));
+                user.setTimezone(set.getString("timezone"));
             }
 
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        return profile;
+        return user;
 
     }
 }

@@ -49,25 +49,25 @@ public class ProfileController {
         String shownName = shownname.getText();
         String timeZone = timezone.getText();
 
-        Profile profile = new Profile();
+        Profile user = new Profile();
 
         if (!(Phone.isEmpty() || completeName.isEmpty() || workPosition.isEmpty() || shownName.isEmpty()
                 || timeZone.isEmpty())) {
 
-            profile.setCompleteName(completeName);
-            profile.setShownName(shownName);
-            profile.setActualWorkPosition(workPosition);
-            profile.setPhoneNumber(Phone);
-            profile.setTimezone(timeZone);
-            profile.setCurrentStatus("online");
+            user.setCompleteName(completeName);
+            user.setShownName(shownName);
+            user.setActualWorkPosition(workPosition);
+            user.setPhoneNumber(Phone);
+            user.setTimezone(timeZone);
+            user.setCurrentStatus("online");
 
-            user.setProfile(profile);
+            user.setProfile(user);
 
             int profileId = ProfileDao.createProfile(user);
 
             if (profileId != 0) {
-                profile.setId(profileId);
-                user.setProfile(profile);
+                user.setId(profileId);
+                user.setProfile(user);
                 ChatController.setUser(user);
 
                 if (mode == 0) {

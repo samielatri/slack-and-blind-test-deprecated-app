@@ -4,7 +4,9 @@ import model.communication.Conversation;
 import model.communication.Message;
 import model.communication.Workspace;
 import model.communication.WorkspaceChannel;
-import model.user.User;
+
+import model.user.Profile;
+
 import service.AbstractServiceDAO;
 import tool.DataManipulator;
 import tool.Keyboard;
@@ -24,31 +26,31 @@ public class UserServiceDAO extends AbstractServiceDAO {
      * @return the User that was registered, null if not registered
      * @throws SQLException
      */
-    public User register() throws SQLException {
+    public Profile register() throws SQLException {
         System.out.println("Proceeding to registration...");
         Scanner scannerPassword; // scanner for password
         boolean validInputEmail = false; // true if the imputed email is valid, false if not
-        String inputedEmail = ""; // email imputed from the user
-        String inputPassword = ""; // imputed password from the user
+        String inputtedEmail = ""; // email imputed from the user
+        String inputtedPassword = ""; // imputed password from the user
 
         // get valid imputed email from the user
         do {
-            inputedEmail = Keyboard.readString("e-mail");
-            validInputEmail = DataManipulator.isValidEmailAddress(inputedEmail);
+            inputtedEmail = Keyboard.readString("e-mail");
+            validInputEmail = DataManipulator.isValidEmailAddress(inputtedEmail);
             if (!validInputEmail) {
                 System.out.println("Please verify the entered email address!");
             }
         }while(!validInputEmail);
 
-        System.out.println("You entered " + inputedEmail + ".");
+        System.out.println("You entered " + inputtedEmail + ".");
 
         System.out.println("Please enter your password : ");
         scannerPassword = new Scanner(System.in);
         System.out.print("> ");
-        inputPassword = scannerPassword.nextLine();
+        inputtedPassword = scannerPassword.nextLine();
 
-        for (User user : DAOUser.selectAll()){
-            if (user.getEmail().equalsIgnoreCase(inputedEmail)){
+        for (Profile profile : DAOUser.selectAll()){
+            if (profile.getEmail().equalsIgnoreCase(inputtedEmail)){
                 System.out.println("User already registered ! Please connect to your account");
                  return null; // failed to register
             }
@@ -57,9 +59,9 @@ public class UserServiceDAO extends AbstractServiceDAO {
         System.out.println("Registering...");
 
         // add the user to the database
-        if (DAOUser.insert(new User(inputedEmail, inputPassword)) != null){
+        if (DAOUser.insert(new Profile(inputtedEmail, inputtedPassword)) != null){
             System.out.println("user successfully registered!");
-            return DAOUser.select(inputedEmail);
+            return DAOUser.select(inputtedEmail);
         }
 
         // failed to register
@@ -75,7 +77,7 @@ public class UserServiceDAO extends AbstractServiceDAO {
         String inputEmail = "";
         String inputPassword = "";
         String inputPasswordConfirmation = "";
-        User connectUser = null;
+        Profile connectProfile = null;
 
         do {
             System.out.println("Please enter your e-mail : ");
@@ -100,10 +102,10 @@ public class UserServiceDAO extends AbstractServiceDAO {
             System.out.print("> ");
             inputPasswordConfirmation = scannerPassword.nextLine();
         } while(!inputPassword.equals(inputPasswordConfirmation));
-        User user = new User(inputEmail, inputPassword);
+        Profile profile = new Profile(inputEmail, inputPassword);
 
-        if ( currentConnectedUser != null) {
-            if (currentConnectedUser.getEmail().equalsIgnoreCase(inputEmail)) {
+        if ( currentConnectedProfile != null) {
+            if (currentConnectedProfile.getEmail().equalsIgnoreCase(inputEmail)) {
                 System.out.println("User already connected !");
             } else {
                 System.out.println("A user is already connected ! Please disconnect before connecting to a new user");
@@ -111,10 +113,10 @@ public class UserServiceDAO extends AbstractServiceDAO {
             return ;
         }
 
-        for (User tempUser : (ArrayList<User>) DAOUser.selectAll()){
-            if (tempUser.getEmail().equalsIgnoreCase(inputEmail)){
-                if(tempUser.getPassword().equals(inputPassword)){
-                    connectUser = tempUser;
+        for (Profile tempProfile : (ArrayList<Profile>) DAOUser.selectAll()){
+            if (tempProfile.getEmail().equalsIgnoreCase(inputEmail)){
+                if(tempProfile.getPassword().equals(inputPassword)){
+                    connectProfile = tempProfile;
                     break;
                 } else {
                     System.out.println("Wrong password");
@@ -123,18 +125,18 @@ public class UserServiceDAO extends AbstractServiceDAO {
             }
         }
 
-        if (connectUser == null) {
+        if (connectProfile == null) {
             System.out.println("User does not exist !");
             System.out.println("Please verify your entered information or create an account if you don't have one.");
             return ;
         }
 
         System.out.println("Connecting...");
-        currentConnectedUser = DAOUser.select(user.getId());
+        currentConnectedProfile = DAOUser.select(profile.getId());
 
         // signIn
 
-        if (connectUser == user) {
+        if (connectProfile == profile) {
             System.out.println("User connected successfully !");
         } else {
             System.out.println("Connection failed ! Please retry.");
@@ -147,11 +149,11 @@ public class UserServiceDAO extends AbstractServiceDAO {
         String newPassword = "";
         boolean passwordConfirmed = false;
         String currentPassword = "";
-        User currentUser = slackSystem.getConnectedUser();
+        Profile currentProfile = slackSystem.getConnectedUser();
 
         System.out.println("Edit your acoount");
 
-        if (currentUser == null) {
+        if (currentProfile == null) {
             System.out.println("No user connected !");
             return ;
         }
@@ -164,19 +166,19 @@ public class UserServiceDAO extends AbstractServiceDAO {
         if (intInput == 1){
             do {
                 newEmailAddress = readString("new email address");
-                currentUser.setEmail(newEmailAddress);
+                currentProfile.setEmail(newEmailAddress);
                 System.out.println("Email Address changed successfully");
             }while(! isValidEmailAddress(newEmailAddress));
         }
         if (intInput== 2) {
             currentPassword = readString("current password");
-            if (currentPassword == currentUser.getPassword()) {
+            if (currentPassword == currentProfile.getPassword()) {
                 do {
                     newPassword = readString("new password");
                     newPasswordConfirm = readString("new password confirmation");
                     passwordConfirmed = (newPassword == newPasswordConfirm);
                     if (passwordConfirmed) {
-                        currentUser.setPassword(newPassword);
+                        currentProfile.setPassword(newPassword);
                         System.out.println("Password changed successfully");
                     }
                 } while (!passwordConfirmed);
@@ -202,16 +204,16 @@ public class UserServiceDAO extends AbstractServiceDAO {
 
     public void deleteAccount(){
         System.out.println("delete account");
-        User user = slackSystem.getConnectedUser();
-        if (user == null){
+        Profile profile = slackSystem.getConnectedUser();
+        if (profile == null){
             System.out.println("no user connected");
             return;
         }
         disconnect();
         System.out.println("Deleting account...");
-        ArrayList<User> usersList = slackSystem.getUsers();
-        if(usersList.contains(user)) {
-            usersList.remove(user);
+        ArrayList<Profile> usersList = slackSystem.getUsers();
+        if(usersList.contains(profile)) {
+            usersList.remove(profile);
             slackSystem.setUsers(usersList);
             System.out.println("Account deleted");
         } else {
@@ -220,14 +222,14 @@ public class UserServiceDAO extends AbstractServiceDAO {
     }
 
     public void connectWorkspace(){
-        User user = slackSystem.getConnectedUser();
-        ArrayList<Workspace> listWorskspace = user.getWorkspaces();
+        Profile profile = slackSystem.getConnectedUser();
+        ArrayList<Workspace> listWorskspace = profile.getWorkspaces();
         String workspaceId = readString("workspace id to join");
         for(Workspace tempWorkspace : listWorskspace){
             String tempWorkspaceId = tempWorkspace.getId();
             if (workspaceId == tempWorkspaceId){
                 System.out.println("Connectiong to workspace ...");
-                user.setCurrentWorkspace(tempWorkspace);
+                profile.setCurrentWorkspace(tempWorkspace);
                 System.out.println("Connected to the workspace successfully !");
                 return ;
             }
@@ -237,9 +239,9 @@ public class UserServiceDAO extends AbstractServiceDAO {
     }
 
     public void joinWorkspace(){
-        User user = slackSystem.getConnectedUser();
+        Profile profile = slackSystem.getConnectedUser();
         ArrayList<Workspace> listWorkspace = slackSystem.getWorkspaces();
-        ArrayList<Workspace> userWorkspace = user.getWorkspaces();
+        ArrayList<Workspace> userWorkspace = profile.getWorkspaces();
         String workspaceId = readString("workspace id to join");
 
         // check in all workspaces if the workspace exists
@@ -254,7 +256,7 @@ public class UserServiceDAO extends AbstractServiceDAO {
                     } else {
                         System.out.println("Joining workspace ...");
                         userWorkspace.add(tempWorkspace);
-                        user.setWorkspaces(userWorkspace);
+                        profile.setWorkspaces(userWorkspace);
                         System.out.println("workspace joined !");
                         return ;
                     }
@@ -266,17 +268,17 @@ public class UserServiceDAO extends AbstractServiceDAO {
     }
 
     public void banMemberFromWorkspace(){
-        User connectedUser = slackSystem.getConnectedUser();
-        Workspace connectedWorkspace = connectedUser.getCurrentWorkspace();
-        ArrayList<User> admins = connectedWorkspace.getAdminProfiles();
-        if (!admins.contains(connectedUser)) {
+        Profile connectedProfile = slackSystem.getConnectedUser();
+        Workspace connectedWorkspace = connectedProfile.getCurrentWorkspace();
+        ArrayList<Profile> admins = connectedWorkspace.getAdminProfiles();
+        if (!admins.contains(connectedProfile)) {
             System.out.println("Action not authorized ! The user is not admin");
             return;
         }
         // admin
-        ArrayList<User> members = connectedWorkspace.getMemberProfiles();
+        ArrayList<Profile> members = connectedWorkspace.getMemberProfiles();
         String memberId = readString("member's email to ban");
-        for(User member : members){
+        for(Profile member : members){
             if (member.getEmail() == memberId) {
                 System.out.println("Banning member...");
                 connectedWorkspace.getMemberProfiles().remove(member);
@@ -292,17 +294,17 @@ public class UserServiceDAO extends AbstractServiceDAO {
     }
 
     public void kickMemberFromWorkspace(){
-        User connectedUser = slackSystem.getConnectedUser();
-        Workspace connectedWorkspace = connectedUser.getCurrentWorkspace();
-        ArrayList<User> admins = connectedWorkspace.getAdminProfiles();
-        if (!admins.contains(connectedUser)) {
+        Profile connectedProfile = slackSystem.getConnectedUser();
+        Workspace connectedWorkspace = connectedProfile.getCurrentWorkspace();
+        ArrayList<Profile> admins = connectedWorkspace.getAdminProfiles();
+        if (!admins.contains(connectedProfile)) {
             System.out.println("Action not authorized ! The user is not admin");
             return;
         }
         // admin
-        ArrayList<User> members = connectedWorkspace.getMemberProfiles();
+        ArrayList<Profile> members = connectedWorkspace.getMemberProfiles();
         String memberId = readString("member's email to kick");
-        for(User member : members){
+        for(Profile member : members){
             if (member.getEmail() == memberId) {
                 System.out.println("kicking member...");
                 connectedWorkspace.getMemberProfiles().remove(member);
@@ -342,18 +344,18 @@ public class UserServiceDAO extends AbstractServiceDAO {
         }else{
             System.out.println("this workspace hasn't been created ! please try again");
         }
-        //create a profile for the user who's creating the workspace
-        Profile profile;
-        profile = createProfile(currentConnectedUser.getId(),workspace.getId());
+        //create a user for the user who's creating the workspace
+        Profile user;
+        user = createProfile(currentConnectedProfile.getId(),workspace.getId());
 
         //put the creator as an admin
-        profile.setIsAdminWS(1);
-        DAOProfile.update(profile);
+        user.setIsAdminWS(1);
+        DAOProfile.update(user);
 
         return workspace;
     }
 
-    //function called by a profile
+    //function called by a user
     public WorkspaceChannel createCh(Workspace workspace) throws SQLException {
         WorkspaceChannel channel,ch;
         String chName;
@@ -371,11 +373,11 @@ public class UserServiceDAO extends AbstractServiceDAO {
         channel = new WorkspaceChannel(chName);
         channel.setWsId(workspace.getId());
 
-        //putting the profile that created it as an admin (to change !)
-        String id = currentConnectedUser.getId()+"."+workspace.getId();
-        Profile profile = DAOProfile.select(id);
-        profile.setIsAdminCh(1);
-        DAOProfile.update(profile);
+        //putting the user that created it as an admin (to change !)
+        String id = currentConnectedProfile.getId()+"."+workspace.getId();
+        Profile user = DAOProfile.select(id);
+        user.setIsAdminCh(1);
+        DAOProfile.update(user);
 
         //choose if you want it to be private or not
         int choice;
@@ -403,12 +405,12 @@ public class UserServiceDAO extends AbstractServiceDAO {
 
     //called by a user
     public void quitWs(Workspace workspace) throws SQLException {
-        String id = currentConnectedUser.getId()+"."+workspace.getId();
-        Profile profile = DAOProfile.select(id);
-        DAOProfile.delete(profile);
+        String id = currentConnectedProfile.getId()+"."+workspace.getId();
+        Profile user = DAOProfile.select(id);
+        DAOProfile.delete(user);
     }
 
-    //called by a profile
+    //called by a user
     public void quitCh(WorkspaceChannel channel){
         //we actually can't quit a channel
     }
@@ -418,10 +420,10 @@ public class UserServiceDAO extends AbstractServiceDAO {
         ArrayList<WorkspaceChannel> wsChannel = new ArrayList<WorkspaceChannel>();
         ArrayList<Profile> wsProfiles = new ArrayList<Profile>();
 
-        String idProfile = currentConnectedUser.getId()+"."+workspace.getId();
-        Profile profile = DAOProfile.select(idProfile);
+        String idProfile = currentConnectedProfile.getId()+"."+workspace.getId();
+        Profile user = DAOProfile.select(idProfile);
 
-        if( profile.isAdminWS() == 1 ){
+        if( user.isAdminWS() == 1 ){
             //delete all channels of this workspace
             wsChannel = (ArrayList<WorkspaceChannel>) DAOChannel.selectAll();
             for(WorkspaceChannel channel : wsChannel){
@@ -448,7 +450,7 @@ public class UserServiceDAO extends AbstractServiceDAO {
 
     }
 
-    //called by a profile
+    //called by a user
     public void deleteCh(WorkspaceChannel channel){
         ArrayList<Profile> chProfiles = new ArrayList<Profile>();
 
@@ -457,9 +459,9 @@ public class UserServiceDAO extends AbstractServiceDAO {
         }else {
             //take the role of admin from the profiles that are admins on this channel
             chProfiles = (ArrayList<Profile>) DAOProfile.selectAll();
-            for(Profile profile : chProfiles){
-                if(profile.isAdminCh()==1){
-                    profile.setIsAdminCh(0);
+            for(Profile user : chProfiles){
+                if(user.isAdminCh()==1){
+                    user.setIsAdminCh(0);
                 }
             }
             //delete the channel
@@ -474,11 +476,11 @@ public class UserServiceDAO extends AbstractServiceDAO {
         ArrayList<WorkspaceChannel> wsChannels = new ArrayList<WorkspaceChannel>();
         String newName;
         boolean exist = false;
-        String idProfile = currentConnectedUser.getId()+"."+workspace.getId();
-        Profile profile = DAOProfile.select(idProfile);
+        String idProfile = currentConnectedProfile.getId()+"."+workspace.getId();
+        Profile user = DAOProfile.select(idProfile);
 
         Scanner buff;
-        if(profile.isAdminWS()==0){
+        if(user.isAdminWS()==0){
             System.out.println("you don't have any right on this workspace");
         }else{
             System.out.println("Enter the new name of this workspace");
@@ -515,7 +517,7 @@ public class UserServiceDAO extends AbstractServiceDAO {
     }
 
 
-    public void editCh(WorkspaceChannel channel) throws SQLException {//called by a profile
+    public void editCh(WorkspaceChannel channel) throws SQLException {//called by a user
         String newName;
         Scanner buff;
         WorkspaceChannel wsChannel;
@@ -543,7 +545,7 @@ public class UserServiceDAO extends AbstractServiceDAO {
         }
     }
 
-    public Message sendChannelMsg(WorkspaceChannel channel){//called by a profile
+    public Message sendChannelMsg(WorkspaceChannel channel){//called by a user
         Message message;
         String content;
         Scanner buffer;
@@ -559,7 +561,7 @@ public class UserServiceDAO extends AbstractServiceDAO {
         return DAOMessageChannel.insert(message);
     }
 
-    public void deleteChannelMsg(Message msg){//called by a profile
+    public void deleteChannelMsg(Message msg){//called by a user
         if(msg.getIdSenderMessage()== connectedProfile.getId()){
             DAOMessageChannel.delete(msg);
             System.out.println("the message has been deleted succefully");
@@ -624,7 +626,7 @@ public class UserServiceDAO extends AbstractServiceDAO {
     }
 
     //called to add a collaborator
-    public void addWsCollaborator(User collab,Workspace workspace) {
+    public void addWsCollaborator(Profile collab, Workspace workspace) {
         Profile profileCollab = createProfile(collab.getId(),workspace.getId());
         DAOProfile.insert(profileCollab);
     }
@@ -632,15 +634,15 @@ public class UserServiceDAO extends AbstractServiceDAO {
     //called by a user to add a collaborator
     public void addChCollaborator(Profile collab) {
         //How to add a collab in a channel ?
-        //How can we know that a profile /user is in a "X" channel
+        //How can we know that a user /user is in a "X" channel
     }
 
     //called by a user
     public Profile createProfile(String idUsr,String idWs){
-        Profile profile = new Profile(idWs,idUsr);
+        Profile user = new Profile(idWs,idUsr);
         String id = idUsr+"."+idWs;
-        profile.setId(id);
-        return profile;
+        user.setId(id);
+        return user;
     }
 
 }

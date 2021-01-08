@@ -33,7 +33,7 @@ CREATE TABLE `profile` (
   `userid` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_idx` (`userid`),
-  CONSTRAINT `user` FOREIGN KEY (`userid`) REFERENCES `user` (`id`)
+  CONSTRAINT `profile` FOREIGN KEY (`userid`) REFERENCES `profile` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

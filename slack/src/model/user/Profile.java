@@ -1,21 +1,24 @@
 package model.user;
 
 import model.HasId;
+
+import model.communication.Workspace;
 import model.communication.WorkspaceChannel;
+
 import tool.ListManipulator;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 /**
- * Profile : a profile that belongs to a certain user in a certain worskpace
+ * Profile : a user that belongs to a certain user in a certain workspace
  */
 public class Profile implements HasId {
     /* attributes */
 
     // composed id as : "userId.workspaceId", belongs_to_one relation type
-    private String workspaceId; // unique workspace related to the Profile
-    private String userId; // unique user related to the Profile
+    private Workspace workspace; // unique workspace related to the Profile
+    private User user;// unique user related to the Profile
 
     // characteristics of a Profile
     private String username; // username
@@ -40,17 +43,18 @@ public class Profile implements HasId {
 
     /**
      * Constructor of Profile
-     * @param workspaceId
-     * @param userId
+     *
+     * @param user user of the profile
+     * @param workspace workspace in which the profile is used
      */
-    public Profile(String workspaceId, String userId) {
-        this.workspaceId = workspaceId;
-        this.userId = userId;
+    public Profile(User user, Workspace workspace) {
+        this.user = user;
+        this.workspace = workspace;
         joinedWorkspaceChannels = new ArrayList<WorkspaceChannel>(); // add the workspace
-        username = ""; // by default username will be the e-mail address
+        username = user.getEmail(); // by default username will be the e-mail address
         currentStatus = "online"; // joined workspace so online
-        completeName = username; // by default completeName is the e-mail address
-        shownName = username; // by default showName is the e-mail address
+        completeName = user.getEmail(); // by default completeName is the e-mail address
+        shownName = user.getEmail(); // by default showName is the e-mail address
         actualWorkPosition = "not mentioned"; // by default the actualWorkPosition is "not mentioned"
         phoneNumber = "not mentioned"; // by default the phoneNumber is "not mentioned"
         skypeUserName = "not mentioned"; // by default the skypeUserName is "not mentioned"
@@ -58,12 +62,32 @@ public class Profile implements HasId {
 
     /* accessors */
 
-    public String getWorkspaceId() {
-        return workspaceId;
+    public long getNumberOfWorkspaceChannels(){
+        return ListManipulator.numberOfElements(joinedWorkspaceChannels);
     }
 
-    public String getUserId() {
-        return userId;
+    public ArrayList<Profile> getCollaborators() {
+        return collaborators;
+    }
+
+    public void setCollaborators(ArrayList<Profile> collaborators) {
+        this.collaborators = collaborators;
+    }
+
+    public Workspace getWorkspace() {
+        return workspace;
+    }
+
+    public void setWorkspace(Workspace workspace) {
+        this.workspace = workspace;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getUsername() {
@@ -130,11 +154,11 @@ public class Profile implements HasId {
         this.timezone = timezone;
     }
 
-    public boolean getIsWorkspaceAdmin() {
+    public boolean isWorkspaceAdmin() {
         return isWorkspaceAdmin;
     }
 
-    public void setIsWorkspaceAdmin(boolean workspaceAdmin) {
+    public void setWorkspaceAdmin(boolean workspaceAdmin) {
         isWorkspaceAdmin = workspaceAdmin;
     }
 
@@ -145,28 +169,41 @@ public class Profile implements HasId {
     public void setJoinedWorkspaceChannels(ArrayList<WorkspaceChannel> joinedWorkspaceChannels) {
         this.joinedWorkspaceChannels = joinedWorkspaceChannels;
     }
-    public void setWorkspaceId(String workspaceId) {
-        this.workspaceId = workspaceId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     /**
      * @return id of the Profile, as : "userId.workspaceId"
      */
     @Override
     public String getId() {
-        return ( userId + "." + workspaceId );
+        return ( user.getId() + "." + workspace.getId() );
     }
 
+
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+
+        Profile profile = (Profile) object;
+
+        if (!workspace.equals(profile.workspace)) {
+            return false;
+        }
+
+        return user.equals(profile.user);
+    }
 
     @Override
     public String toString() {
         return "Profile{" +
-                "workspaceId='" + workspaceId + '\'' +
-                ", userId='" + userId + '\'' +
+                "workspace=" + workspace +
+                ", user=" + user +
                 ", username='" + username + '\'' +
                 ", currentStatus='" + currentStatus + '\'' +
                 ", completeName='" + completeName + '\'' +
@@ -176,39 +213,9 @@ public class Profile implements HasId {
                 ", skypeUserName='" + skypeUserName + '\'' +
                 ", timezone=" + timezone +
                 ", isWorkspaceAdmin=" + isWorkspaceAdmin +
-                ", joinedWorkspaceChannel=" + joinedWorkspaceChannels +
+                ", joinedWorkspaceChannels=" + joinedWorkspaceChannels +
+                ", collaborators=" + collaborators +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Profile profile = (Profile) o;
-
-        if (!workspaceId.equals(profile.workspaceId)) return false;
-        return userId.equals(profile.userId);
-    }
-
-    public long getNumberOfWorkspaceChannels(){
-        return ListManipulator.numberOfElements(joinedWorkspaceChannels);
-    }
-
-    public boolean isWorkspaceAdmin() {
-        return isWorkspaceAdmin;
-    }
-
-    public void setWorkspaceAdmin(boolean workspaceAdmin) {
-        isWorkspaceAdmin = workspaceAdmin;
-    }
-
-    public ArrayList<Profile> getCollaborators() {
-        return collaborators;
-    }
-
-    public void setCollaborators(ArrayList<Profile> collaborators) {
-        this.collaborators = collaborators;
     }
 }
 
