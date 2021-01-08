@@ -7,7 +7,6 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import Controllers.ChatController;
 import model.Message;
 import javafx.scene.control.TextArea;
 

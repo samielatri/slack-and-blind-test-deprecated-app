@@ -71,7 +71,7 @@ public class UserServiceDAO extends AbstractServiceDAO {
             return null;
         }
 
-        public User connect() throws SQLException {
+        public User login() throws SQLException {
             System.out.println("connection...");
             boolean validInputEmail = false;
             String confirmedInputPassword = "";
@@ -238,7 +238,7 @@ public class UserServiceDAO extends AbstractServiceDAO {
             String currentPassword = "";
             User currentUser = slackSystem.getConnectedUser();
 
-            System.out.println("Edit your acoount");
+            System.out.println("Edit your account");
 
             if (currentUser == null) {
                 System.out.println("No user connected !");
