@@ -2,14 +2,15 @@ package view;
 
 
 
+import service.user.UserServiceDAO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-
+import java.sql.SQLException;
 
 
 public class SignInPage extends JFrame{
@@ -20,7 +21,6 @@ public class SignInPage extends JFrame{
     private JButton button1;
     private JLabel linkToRegister;
     private String textLink="Not a member? Register";
-    private
 
     public SignInPage(){
         add(loginPage);
@@ -32,9 +32,13 @@ public class SignInPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String emailEnter,passwordEnter;
-                emailEnter= emailS.getText();
-                passwordEnter= passwordS.getText();
-                l.login();
+                emailEnter = emailS.getText();
+                passwordEnter = passwordS.getText();
+                try {
+                    UserServiceDAO.login(emailEnter, passwordEnter);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 //on appelle la methode sign in de la classe SQLUser
                 //signIn(emailEnter,passwordEnter);
             }

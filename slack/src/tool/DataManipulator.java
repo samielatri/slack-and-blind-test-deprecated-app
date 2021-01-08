@@ -7,6 +7,32 @@ public class DataManipulator {
      */
     private DataManipulator(){}
 
+    public static boolean verifyInputedEmail(String inputedEmail){
+        if (!DataManipulator.isValidEmailAddress(inputedEmail)) {
+            System.out.println("Please verify the entered email address!");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean verifyInputedPassword(String inputedPassword){
+        if(!DataManipulator.isValidPassword(inputedPassword) ){
+            System.out.println("Wrong password, even sami can hack you");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean verifyConfirmedPassword(String inputedPassword, String confirmedInputedPassword){
+        if(!inputedPassword.equals(confirmedInputedPassword)){
+            System.out.println("Passwords does not match");
+            return false;
+        }
+        return true;
+    }
+
+
+
     /**
      * @param email
      * @return true if the email is valid, false if not
