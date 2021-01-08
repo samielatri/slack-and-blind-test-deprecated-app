@@ -1,51 +1,60 @@
 package server;
 
-import java.io.*;
-import java.net.*;
+import model.communication.Message;
+import model.communication.WorkspaceChannel;
+import model.user.Profile;
 
-import model.Message;
-import model.User;
-import model.Workspace;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
-
+/**
+ *
+ */
 public class ServerThread extends Thread {
 
-    private Socket socket;
-    private Server.Server server;
+    private final Socket socket;
+    private final Server server;
     private ObjectOutputStream output = null;
     private boolean onetime = true;
     private ObjectInputStream input = null;
-    public User currentUser = null;
-    public Workspace workspace;
+    public Profile currentProfile = null;
+    public WorkspaceChannel workspaceChannel = null;
 
-    public ServerThread(Socket socket, Server.Server server) {
+    /**
+     *
+     * @param socket
+     * @param server
+     */
+    public ServerThread(Socket socket, Server server) {
         this.socket = socket;
         this.server = server;
     }
 
+    /**
+     *
+     */
     public void run() {
-
         try {
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
-
         while (!(socket.isClosed())) {
             try {
-
                 if (onetime) {
                     Message message = (Message) input.readObject();
-                    currentUser = message.getSender();
+
+                    currentProfile = message.getSender();
                     onetime = false;
-                    server.addUser(currentUser);
+                    server.addProfile(currentProfile);
                     System.out.println(message.toString());
                 } else {
                     Message received = (Message) input.readObject();
 
-                    workspace = received.getWorkspace();
+                    workspaceChannel = received.getWorkspaceChannel();
                     System.out.println(received.toString());
                     if (!received.getContent().equals("")) {
                         server.broadcast(received, this);
@@ -69,11 +78,13 @@ public class ServerThread extends Thread {
         resetStream();
     }
 
+    /**
+     *
+     */
     public void resetStream() {
         try {
             output.flush();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

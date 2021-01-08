@@ -5,7 +5,6 @@ import database.DAOFactory;
 import model.communication.Message;
 import model.communication.Workspace;
 import model.communication.WorkspaceChannel;
-import model.user.Profile;
 import model.user.User;
 
 import java.sql.SQLException;

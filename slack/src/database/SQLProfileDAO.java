@@ -1,7 +1,6 @@
 package database;
 
 import model.communication.Workspace;
-import model.user.Profile;
 import model.user.User;
 
 import java.sql.*;

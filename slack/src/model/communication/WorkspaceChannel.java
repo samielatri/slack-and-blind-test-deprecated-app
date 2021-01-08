@@ -125,4 +125,6 @@ public class WorkspaceChannel implements HasId {
         return name.equals(that.name);
     }
 
+    public String getWorkspaceChannel() {
+    }
 }

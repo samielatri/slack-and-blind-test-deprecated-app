@@ -12,10 +12,14 @@ public class Message implements HasId {
     private static final AtomicLong ID_GENERATOR = new AtomicLong();
     private String id;
     private String idSenderMessage;
+    private Profile sender;
     private Date createdAt;
     private Date updatedAt;
     private String content;
+
     private String idCh;
+    private WorkspaceChannel workspaceChannel;
+
     private int idConversation;
 
     /* constructor */
@@ -26,6 +30,11 @@ public class Message implements HasId {
         this.updatedAt = new Date();
         this.content = content;
     }
+
+    public static AtomicLong getIdGenerator() {
+        return ID_GENERATOR;
+    }
+
     /* accessors */
     @Override
     public String getId() {
@@ -101,5 +110,18 @@ public class Message implements HasId {
     public String toString() {
         //TODO : Change format with date ...
         return content;
+    }
+
+    public Profile getSender() {
+        return sender;
+    }
+
+    public void setSender(Profile sender) {
+        this.sender = sender;
+    }
+
+
+    public WorkspaceChannel getWorkspaceChannel() {
+        return workspaceChannel;
     }
 }

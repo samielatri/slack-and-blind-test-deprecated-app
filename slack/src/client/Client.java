@@ -7,7 +7,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import Controllers.ChatController;
+import old.ChatController;
 import model.Message;
 import javafx.scene.control.TextArea;
 
@@ -87,7 +87,6 @@ public class Client implements Runnable {
         try {
             output.flush();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

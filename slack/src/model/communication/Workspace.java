@@ -23,6 +23,10 @@ public class Workspace implements HasId {
     /* constructors */
     public Workspace(String name, Profile creatorProfile){
         this.name = name;
+        workspaceChannels = new ArrayList<WorkspaceChannel>();
+        memberProfiles = new ArrayList<Profile>();
+        adminProfiles = new ArrayList<Profile>();
+        bannedProfiles = new ArrayList<Profile>();
         memberProfiles.add(creatorProfile);
         adminProfiles.add(creatorProfile);
     }
