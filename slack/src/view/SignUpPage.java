@@ -10,6 +10,8 @@ public class SignUpPage extends JFrame {
     private JTextField textField1;
     private JButton signUpButton;
     private JButton backButton;
+    private JPasswordField passConfirm;
+    private JLabel confirmPwd;
 
     public SignUpPage(){
         add(SignUp);
@@ -19,9 +21,14 @@ public class SignUpPage extends JFrame {
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String emailEnter,passwordEnter;
+                String emailEnter,passwordEnter,passwordEnter2;
                 emailEnter= textField1.getText();
                 passwordEnter=passwordField1.getText();
+                passwordEnter2=passConfirm.getText();
+                if (!comparePassword(passwordEnter,passwordEnter2)){
+                    JOptionPane.showMessageDialog(SignUp,"Password doesn't match !","LEGO Slack warning",
+                            JOptionPane.WARNING_MESSAGE);
+                }
                 //on appelle la methode insert de la classe SQLUser
                 //insert(emailEnter,passwordEnter);
             }
@@ -34,5 +41,12 @@ public class SignUpPage extends JFrame {
                 new HomePage();
             }
         });
+    }
+
+    public boolean comparePassword(String p1, String p2){
+        if (p1.equals(p2)){
+            return true;
+        }
+        return false;
     }
 }
