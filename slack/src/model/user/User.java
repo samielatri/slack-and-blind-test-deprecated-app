@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * User : principal actor of the application
  */
-public class User implements HasId {
+public class Profile implements HasId {
 
     /* attributes */
 
@@ -22,14 +22,14 @@ public class User implements HasId {
     private ArrayList<Workspace> workspaces; // list of workspaces that the User joined weather he created them or not
 
     // has_many relation type
-    private ArrayList<Profile> profiles; // list of profiles that the User has, a User has a user per workspace
+    private ArrayList<Profile> profiles; // list of profiles that the User has, a User has a profile per workspace
 
     /* constructors */
 
     /**
      * Constructor of User
-     * @param email email of the User
-     * @param password password of the User
+     * @param email
+     * @param password
      */
     public User(String email, String password) {
         this.email = email;
@@ -39,56 +39,56 @@ public class User implements HasId {
     /* accessors */
 
     /**
-     * @return email of the User
+     * @return email
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     * @param email email of the User
+     * @param email
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * @return password of the User
+     * @return password
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * @param password password of the User
+     * @param password
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     * @return profiles of the User
+     * @return profiles
      */
     public ArrayList<Profile> getProfiles() {
         return profiles;
     }
 
     /**
-     * @param profiles profiles of the User
+     * @param profiles
      */
     public void setProfiles(ArrayList<Profile> profiles) {
         this.profiles = profiles;
     }
 
     /**
-     * @return workspaces of the User
+     * @return workspaces
      */
     public ArrayList<Workspace> getWorkspaces() {
         return workspaces;
     }
 
     /**
-     * @param workspaces workspaces of the User
+     * @param workspaces
      */
     public void setWorkspaces(ArrayList<Workspace> workspaces) {
         this.workspaces = workspaces;
@@ -103,26 +103,18 @@ public class User implements HasId {
     }
 
     /**
-     * @param object object
+     * @param o
      * @return true if equals, false if not
      */
     @Override
-    public boolean equals(Object object) {
-        if (this == object){
-            return true;
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        if (object == null || getClass() != object.getClass()){
-            return false;
-        }
+        User user = (User) o;
 
-        User user = (User) object;
-
-        if (!email.equals(user.email)){
-            return false;
-        }
-
-        return (password.equals(user.password));
+        if (!email.equals(user.email)) return false;
+        return password.equals(user.password);
     }
 
     /**
@@ -138,16 +130,10 @@ public class User implements HasId {
                 '}';
     }
 
-    /**
-     * @return number of workspaces
-     */
     public long getNumberOfWorkspaces(){
         return ListManipulator.numberOfElements(workspaces);
     }
 
-    /**
-     * @return number of profiles
-     */
     public long getNumberOfProfiles(){
         return ListManipulator.numberOfElements(workspaces);
     }

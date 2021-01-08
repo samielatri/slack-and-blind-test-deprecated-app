@@ -57,18 +57,18 @@ public class Server {
     }
 
     /**
-     * Delivers a message from one user to others (broadcasting)
+     * Delivers a message from one profile to others (broadcasting)
      *
      * @param channel
      *
      * @throws IOException
      */
     void broadcast(Message message, ServerThread excludeProfile) throws IOException {
-        for (ServerThread user : profileThreads) {
-            if (user.getWorkspace.getChannel() != null) {
-                WorkspaceChannel channel = user.workspace();
+        for (ServerThread profile : profileThreads) {
+            if (profile.getWorkspace.getChannel() != null) {
+                WorkspaceChannel channel = profile.workspace();
                 if (message.getWorkspaceChannel().equals(channel)) {
-                    user.sendMessage(message);
+                    profile.sendMessage(message);
                 }
             }
 

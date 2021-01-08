@@ -1,4 +1,4 @@
-create table profile(
+create table user(
 mail varchar(255) NOT NULL,
 password varchar(255) DEFAULT NULL,
 primary key(mail)
@@ -15,7 +15,7 @@ phoneNumber varchar(255),
 timezone varchar(255),
 idWK varchar(255),
 primary key(mail,idProfile),
-foreign key(mail) references profile(mail),
+foreign key(mail) references user(mail),
 foreign key(idWK) references workspace(nameWK)
 );
 

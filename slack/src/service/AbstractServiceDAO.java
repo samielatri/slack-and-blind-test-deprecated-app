@@ -5,13 +5,13 @@ import database.DAOFactory;
 import model.communication.Message;
 import model.communication.Workspace;
 import model.communication.WorkspaceChannel;
-import model.user.Profile;
+import model.user.User;
 
 import java.sql.SQLException;
 
 public abstract class AbstractServiceDAO {
 
-    protected static DAO<Profile> DAOUser;
+    protected static DAO<User> DAOUser;
 
     static {
         try {
@@ -45,7 +45,7 @@ public abstract class AbstractServiceDAO {
 
     static {
         try {
-            DAOProfile = DAOFactory.user();
+            DAOProfile = DAOFactory.profile();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -71,7 +71,7 @@ public abstract class AbstractServiceDAO {
         }
     }
 
-    protected static Profile currentConnectedProfile;
+    protected static User currentConnectedUser;
     protected static Profile currentConnectedProfile;
     protected static Workspace currentConnectedWorkspace;
     protected static WorkspaceChannel currentConnectedWorkspaceChannel;

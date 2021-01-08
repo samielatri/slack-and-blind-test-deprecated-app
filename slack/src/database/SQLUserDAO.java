@@ -1,10 +1,9 @@
 package database;
 
-import model.user.Profile;
-
+import model.user.User;
 import java.sql.*;
 
-public class SQLUserDAO extends AbstractSQLDAO<Profile> {
+public class SQLUserDAO extends AbstractSQLDAO<User> {
     Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
     ResultSet queryResult =null;
@@ -13,7 +12,7 @@ public class SQLUserDAO extends AbstractSQLDAO<Profile> {
     }
 
     @Override
-    protected Profile create(ResultSet rs) {
+    protected User create(ResultSet rs) {
         return null;
     }
 
@@ -24,10 +23,10 @@ public class SQLUserDAO extends AbstractSQLDAO<Profile> {
 
     /**
      * user connection (sign in)
-     * @param profile
+     * @param user
      * @return
      */
-    public Profile signIn(Profile profile) {
+    public User signIn(User user) {
         try {
             String mailDB = ""; // mail retrieved from database
             String passwordDB = ""; // password retrieved from database
@@ -37,9 +36,9 @@ public class SQLUserDAO extends AbstractSQLDAO<Profile> {
                 mailDB = queryResult.getString("mail");
                 passwordDB = queryResult.getString("password");
 
-                if( profile.getEmail().equals(mailDB) && profile.getPassword().equals(passwordDB) ) {
+                if( user.getEmail().equals(mailDB) && user.getPassword().equals(passwordDB) ) {
                     System.out.println("User found in the database !");
-                    return profile;
+                    return user ;
                 }
             }
             System.out.println("User not found in the database !");
@@ -52,11 +51,11 @@ public class SQLUserDAO extends AbstractSQLDAO<Profile> {
 
     /**
      * method for insert an user in database
-     * @param profile
+     * @param user
      * @return
      */
     @Override
-    public Profile insert(Profile profile) {
+    public User insert(User user) {
 
         String mailFromDataBase="";
         String sqlSelectionQuery = "SELECT mail FROM user"; // sql query to execute
@@ -67,17 +66,17 @@ public class SQLUserDAO extends AbstractSQLDAO<Profile> {
 
             while( queryResult.next() ) {
                 mailFromDataBase = queryResult.getString("mail");
-                if( profile.getEmail().equalsIgnoreCase(mailFromDataBase) ) {
+                if( user.getEmail().equalsIgnoreCase(mailFromDataBase) ) {
                     System.out.println( "<DB> Email already exists in the database" ) ;
-                    return (Profile) null ;
+                    return (User) null ;
                 }
             }
 
             String sqlInsertionQuery= "INSERT INTO user (mail, password) VALUES (?,MD5(?))";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sqlInsertionQuery);
-            preparedStatement.setString( 1, profile.getEmail() );
-            preparedStatement.setString( 2, profile.getPassword() );
+            preparedStatement.setString( 1,user.getEmail() );
+            preparedStatement.setString( 2, user.getPassword() );
 
             queryResult = preparedStatement.executeQuery();
 
@@ -86,11 +85,11 @@ public class SQLUserDAO extends AbstractSQLDAO<Profile> {
             exception.printStackTrace();
         }
 
-        return profile;
+        return user;
     }
 
     @Override
-    public void delete(Profile obj) { //delete an user from the database
+    public void delete(User obj) { //delete an user from the database
         try{
             String sql= "DELETE FROM user WHERE email= ?";
             PreparedStatement pstate= conn.prepareStatement(sql);
@@ -104,7 +103,7 @@ public class SQLUserDAO extends AbstractSQLDAO<Profile> {
     }
 
     @Override
-    public Profile update(Profile obj) {//change password of the user
+    public User update(User obj) {//change password of the user
         try {
             String sql= "UPDATE user SET password = ? WHERE mail= ?";
             PreparedStatement pstate= conn.prepareStatement(sql);
@@ -115,14 +114,14 @@ public class SQLUserDAO extends AbstractSQLDAO<Profile> {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return new Profile(obj.getEmail(),obj.getPassword());
+        return new User(obj.getEmail(),obj.getPassword());
     }
 
     @Override
-    public Profile select(String key) {//select an user in the database
+    public User select(String key) {//select an user in the database
         String uMail="";
         String uPass="";
-        Profile u=null;
+        User u=null;
         try{
             String sql= "SELECT * FROM user WHERE user=?";
             PreparedStatement pstate= conn.prepareStatement(sql);
@@ -131,7 +130,7 @@ public class SQLUserDAO extends AbstractSQLDAO<Profile> {
             while(queryResult.next()){
                 uMail= queryResult.getString(1);
                 uPass= queryResult.getString(2);
-                u=new Profile(uMail,uPass);
+                u=new User(uMail,uPass);
             }
         }catch (SQLException e){
             e.printStackTrace();

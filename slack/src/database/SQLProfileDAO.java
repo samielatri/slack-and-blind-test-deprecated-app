@@ -1,7 +1,7 @@
 package database;
 
 import model.communication.Workspace;
-import model.user.Profile;
+import model.user.User;
 
 import java.sql.*;
 
@@ -28,14 +28,14 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
     public Profile insert(Profile obj) {
         String pf="";
         try{
-            res=state.executeQuery("SELECT idProfile FROM user");
+            res=state.executeQuery("SELECT idProfile FROM profile");
             while (res.next()){
                 pf=res.getString("idProfile");
                 if(obj.getCompleteName().equals(pf)){
-                    System.out.println("This user is already exist");
+                    System.out.println("This profile is already exist");
                 }
             }
-            String sql= "INSERT INTO user (mail, idProfile, currentStatus, completeName, shownName, actualWorkPosition, phoneNumber, timezone) VALUES (?,?,?,?,?,?,?,?)";
+            String sql= "INSERT INTO profile (mail, idProfile, currentStatus, completeName, shownName, actualWorkPosition, phoneNumber, timezone) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pstate= conn.prepareStatement(sql);
             //pstate.setString(1,obj.getEmail());
             //pstate.setString(2,obj.getidProfile());
@@ -57,7 +57,7 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
     public void delete(Profile obj) {
 
         try{
-            String sql= "DELETE FROM user WHERE idProfile= ?";
+            String sql= "DELETE FROM profile WHERE idProfile= ?";
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1,obj.getUsername());
             res=pstate.executeQuery();
@@ -71,7 +71,7 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
     @Override
     public Profile update(Profile obj) {
         try {
-            String sql= "UPDATE user SET currentStatus = ?, completeName= ?, shownName = ?, actualWorkPosition= ?, phoneNumber= ?, timezone= ? WHERE idProfile= ?";
+            String sql= "UPDATE profile SET currentStatus = ?, completeName= ?, shownName = ?, actualWorkPosition= ?, phoneNumber= ?, timezone= ? WHERE idProfile= ?";
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1, obj.getCurrentStatus());
             pstate.setString(2, obj.getCompleteName());
@@ -90,14 +90,14 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
 
 
     @Override
-    public Profile select(String key) throws SQLException { //return a user
+    public Profile select(String key) throws SQLException { //return a profile
         SQLUserDAO us=new SQLUserDAO();
         SQLWorkspaceDAO wp=new SQLWorkspaceDAO();
         Workspace wks=null;
-        Profile uss=null;
+        User uss=null;
         Profile p=null;
         try{
-            String sql= "SELECT * FROM user WHERE idProfile=?";
+            String sql= "SELECT * FROM profile WHERE idProfile=?";
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1,key);
             res=pstate.executeQuery();

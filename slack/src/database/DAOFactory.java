@@ -3,7 +3,7 @@ package database;
 import model.communication.Message;
 import model.communication.Workspace;
 import model.communication.WorkspaceChannel;
-import model.user.Profile;
+import model.user.User;
 
 import java.sql.SQLException;
 
@@ -37,13 +37,13 @@ public class DAOFactory {
 		}
 		return new MemoryDAO<>();
 	}
-	public static DAO<Profile> user() throws SQLException {
+	public static DAO<Profile> profile() throws SQLException {
 		if (isSQL) {
 			return new SQLProfileDAO();
 		}
 		return new MemoryDAO<>();
 	}
-	public static DAO<Profile> user() throws SQLException {
+	public static DAO<User> user() throws SQLException {
 		if (isSQL) {
 			return new SQLUserDAO();
 		}
