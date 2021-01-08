@@ -33,9 +33,6 @@ public class Profile implements HasId {
     // belongs_to_many relation type
     private ArrayList<WorkspaceChannel> joinedWorkspaceChannels; // list of workspaces that the User joined weather he created them or not
 
-    // has_many relation type
-    private ArrayList<Profile> collaborators; //list of collaborators
-
     /* constructors */
 
     /**
@@ -46,14 +43,6 @@ public class Profile implements HasId {
     public Profile(String workspaceId, String userId) {
         this.workspaceId = workspaceId;
         this.userId = userId;
-        joinedWorkspaceChannels = new ArrayList<WorkspaceChannel>(); // add the workspace
-        username = ""; // by default username will be the e-mail address
-        currentStatus = "online"; // joined workspace so online
-        completeName = username; // by default completeName is the e-mail address
-        shownName = username; // by default showName is the e-mail address
-        actualWorkPosition = "not mentioned"; // by default the actualWorkPosition is "not mentioned"
-        phoneNumber = "not mentioned"; // by default the phoneNumber is "not mentioned"
-        skypeUserName = "not mentioned"; // by default the skypeUserName is "not mentioned"
     }
 
     /* accessors */
@@ -193,22 +182,6 @@ public class Profile implements HasId {
 
     public long getNumberOfWorkspaceChannels(){
         return ListManipulator.numberOfElements(joinedWorkspaceChannels);
-    }
-
-    public boolean isWorkspaceAdmin() {
-        return isWorkspaceAdmin;
-    }
-
-    public void setWorkspaceAdmin(boolean workspaceAdmin) {
-        isWorkspaceAdmin = workspaceAdmin;
-    }
-
-    public ArrayList<Profile> getCollaborators() {
-        return collaborators;
-    }
-
-    public void setCollaborators(ArrayList<Profile> collaborators) {
-        this.collaborators = collaborators;
     }
 }
 

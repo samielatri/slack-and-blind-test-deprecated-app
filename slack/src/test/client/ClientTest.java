@@ -1,6 +1,6 @@
 package test.client;
 
-import old.Client1;
+import client.Client1;
 
 import javax.swing.JFrame;
 

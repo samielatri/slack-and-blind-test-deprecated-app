@@ -20,42 +20,9 @@ public class Conversation implements HasId {
         this.startedAt = startedAt;
     }
 
-    public static AtomicLong getIdGenerator() {
-        return ID_GENERATOR;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getStartedAt() {
-        return startedAt;
-    }
-
-    public void setStartedAt(Date startedAt) {
-        this.startedAt = startedAt;
-    }
-
     @Override
     public String getId() {
         return id;
-    }
-
-    @Override
-    public String toString() {
-        return "Conversation{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", startedAt=" + startedAt +
-                '}';
     }
 
     /* Accessors*/

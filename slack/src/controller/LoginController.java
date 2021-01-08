@@ -1,4 +1,4 @@
-package old;
+package Controllers;
 
 import java.io.IOException;
 
@@ -58,7 +58,7 @@ public class LoginController {
 
         try {
             FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../View/Menu.fxml"));
-            ChatController deController = fxmlloader.getController();
+            Controllers.ChatController deController = fxmlloader.getController();
             deController.setUser(user);
 
             // load the other stage

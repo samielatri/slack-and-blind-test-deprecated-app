@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * User : principal actor of the application
  */
-public class Profile implements HasId {
+public class User implements HasId {
 
     /* attributes */
 

@@ -1,21 +1,17 @@
 package server;
 
-import model.communication.Message;
-import model.communication.WorkspaceChannel;
-import model.user.Profile;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.HashSet;
-import java.util.Set;
+import model.Message;
+import model.User;
 
 public class Server {
 
-    private final Set<Profile> profileList = new HashSet<>();
-    private final Set<ServerThread> profileThreads = new HashSet<>();
-
-    static int defaultPort = 62000;
+    private Set<User> userlist = new HashSet<>();
+    private Set<ServerThread> userThreads = new HashSet<>();
+    static int defaultport = 62000;
     static int serverPort;
 
     public void execute() {
@@ -26,7 +22,7 @@ public class Server {
                 Socket socket = serverSocket.accept();
                 System.out.println("Inbound Connection #" + i);
                 ServerThread newUser = new ServerThread(socket, this);
-                profileThreads.add(newUser);
+                userThreads.add(newUser);
                 newUser.start();
                 i++;
             }
@@ -40,15 +36,15 @@ public class Server {
     public static void main(String[] args) {
 
         if (args.length == 0) {
-            serverPort = defaultPort;
-            System.out.println("Using default port: " + defaultPort);
+            serverPort = defaultport;
+            System.out.println("Using default port: " + defaultport);
         } else {
             try {
                 serverPort = Integer.parseInt(args[0]);
             } catch (NumberFormatException nfe) {
-                serverPort = defaultPort;
+                serverPort = defaultport;
                 System.out.println("Error: Invalid port number: " + args[0]);
-                System.out.println("Using default port: " + defaultPort);
+                System.out.println("Using default port: " + defaultport);
             }
         }
 
@@ -57,18 +53,18 @@ public class Server {
     }
 
     /**
-     * Delivers a message from one profile to others (broadcasting)
+     * Delivers a message from one user to others (broadcasting)
      *
      * @param channel
      *
      * @throws IOException
      */
-    void broadcast(Message message, ServerThread excludeProfile) throws IOException {
-        for (ServerThread profile : profileThreads) {
-            if (profile.getWorkspace.getChannel() != null) {
-                WorkspaceChannel channel = profile.workspace();
-                if (message.getWorkspaceChannel().equals(channel)) {
-                    profile.sendMessage(message);
+    void broadcast(Message message, ServerThread excludeUser) throws IOException {
+        for (ServerThread user : userThreads) {
+            if (user.workspace.getChannel() != null) {
+                String channel = user.workspace.getChannel();
+                if (message.getWorkspace().getChannel().equals(channel)) {
+                    user.sendMessage(message);
                 }
             }
 
@@ -77,10 +73,31 @@ public class Server {
 
     /**
      * Stores username of the newly connected client.
-     * @param profile
      */
-    void addProfile(Profile profile) {
-        profileList.add(profile);
+    void addUser(User user) {
+        userlist.add(user);
     }
+
+    /**
+     * When a client is disconneted, removes the associated username and UserThread
+     */
+//	void remove(String userName, ServerThread aUser) {
+//		boolean removed = userNames.remove(userName);
+//		if (removed) {
+//			userThreads.remove(aUser);
+//		}
+//	}
+
+//	Set<String> getUserNames() {
+//		return this.userNames;
+//	}
+
+    /**
+     * Returns true if there are other users connected (not count the currently
+     * connected user)
+     */
+//	boolean hasUsers() {
+//		return !this.userNames.isEmpty();
+//	}
 
 }
