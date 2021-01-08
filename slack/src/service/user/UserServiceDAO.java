@@ -27,10 +27,11 @@ public class UserServiceDAO extends AbstractServiceDAO {
      */
     public User register() throws SQLException {
             System.out.println("Proceeding to registration...");
-            Scanner scannerPassword; // scanner for password
             boolean validInputEmail = false; // true if the imputed email is valid, false if not
+            boolean validPassword = false;
             String inputedEmail = ""; // email imputed from the user
             String inputPassword = ""; // imputed password from the user
+            String confirmedInputPassword = "";
             User connectUser = null; // connected user
 
             // get valid imputed email from the user
@@ -44,10 +45,11 @@ public class UserServiceDAO extends AbstractServiceDAO {
 
             System.out.println("You entered " + inputedEmail + ".");
 
-            System.out.println("Please enter your password : ");
-            scannerPassword = new Scanner(System.in);
-            System.out.print("> ");
-            inputPassword = scannerPassword.nextLine();
+            do {
+                inputPassword = Keyboard.readString("password");
+                confirmedInputPassword = Keyboard.readString("confirmed password");
+                validPassword = DataManipulator.isValidPassword(inputPassword)&& inputPassword.equals(confirmedInputPassword);
+            }while(!validPassword);
 
             for (User user : DAOUser.selectAll()){
                 if (user.getEmail().equalsIgnoreCase(inputedEmail)){
@@ -69,22 +71,19 @@ public class UserServiceDAO extends AbstractServiceDAO {
             return null;
         }
 
-        public void connect() throws SQLException {
+        public User connect() throws SQLException {
             System.out.println("connection...");
-            Scanner scannerEmail;
-            Scanner scannerPassword;
             boolean validInputEmail = false;
+            String confirmedInputPassword = "";
+            boolean validPassword = false;
             String inputEmail = "";
             String inputPassword = "";
             String inputPasswordConfirmation = "";
             User connectUser = null;
 
             do {
-                System.out.println("Please enter your e-mail : ");
-                scannerEmail = new Scanner(System.in);
-                System.out.print("> ");
-                inputEmail = scannerEmail.nextLine();
-                validInputEmail = isValidEmailAddress(inputEmail);
+                inputEmail = Keyboard.readString("email");
+                validInputEmail = DataManipulator.isValidEmailAddress(inputEmail);
                 if (!validInputEmail) {
                     System.out.println("Please verify the entered email address!");
                 } else {
@@ -93,54 +92,26 @@ public class UserServiceDAO extends AbstractServiceDAO {
             }while(!validInputEmail);
 
             do {
-                System.out.println("Please enter your password : ");
-                scannerPassword = new Scanner(System.in);
-                System.out.print("> ");
-                inputPassword = scannerPassword.nextLine();
-                System.out.println("Please confirm your password : ");
-                Scanner scannerPasswordConfirmation = new Scanner(System.in);
-                System.out.print("> ");
-                inputPasswordConfirmation = scannerPassword.nextLine();
-            } while(!inputPassword.equals(inputPasswordConfirmation));
-            User user = new User(inputEmail, inputPassword);
+                inputPassword = Keyboard.readString("password");
+                confirmedInputPassword = Keyboard.readString("confirmed password");
+                validPassword = DataManipulator.isValidPassword(inputPassword)&& inputPassword.equals(confirmedInputPassword);
+            } while(!validPassword);
 
-            if ( currentConnectedUser != null) {
-                if (currentConnectedUser.getEmail().equalsIgnoreCase(inputEmail)) {
-                    System.out.println("User already connected !");
-                } else {
-                    System.out.println("A user is already connected ! Please disconnect before connecting to a new user");
-                }
-                return ;
-            }
-
-            for (User tempUser : (ArrayList<User>) DAOUser.selectAll()){
-                if (tempUser.getEmail().equalsIgnoreCase(inputEmail)){
-                    if(tempUser.getPassword().equals(inputPassword)){
-                        connectUser = tempUser;
-                        break;
-                    } else {
-                        System.out.println("Wrong password");
-                        break;
+            for (User user : DAOUser.selectAll()){
+                if (user.getEmail().equalsIgnoreCase(inputEmail)){
+                    if (currentConnectedUser.getEmail().equalsIgnoreCase(inputEmail)) {
+                        System.out.println("User already connected !");
+                        return null;
                     }
+                    /***************NAHI TO DO : hashcode******************/
+                    if(!user.getPassword().equals(inputPassword)){
+                        System.out.println("Invalid password, fucking looser hacker");
+                        return null; // failed to register
+                    }
+                    return user;
                 }
             }
-
-            if (connectUser == null) {
-                System.out.println("User does not exist !");
-                System.out.println("Please verify your entered information or create an account if you don't have one.");
-                return ;
-            }
-
-            System.out.println("Connecting...");
-            currentConnectedUser = DAOUser.select(user.getId());
-
-            // signIn
-
-            if (connectUser == user) {
-                System.out.println("User connected successfully !");
-            } else {
-                System.out.println("Connection failed ! Please retry.");
-            }
+            return null;
         }
 
         // you can visit a profile only when you are in the workspace
@@ -215,7 +186,6 @@ public class UserServiceDAO extends AbstractServiceDAO {
                 if(choice == 1){
                     String newUsername = readString("username");
                     currentProfile.setUsername(newUsername);
-                    DAOProfile.update(currentProfile);
 
                     System.out.println("Username changed !");
                 }
@@ -255,23 +225,9 @@ public class UserServiceDAO extends AbstractServiceDAO {
                 // currentProfile.setProfilePicture(newProfilePicture);
                 // System.out.println("Profile picture changed! ");
                 //}
-
                 // add Skype ?
             }while(choice != 9);
-        }
-        // need to use keyboardInput in future
-        private int readInt(String printable) {
-            System.out.println("Please enter " + printable + ": > ");
-            Scanner scanner = new Scanner(System.in);
-            int intInput = scanner.nextInt();
-            return intInput;
-        }
-
-        private String readString(String printable) {
-            System.out.println("Please enter " + printable + ": > ");
-            Scanner scanner = new Scanner(System.in);
-            String stringInput = scanner.nextLine();
-            return stringInput;
+            DAOProfile.update(DAOProfile.select(currentProfile.getId()));
         }
 
         public void editAccount(){
