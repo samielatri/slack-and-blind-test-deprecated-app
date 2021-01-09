@@ -1,5 +1,6 @@
 package controller.user;
 
+import model.SlackSystem;
 import model.communication.Conversation;
 import model.communication.Message;
 import model.communication.Workspace;
@@ -9,123 +10,76 @@ import model.user.User;
 import controller.AbstractServiceDAO;
 
 import java.sql.SQLException;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class ProfileServiceDAO extends AbstractServiceDAO {
     // you can visit a profile only when you are in the workspace
-    public void visitProfile() throws SQLException {
+    public Profile visitProfile(String profileToVisitId) throws SQLException {
 
-        if (currentConnectedUser == null) {
+        Profile profileToVisit = null;
+
+        // verify if user is connected
+        if (slackSystem.getCurrentConnectedUser() == null) {
             System.out.println("No user connected !");
-            return ;
         }
 
-        Workspace currentWorkspace = DAOWorkspace.select(currentConnectedWorkspace.getId());
-        if (currentWorkspace == null){
+        // verify if user is connected to a workspace
+        if (slackSystem.getCurrentConnectedWorkspace() == null){
             System.out.println("User not connected to any workspace !");
-            return ;
         }
 
-        Profile currentProfile = currentConnectedProfile;
-        if (currentProfile == null){
+        // verify if user has a profile in the current workspace
+        if (slackSystem.getCurrentConnectedProfile() == null){
             System.out.println("User does not have a profile in the current workspace !");
-            return ;
+        } else {
+            if (DAOProfile.select(profileToVisitId) == null){
+                System.out.println("Database error, does not exist");
+            } else {
+                if(DAOProfile.select(profileToVisitId).equals(slackSystem.getCurrentConnectedProfile())){
+                    System.out.println("Visiting own profile");
+                    profileToVisit = slackSystem.getCurrentConnectedProfile();
+                } else {
+                    System.out.println("Visiting another profile");
+                    profileToVisit = DAOProfile.select(profileToVisitId);
+                }
+            }
         }
 
-        System.out.println(currentProfile.toString());
-        System.out.println("Press any key to come back");
-        System.out.print("> ");
-        while(keyPressed == "" || keyPressed == null) {
-            scannerKeyPressed = new Scanner(System.in);
-            keyPressed = scannerKeyPressed.nextLine();
-        }
+        return profileToVisit;
     }
 
-    public void updateProfile() throws SQLException {
-        String keypressed = "";
-        Scanner scannerKeypressed = null;
-        User connectedUser = DAOUser.select(currentConnectedUser.getId());
+    public Profile updateProfile(String... inputtedCharacteristics) throws SQLException {
 
-        if (connectedUser == null) {
-            System.out.println("No user connected !");
-            return ;
+        if (Profile.getNumberCharacteristics() != inputtedCharacteristics.length){
+            return null;
         }
+        String[] characteristics = {"username", "currentStatus", "completeName", "shownName", "actualWorkPosition", "phoneNumber", "skypeUserName", "timeZone"} ;
+        Profile currentConnectedProfile = slackSystem.getCurrentConnectedProfile();
+        HashMap<String, String> currentProfileCharacteristics = new HashMap<>();
 
-        Workspace currentWorkspace = DAOWorkspace.select(currentConnectedWorkspace.getId());
-        if (currentWorkspace == null){
-            System.out.println("User not connected to any workspace !");
-            return ;
+        for (int i=0; i<inputtedCharacteristics.length; i++){
+            if (inputtedCharacteristics[i] == null){
+                inputtedCharacteristics[i] = "";
+            }
+            currentProfileCharacteristics.put(characteristics[i], inputtedCharacteristics[i]);
         }
+        currentConnectedProfile.setUsername(currentProfileCharacteristics.get("username"));
+        currentConnectedProfile.setCurrentStatus(currentProfileCharacteristics.get("currentStatus"));
+        currentConnectedProfile.setCompleteName(currentProfileCharacteristics.get("completeName"));
+        currentConnectedProfile.setShownName(currentProfileCharacteristics.get("shownName"));
+        currentConnectedProfile.setActualWorkPosition(currentProfileCharacteristics.get("actualWorkPosition"));
+        currentConnectedProfile.setPhoneNumber(currentProfileCharacteristics.get("phoneNumber"));
+        currentConnectedProfile.setSkypeUserName(currentProfileCharacteristics.get("skypeUserName"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm:ss Z");
+        String formattedString = currentProfileCharacteristics.get("timeZone").format(formatter);
+        currentConnectedProfile.setTimezone(currentProfileCharacteristics.get("timeZone"));
 
-        Profile currentProfile = DAOProfile.select(currentConnectedProfile.getId());
-        if (currentProfile == null){
-            System.out.println("User does not have a profile in the current workspace !");
-            return ;
-        }
-
-        int choice = 0;
-        do {
-            System.out.println(currentProfile.toString() + "\n9-Back");
-        /*
-            ", 1 - username='" + username + '\'' +
-            ", 2 - currentStatus='" + currentStatus + '\'' +
-            ", 3 - completeName='" + completeName + '\'' +
-            ", 4 - shownName='" + shownName + '\'' +
-            ", 5 - actualWorkPosition='" + actualWorkPosition + '\'' +
-            ", 6 - phoneNumber='" + phoneNumber + '\'' +
-            ", 7 - timezone='" + timezone + '\'' +
-            ", 8 - profilePicture=" + profilePicture +
-            9-exit
-        */
-            choice = readInt("choice");
-            // we need if no switch because it will be changed to enum
-            if(choice == 1){
-                String newUsername = readString("username");
-                currentProfile.setUsername(newUsername);
-
-                System.out.println("Username changed !");
-            }
-            if(choice == 2){
-                String newCurrentStatus = readString("currentStatus");
-                currentProfile.setCurrentStatus(newCurrentStatus);
-                System.out.println("Status changed !");
-            }
-            if(choice == 3){
-                String newCompleteName = readString("completeName");
-                currentProfile.setCompleteName(newCompleteName);
-                System.out.println("Complete name changed !");
-            }
-            if(choice == 4){
-                String newShownName = readString("shownName");
-                currentProfile.setShownName(newShownName);
-                System.out.println("Shown name changed !");
-            }
-            if(choice == 5){
-                String newActualWorkPosition = readString("actualWorkPosition");
-                currentProfile.setActualWorkPosition(newActualWorkPosition);
-                System.out.println("Actual position changed !");
-            }
-            if(choice == 6){
-                String newPhoneNumber = readString("phoneNumber");
-                currentProfile.setPhoneNumber(newPhoneNumber);
-                System.out.println("Phone number changed !");
-            }
-            if(choice == 7){
-                String newTimezone = readString("timezone");
-                currentProfile.setTimezone(newTimezone);
-                System.out.println("Timezone changed !");
-            }
-            // need save file - for now it's a String if we want
-            //if(choice == 8){
-            //  File newProfilePicture = (File) readString("profilePicture");
-            // currentProfile.setProfilePicture(newProfilePicture);
-            // System.out.println("Profile picture changed! ");
-            //}
-            // add Skype ?
-        }while(choice != 9);
-        DAOProfile.update(DAOProfile.select(currentProfile.getId()));
+        return currentConnectedProfile;
     }
 
     public void editAccount(){
