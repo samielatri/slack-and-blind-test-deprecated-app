@@ -40,4 +40,5 @@ public class CreateWorkspace extends JFrame{
     }
 
     //TODO: VERIFIER L'ENSEMBLE SI TOUT EST CORDA
+    //TODO: FAIRE UNE GROSSE VERIFICATION
 }

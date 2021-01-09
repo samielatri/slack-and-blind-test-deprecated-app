@@ -42,4 +42,5 @@ public class CreateChannel extends JFrame {
         });
         setVisible(true);
     }
+    //TODO: FAIRE UNE GROSSE VERIFICATION
 }

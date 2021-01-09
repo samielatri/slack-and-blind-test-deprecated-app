@@ -16,13 +16,21 @@ public class WelcomePage extends JFrame{
         setSize(600,700);
         setTitle("Welcome to LEGO Slack");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //bouton creer un workspace TODO
         createWorkspaceButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new CreateWorkspace();
+                try {
+                    new CreateWorkspace();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
         });
+
+        //bouton rejoindre un workspace TODO
         joinWorkspaceButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -34,5 +42,8 @@ public class WelcomePage extends JFrame{
                 }
             }
         });
+
+        setVisible(true);
     }
+    //TODO: FAIRE UNE GROSSE VERIFICATION
 }

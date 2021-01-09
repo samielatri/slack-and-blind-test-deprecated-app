@@ -60,16 +60,17 @@ public class ChatPage extends JFrame {
                 }
             }
         });
-        setVisible(true);
+
+
+
+
+        //bouton envoyé TODO
         sendbtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
             }
         });
-
-
-        //bouton envoyé TODO
         sendbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,6 +137,8 @@ public class ChatPage extends JFrame {
             cardLayout.show(msgSpace,ch.getName());
         }
 
+        setVisible(true);
+
     }
     //fonction pour ajouter les message dans l'espace message TODO
     public void sendMessage(){
@@ -154,6 +157,7 @@ public class ChatPage extends JFrame {
         }
     }
 
+    //recup des nom des profil affiché
     public String getProfileName(){
         return profileName.getText();
     }

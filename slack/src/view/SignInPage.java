@@ -30,6 +30,7 @@ public class SignInPage extends JFrame {
         setTitle("app.Slack Login Page");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
+        //connexion user TODO
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,6 +50,8 @@ public class SignInPage extends JFrame {
             }
         });
         setVisible(true);
+
+        //lien vers la page Sign UP TODO
         linkToRegister.setCursor(new Cursor(Cursor.HAND_CURSOR));
         linkToRegister.addMouseListener(new MouseAdapter() {
             @Override
@@ -65,4 +68,5 @@ public class SignInPage extends JFrame {
 
 
     }
+    //TODO: FAIRE UNE GROSSE VERIFICATION
 }

@@ -28,6 +28,7 @@ public class ProfileUser extends JFrame {
         setTitle("Profil User");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         nomUser.setText(null);
+
         //affiche les info du profile TODO
         plist = sp.selectAll();
         for(int i = 0; i<plist.size(); i++){
@@ -47,4 +48,5 @@ public class ProfileUser extends JFrame {
         });
         setVisible(true);
     }
+    //TODO: FAIRE UNE GROSSE VERIFICATION
 }

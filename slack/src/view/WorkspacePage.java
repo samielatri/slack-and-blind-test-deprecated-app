@@ -28,6 +28,8 @@ public class WorkspacePage extends JFrame {
         setSize(600,500);
         setTitle("Workspace");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
+        //ajout des workspace de l'appli à gauche TODO
         GridBagConstraints c=new GridBagConstraints();
         lsWK= sq.selectAll();
         for (int i=0;i<lsWK.size();i++){ //add all workspaces in the left
@@ -73,5 +75,5 @@ public class WorkspacePage extends JFrame {
         setVisible(true);
     }
 
-
+    //TODO: FAIRE UNE GROSSE VERIFICATION
 }
