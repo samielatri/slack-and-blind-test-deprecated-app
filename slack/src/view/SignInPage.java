@@ -11,9 +11,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import model.*;
 
 
-public class SignInPage extends JFrame{
+public class SignInPage extends JFrame {
     private JPanel loginPage;
     private JTextField emailS;
     private JButton signInButton;
@@ -23,6 +24,7 @@ public class SignInPage extends JFrame{
     private String textLink="Not a member? Register";
 
     public SignInPage(){
+        super("");
         add(loginPage);
         setSize(600,500);
         setTitle("app.Slack Login Page");

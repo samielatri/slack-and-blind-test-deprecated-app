@@ -37,7 +37,11 @@ public class WorkspacePage extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     dispose();
-                    new ChatPage(w.getName());
+                    try {
+                        new ChatPage(w.getName());
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                 }
             });
             c.gridx=1;
@@ -51,7 +55,11 @@ public class WorkspacePage extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     dispose();
-                    new ChatPage(wu.getName());
+                    try {
+                        new ChatPage(wu.getName());
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                 }
             });
             c.gridx=1;

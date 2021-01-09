@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class WelcomePage extends JFrame{
     private JButton createWorkspaceButton;
@@ -26,7 +27,11 @@ public class WelcomePage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new WorkspacePage();
+                try {
+                    new WorkspacePage();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
         });
     }
