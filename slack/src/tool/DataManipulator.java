@@ -1,5 +1,8 @@
 package tool;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class DataManipulator {
 
     /**
@@ -79,4 +82,14 @@ public class DataManipulator {
         return isValid;
     }
 
+    /**
+     *
+     * @param hexColor
+     * @return
+     */
+    public static boolean isValidColor(String hexColor) {
+        Pattern colorPattern = Pattern.compile("#([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})");
+        Matcher m = colorPattern.matcher(hexColor);
+        return m.matches();
+    }
 }

@@ -25,6 +25,10 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
 
     @Override
     public Message insert(Message message) { //add the message in the channel (database)
+        return null;
+    }
+    //buggy code TODO
+    /*
         try {
             String sql= "INSERT INTO messagechannel (idMsg, nameWC, contenu, createDate,updateDate, sender) VALUES (?,?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -41,6 +45,7 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
         }
         return message;
     }
+    */
 
     @Override
     public void delete( Message obj ) { //delete the message
