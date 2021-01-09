@@ -44,7 +44,7 @@ public class UserServiceDAO extends AbstractServiceDAO {
         // add the user to the database
         if (DAOUser.insert(new User(inputedEmail, inputedPassword)) != null) {
             System.out.println("user successfully registered!");
-            return login(inputedEmail, inputedPassword);;
+            return login(inputedEmail, inputedPassword);
         }
 
         // failed to register

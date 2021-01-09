@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.communication.Workspace;
@@ -16,19 +17,21 @@ public class WorkspacePage extends JFrame {
     private JPanel linkUserWK;
     private JButton button;
     private JButton button2;
-    private Workspace w=null;
-    private ArrayList<Workspace> lsWK=SQLWorkspaceDAO.selectAll;
+    private Workspace w=null, wu=null;
+    private ArrayList<Workspace>lsWK;
     private SlackSystem sys=new SlackSystem();
+    private SQLWorkspaceDAO sq=new SQLWorkspaceDAO();
 
-    public WorkspacePage() {
+
+    public WorkspacePage() throws SQLException {
         add(linkWK);
         setSize(600,500);
         setTitle("Workspace");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         GridBagConstraints c=new GridBagConstraints();
-
-        for (int i=0;i<lsWK.size;i++){
-            w=lsWk.get(i);
+        lsWK= sq.selectAll();
+        for (int i=0;i<lsWK.size();i++){ //add all workspaces in the left
+            w=lsWK.get(i);
             button= new JButton(w.getName());
             button.addActionListener(new ActionListener() {
                 @Override
@@ -40,25 +43,27 @@ public class WorkspacePage extends JFrame {
             c.gridx=1;
             c.gridy=i;
             linkAll.add(button,c);
+
+            //add all workspace of user in the right
+            wu=sys.getCurrentConnectedWorkspace();
+            button2= new JButton(w.getName());
+            button2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                    new ChatPage(wu.getName());
+                }
+            });
+            c.gridx=1;
+            c.gridy=i;
+            linkUserWK.add(button2,c);
         }
 
-        w=SlackSystem.getCurrentConnectedWorkspace();
-        button2= new JButton(w.getName());
-        button2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                new ChatPage(w.getName());
-            }
-        });
-        c.gridx=1;
-        c.gridy=j;
-        linkUserWK.add(button2,c);
+
 
 
         setVisible(true);
     }
-    //TODO: coordiner le tout
 
 
 }

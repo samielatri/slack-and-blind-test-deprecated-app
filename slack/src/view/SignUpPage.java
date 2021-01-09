@@ -5,7 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import service.user.UserServiceDAO;
+import controller.user.UserServiceDAO;
+
 
 public class SignUpPage extends JFrame {
     private JPanel SignUp;
@@ -15,6 +16,7 @@ public class SignUpPage extends JFrame {
     private JButton backButton;
     private JPasswordField passConfirm;
     private JLabel confirmPwd;
+
 
 
     public SignUpPage(){
