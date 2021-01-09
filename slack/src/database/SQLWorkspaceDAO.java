@@ -1,5 +1,6 @@
 package database;
 
+import model.SlackSystem;
 import model.communication.Workspace;
 
 import java.sql.*;
@@ -10,6 +11,7 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 	Connection conn = DBConnection.createConnection();
 	Statement state = conn.createStatement();
 	ResultSet res=null;
+	private SlackSystem system=new SlackSystem();
 
 	public SQLWorkspaceDAO() throws SQLException {
 	}
@@ -28,7 +30,7 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 			}
 			String sql= "INSERT INTO workspace (idProfile, nameWK) VALUES (?,?)";
 			PreparedStatement pstate= conn.prepareStatement(sql);
-			//pstate.setString(1,obj.getidProfile());
+			pstate.setString(1,system.getCurrentConnectedProfile().getId());
 			pstate.setString(2,obj.getName());
 			res=pstate.executeQuery();
 			System.out.println("Workspace successfully created !");
@@ -78,7 +80,7 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 			pstate.setString(1,key);
 			res=pstate.executeQuery();
 			while (res.next()){
-				w=new Workspace(res.getString("nameWK"));
+				w=new Workspace(res.getString("nameWK"),system.getCurrentConnectedProfile());
 			}
 		}catch (SQLException e){
 			e.printStackTrace();
@@ -93,7 +95,7 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 			String sql="SELECT * FROM workspace";
 			res=state.executeQuery(sql);
 			while (res.next()){
-				w=new Workspace(res.getString("nameWK"));
+				w=new Workspace(res.getString("nameWK"),system.getCurrentConnectedProfile());
 				listWorkspace.add(w);
 			}
 		}catch (SQLException e){

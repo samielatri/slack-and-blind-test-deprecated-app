@@ -1,15 +1,19 @@
 package database;
 
+import model.SlackSystem;
+import model.communication.Message;
 import model.communication.Workspace;
 import model.user.Profile;
 import model.user.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
     Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
     ResultSet res=null;
+    private SlackSystem system=new SlackSystem();
 
     public SQLProfileDAO() throws SQLException {
     }
@@ -38,14 +42,14 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
             }
             String sql= "INSERT INTO profile (mail, idProfile, currentStatus, completeName, shownName, actualWorkPosition, phoneNumber, timezone) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pstate= conn.prepareStatement(sql);
-            //pstate.setString(1,obj.getEmail());
-            //pstate.setString(2,obj.getidProfile());
+            pstate.setString(1,system.getCurrentConnectedUser().getEmail());
+            pstate.setString(2,system.getCurrentConnectedProfile().getId());
             pstate.setString(3,obj.getCurrentStatus());
             pstate.setString(4,obj.getCompleteName());
             pstate.setString(5,obj.getShownName());
             pstate.setString(6,obj.getActualWorkPosition());
             pstate.setString(7,obj.getPhoneNumber());
-            pstate.setString(8,obj.getTimezone());
+            pstate.setObject(8,obj.getTimezone());
             res=pstate.executeQuery();
             System.out.println("Profile successfully registred !");
         }catch (SQLException e){
@@ -79,7 +83,7 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
             pstate.setString(3, obj.getShownName());
             pstate.setString(4,obj.getActualWorkPosition());
             pstate.setString(5,obj.getPhoneNumber());
-            pstate.setString(6,obj.getTimezone());
+            pstate.setObject(6,obj.getTimezone());
             pstate.setString(7,obj.getUsername());
             res=pstate.executeQuery();
             System.out.println("Password updated ! ");
@@ -105,12 +109,28 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
             while (res.next()){
                 wks= wp.select(res.getString("idWK"));
                 uss=us.select(res.getString("mail"));
-                p=new Profile(wks,uss);
+                p=new Profile(wks.getId(),uss.getId());
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
         return p;
 
+    }
+
+    public ArrayList<Profile> selectAll(){
+        ArrayList<Profile> listProfiles=new ArrayList<>();
+        Profile p=null;
+        try {
+            String sql="SELECT * FROM profile";
+            res=state.executeQuery(sql);
+            while (res.next()){
+                p=new Profile(system.getCurrentConnectedWorkspace().getId(),res.getString("mail"));
+                listProfiles.add(p);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return listProfiles;
     }
 }

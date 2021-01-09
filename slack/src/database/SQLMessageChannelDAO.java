@@ -1,14 +1,19 @@
 package database;
 
 import model.communication.Message;
+import model.communication.Workspace;
 import model.user.Profile;
+import model.SlackSystem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
     Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
     ResultSet queryResult = null;
+
+    private SlackSystem system=new SlackSystem();
 
     public SQLMessageChannelDAO() throws SQLException {
     }
@@ -25,19 +30,16 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
 
     @Override
     public Message insert(Message message) { //add the message in the channel (database)
-        return null;
-    }
-    //buggy code TODO
-    /*
+
         try {
-            String sql= "INSERT INTO messagechannel (idMsg, nameWC, contenu, createDate,updateDate, sender) VALUES (?,?,?,?,?,?)";
+            String sql= "INSERT INTO messageChannel (idMsg, nameWC, msgContent, createDate,updateDate, sender) VALUES (?,?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString( 1, message.getId() );
-            preparedStatement.setString( 2, message.getWorkspaceChannel().getName() );
+            preparedStatement.setString( 2,system.getCurrentConnectedWorkspaceChannel().getName() );
             preparedStatement.setString( 3, message.getContent() );
             preparedStatement.setObject( 4, message.getCreatedAt() );
             preparedStatement.setObject( 5, message.getUpdatedAt() );
-            preparedStatement.setString( 6, message.getSenderMessage() );
+            preparedStatement.setString( 6, system.getCurrentConnectedProfile().getUsername());
             queryResult = preparedStatement.executeQuery();
             System.out.println("Message added !");
         } catch( SQLException exception ) {
@@ -45,7 +47,7 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
         }
         return message;
     }
-    */
+
 
     @Override
     public void delete( Message obj ) { //delete the message
@@ -65,7 +67,7 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
     public Message update(Message obj) { //modifiy the message's content
 
         try {
-            String sql= "UPDATE messagechannel SET contenu = ?, updateDate= ? WHERE idMsg= ?";
+            String sql= "UPDATE messageChannel SET msgContent = ?, updateDate= ? WHERE idMsg= ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString( 1, obj.getContent() );
             preparedStatement.setObject( 2, obj.getUpdatedAt() );
@@ -86,7 +88,7 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
         SQLProfileDAO sp = new SQLProfileDAO();
         Profile p = null;
         try{
-            String sql= "SELECT * FROM messagechannel WHERE idMsg=?";
+            String sql= "SELECT * FROM messageChannel WHERE idMsg=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, key);
             queryResult = preparedStatement.executeQuery();
@@ -100,5 +102,23 @@ public class SQLMessageChannelDAO extends AbstractSQLDAO<Message> {
         return message;
 
     }
+
+    public ArrayList<Message> selectAll(){
+        ArrayList<Message> listMessages=new ArrayList<>();
+        Message m=null;
+        try {
+            String sql="SELECT * FROM messageChannel";
+            queryResult=state.executeQuery(sql);
+            while (queryResult.next()){
+                m=new Message(system.getCurrentConnectedProfile(),queryResult.getString("msgContent"));
+                listMessages.add(m);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return listMessages;
+    }
+
+
 
 }
