@@ -38,7 +38,7 @@ public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
 			while(res.next()){
 				wcDB=res.getString("nameWC");
 				if(obj.getName().equals(wcDB)){
-					System.out.println("This workspace is already in this channel");
+					System.out.println("This channel is already in this workspace");
 				}
 			}
 			String sql= "INSERT INTO workspaceChannel (nameWK, nameWC) VALUES (?,?)";
@@ -70,10 +70,10 @@ public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
 	@Override
 	public WorkspaceChannel update(WorkspaceChannel obj) {//update the channel
 		try {
-			String sql= "UPDATE workspaceChannel SET nameWK = ? WHERE nameWK= ?";
+			String sql= "UPDATE workspaceChannel SET nameWC = ? WHERE nameWK= ?";
 			PreparedStatement pstate= conn.prepareStatement(sql);
-			pstate.setString(1,system.getCurrentConnectedWorkspace().getName());
-			pstate.setString(2, obj.getName());
+			pstate.setString(1,obj.getName());
+			pstate.setString(2, system.getCurrentConnectedWorkspace().getName());
 			res=pstate.executeQuery();
 			System.out.println("Channel updated ! ");
 		}catch (SQLException e){
@@ -86,12 +86,12 @@ public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
 	public WorkspaceChannel select(String key) { //return a workspace of the channel
 		WorkspaceChannel wC=null;
 		try{
-			String sql= "SELECT nameWK FROM workspaceChannel WHERE nameWC=?";
+			String sql= "SELECT nameWC FROM workspaceChannel WHERE nameWK=?";
 			PreparedStatement pstate= conn.prepareStatement(sql);
 			pstate.setString(1,key);
 			res=pstate.executeQuery();
 			while (res.next()){
-				wC=new WorkspaceChannel(res.getString("nameWK"),system.getCurrentConnectedProfile());
+				wC=new WorkspaceChannel(res.getString("nameWC"),system.getCurrentConnectedProfile());
 			}
 		}catch (SQLException e){
 			e.printStackTrace();
@@ -106,7 +106,7 @@ public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
 			String sql="SELECT * FROM workspaceChannel";
 			res=state.executeQuery(sql);
 			while (res.next()){
-				wC=new WorkspaceChannel(res.getString("nameWK"),system.getCurrentConnectedProfile());
+				wC=new WorkspaceChannel(res.getString("nameWC"),system.getCurrentConnectedProfile());
 				listWC.add(wC);
 			}
 		}catch (SQLException e){

@@ -24,6 +24,8 @@ public class SignUpPage extends JFrame {
         setSize(600,600);
         setTitle("app.Slack Login Page");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
+        //Inscription de l'user TODO
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,4 +50,5 @@ public class SignUpPage extends JFrame {
         });
         setVisible(true);
     }
+    //TODO: FAIRE UNE GROSSE VERIFICATION
 }

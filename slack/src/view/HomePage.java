@@ -12,14 +12,13 @@ public class HomePage extends JFrame {
 
     public HomePage(){
         add(Home);
-        setSize(400,200);
+        setSize(600,400);
         setTitle("app.Slack Home Page");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         getContentPane().setLayout(new GridLayout());
         getContentPane().add(Home);
-        //getContentPane().add(signInButton);
-        //getContentPane().add(signUpButton);
 
+        //bouton Sign IN
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -28,6 +27,7 @@ public class HomePage extends JFrame {
             }
         });
 
+        //bouton Sign UP
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,4 +38,5 @@ public class HomePage extends JFrame {
         setVisible(true);
 
     }
+    //TODO: FAIRE UNE GROSSE VERIFICATION
 }
