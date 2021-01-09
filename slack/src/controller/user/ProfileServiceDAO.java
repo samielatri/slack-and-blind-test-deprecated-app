@@ -53,209 +53,93 @@ public class ProfileServiceDAO extends AbstractServiceDAO {
         return profileToVisit;
     }
 
+    /**   OK
+     *
+     * @param inputtedCharacteristics attributes entered by the user
+     * @return
+     * @throws SQLException
+     */
+
+
     public Profile updateProfile(String... inputtedCharacteristics) throws SQLException {
 
         if (Profile.getNumberCharacteristics() != inputtedCharacteristics.length){
+            System.out.println("Problem with the inputted parameter");
             return null;
         }
-        String[] characteristics = {"username", "currentStatus", "completeName", "shownName", "actualWorkPosition", "phoneNumber", "skypeUserName", "timeZone"} ;
+
+        String[] profileCharacteristicsKeys = {
+                "username",
+                "currentStatus",
+                "completeName",
+                "shownName",
+                "actualWorkPosition",
+                "phoneNumber",
+                "skypeUserName",
+                "timeZone"
+        };
+
         Profile currentConnectedProfile = slackSystem.getCurrentConnectedProfile();
         HashMap<String, String> currentProfileCharacteristics = new HashMap<>();
 
-        for (int i=0; i<inputtedCharacteristics.length; i++){
+        for (int i = 0; i < inputtedCharacteristics.length; i++){
             if (inputtedCharacteristics[i] == null){
                 inputtedCharacteristics[i] = "";
             }
-            currentProfileCharacteristics.put(characteristics[i], inputtedCharacteristics[i]);
+            currentProfileCharacteristics.put(profileCharacteristicsKeys[i], inputtedCharacteristics[i]);
         }
-        currentConnectedProfile.setUsername(currentProfileCharacteristics.get("username"));
-        currentConnectedProfile.setCurrentStatus(currentProfileCharacteristics.get("currentStatus"));
-        currentConnectedProfile.setCompleteName(currentProfileCharacteristics.get("completeName"));
-        currentConnectedProfile.setShownName(currentProfileCharacteristics.get("shownName"));
-        currentConnectedProfile.setActualWorkPosition(currentProfileCharacteristics.get("actualWorkPosition"));
-        currentConnectedProfile.setPhoneNumber(currentProfileCharacteristics.get("phoneNumber"));
-        currentConnectedProfile.setSkypeUserName(currentProfileCharacteristics.get("skypeUserName"));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm:ss Z");
-        String formattedString = currentProfileCharacteristics.get("timeZone").format(formatter);
-        currentConnectedProfile.setTimezone(currentProfileCharacteristics.get("timeZone"));
+
+        if (currentProfileCharacteristics.get("username") != "" && currentConnectedProfile.getUsername().equals(currentProfileCharacteristics.get("username"))) {
+            currentConnectedProfile.setUsername(currentProfileCharacteristics.get("username"));
+        }
+
+        if (currentProfileCharacteristics.get("currentStatus") != "" && currentConnectedProfile.getCurrentStatus().equals(currentProfileCharacteristics.get("currentStatus"))) {
+            currentConnectedProfile.setCurrentStatus(currentProfileCharacteristics.get("currentStatus"));
+        }
+
+        if (currentProfileCharacteristics.get("completeName") != "" && currentConnectedProfile.getCompleteName().equals(currentProfileCharacteristics.get("completeName"))) {
+            currentConnectedProfile.setCompleteName(currentProfileCharacteristics.get("completeName"));
+        }
+
+        if (currentProfileCharacteristics.get("shownName") != "" && currentConnectedProfile.getShownName().equals(currentProfileCharacteristics.get("shownName"))) {
+            currentConnectedProfile.setShownName(currentProfileCharacteristics.get("shownName"));
+        }
+
+        if (currentProfileCharacteristics.get("actualWorkPosition") != "" && currentConnectedProfile.getActualWorkPosition().equals(currentProfileCharacteristics.get("actualWorkPosition"))) {
+            currentConnectedProfile.setActualWorkPosition(currentProfileCharacteristics.get("actualWorkPosition"));
+        }
+
+        if (currentProfileCharacteristics.get("phoneNumber") != "" && currentConnectedProfile.getPhoneNumber().equals(currentProfileCharacteristics.get("phoneNumber"))) {
+            currentConnectedProfile.setPhoneNumber(currentProfileCharacteristics.get("phoneNumber"));
+        }
+
+        if (currentProfileCharacteristics.get("skypeUserName") != "" && currentConnectedProfile.getSkypeUserName().equals(currentProfileCharacteristics.get("skypeUserName"))) {
+            currentConnectedProfile.setSkypeUserName(currentProfileCharacteristics.get("skypeUserName"));
+        }
+
+        if (currentProfileCharacteristics.get("timeZone") != "" && currentConnectedProfile.getTimezone().equals(currentProfileCharacteristics.get("timeZone"))) {
+            currentConnectedProfile.setTimezone(currentProfileCharacteristics.get("timeZone"));
+        }
+
+        DAOProfile.update(DAOProfile.select(currentConnectedProfile.getId()));
 
         return currentConnectedProfile;
     }
 
-    public void editAccount(){
-        String newEmailAddress = "";
-        String newPasswordConfirm = "";
-        String newPassword = "";
-        boolean passwordConfirmed = false;
-        String currentPassword = "";
-        User currentUser = getConnectedUser();
 
-        System.out.println("Edit your account");
 
-        if (currentUser == null) {
-            System.out.println("No user connected !");
-            return ;
-        }
 
-        int intInput = 0;
-        do {
-            System.out.println("edit :\n" + "\t1- email address\n\t2- password\n\t 3-return");
-            intInput = readInt("your choice");
-        } while (intInput > 0 && intInput < 3);
-        if (intInput == 1){
-            do {
-                newEmailAddress = readString("new email address");
-                currentUser.setEmail(newEmailAddress);
-                System.out.println("Email Address changed successfully");
-            }while(! isValidEmailAddress(newEmailAddress));
-        }
-        if (intInput== 2) {
-            currentPassword = readString("current password");
-            if (currentPassword == currentUser.getPassword()) {
-                do {
-                    newPassword = readString("new password");
-                    newPasswordConfirm = readString("new password confirmation");
-                    passwordConfirmed = (newPassword == newPasswordConfirm);
-                    if (passwordConfirmed) {
-                        currentUser.setPassword(newPassword);
-                        System.out.println("Password changed successfully");
-                    }
-                } while (!passwordConfirmed);
-            } else {
-                System.out.println("Password does not match");
-                // return
-            }
-        }
-        // 3
-        // return
-    }
+    /**************************************************************************
 
-    public void disconnect(){
-        System.out.println("disconnect");
-        if (slackSystem.getConnectedUser() == null){
-            System.out.println("no connected user");
-            return;
-        }
-        System.out.println("disconnecting...");
-        slackSystem.setConnectedUser(null);
-        System.out.println("disconnected successfully");
-    }
 
-    public void deleteAccount(){
-        System.out.println("delete account");
-        User user = slackSystem.getConnectedUser();
-        if (user == null){
-            System.out.println("no user connected");
-            return;
-        }
-        disconnect();
-        System.out.println("Deleting account...");
-        ArrayList<User> usersList = slackSystem.getUsers();
-        if(usersList.contains(user)) {
-            usersList.remove(user);
-            slackSystem.setUsers(usersList);
-            System.out.println("Account deleted");
-        } else {
-            System.out.println("The user was never registred... /!\\");
-        }
-    }
 
-    public void connectWorkspace(){
-        User user = slackSystem.getConnectedUser();
-        ArrayList<Workspace> listWorskspace = user.getWorkspaces();
-        String workspaceId = readString("workspace id to join");
-        for(Workspace tempWorkspace : listWorskspace){
-            String tempWorkspaceId = tempWorkspace.getId();
-            if (workspaceId == tempWorkspaceId){
-                System.out.println("Connectiong to workspace ...");
-                user.setCurrentWorkspace(tempWorkspace);
-                System.out.println("Connected to the workspace successfully !");
-                return ;
-            }
-        }
-        // didn't find and didn't join worskapce
-        System.out.println("Workspace is not joined");
-    }
 
-    public void joinWorkspace(){
-        User user = slackSystem.getConnectedUser();
-        ArrayList<Workspace> listWorkspace = slackSystem.getWorkspaces();
-        ArrayList<Workspace> userWorkspace = user.getWorkspaces();
-        String workspaceId = readString("workspace id to join");
 
-        // check in all workspaces if the workspace exists
-        for(Workspace tempWorkspace : listWorkspace){
-            String tempWorkspaceId = tempWorkspace.getId();
-            if (workspaceId == tempWorkspaceId){
-                for(Workspace tempUserWorkspace : userWorkspace){
-                    String tempUserWorkspaceId = tempUserWorkspace.getId();
-                    if(tempUserWorkspaceId == tempWorkspaceId){
-                        System.out.println("Workpace already joined");
-                        return ;
-                    } else {
-                        System.out.println("Joining workspace ...");
-                        userWorkspace.add(tempWorkspace);
-                        user.setWorkspaces(userWorkspace);
-                        System.out.println("workspace joined !");
-                        return ;
-                    }
-                }
-            }
-        }
-        // didn't find and didn't join worskapce
-        System.out.println("Workspace does not even exist, the user cannot have been joining it and cannot join it either.");
-    }
 
-    public void banMemberFromWorkspace(){
-        User connectedUser = slackSystem.getConnectedUser();
-        Workspace connectedWorkspace = connectedUser.getCurrentWorkspace();
-        ArrayList<User> admins = connectedWorkspace.getAdminProfiles();
-        if (!admins.contains(connectedUser)) {
-            System.out.println("Action not authorized ! The user is not admin");
-            return;
-        }
-        // admin
-        ArrayList<User> members = connectedWorkspace.getMemberProfiles();
-        String memberId = readString("member's email to ban");
-        for(User member : members){
-            if (member.getEmail() == memberId) {
-                System.out.println("Banning member...");
-                connectedWorkspace.getMemberProfiles().remove(member);
-                if(admins.contains(member)) {
-                    connectedWorkspace.getAdminProfiles().remove(member);
-                }
-                connectedWorkspace.getBannedProfiles().add(member);
-                System.out.println("Member banned");
-                return;
-            }
-        }
-        System.out.println("Member not found");
-    }
 
-    public void kickMemberFromWorkspace(){
-        User connectedUser = slackSystem.getConnectedUser();
-        Workspace connectedWorkspace = connectedUser.getCurrentWorkspace();
-        ArrayList<User> admins = connectedWorkspace.getAdminProfiles();
-        if (!admins.contains(connectedUser)) {
-            System.out.println("Action not authorized ! The user is not admin");
-            return;
-        }
-        // admin
-        ArrayList<User> members = connectedWorkspace.getMemberProfiles();
-        String memberId = readString("member's email to kick");
-        for(User member : members){
-            if (member.getEmail() == memberId) {
-                System.out.println("kicking member...");
-                connectedWorkspace.getMemberProfiles().remove(member);
-                if(admins.contains(member)) {
-                    connectedWorkspace.getAdminProfiles().remove(member);
-                }
-                System.out.println("Member kicked");
-                return;
-            }
-        }
-        System.out.println("Member not found");
-    }
+
+
+
 
     public void addCollaborator(){
         User user = slackSystem.getConnectedUser();
@@ -323,325 +207,6 @@ public class ProfileServiceDAO extends AbstractServiceDAO {
         System.out.println("Collaborator does not exist");
     }
 
-    //function called by a user
-    public Workspace createWs() throws SQLException {
-        Workspace workspace,ws;
-
-        String workspaceName;
-        Scanner scanner;
-
-        do {
-            System.out.println("Enter the name of the workspace");
-            scanner = new Scanner(System.in);
-            workspaceName = scanner.nextLine();
-            ws = DAOWorkspace.select(workspaceName);
-            if(ws != null){
-                System.out.println("This name already exist please enter another one");
-            }
-        } while(ws != null);
-
-        workspace = new Workspace(workspaceName);
-
-        ws = DAOWorkspace.insert(workspace);
-
-        if(ws!=null){
-            System.out.println("this workspace has been created succefully");
-        }else{
-            System.out.println("this workspace hasn't been created ! please try again");
-        }
-        //create a profile for the user who's creating the workspace
-        Profile profile;
-        profile = createProfile(currentConnectedUser.getId(),workspace.getId());
-
-        //put the creator as an admin
-        profile.setIsAdminWS(1);
-        DAOProfile.update(profile);
-
-        return workspace;
-    }
-
-    //function called by a profile
-    public WorkspaceChannel createCh(Workspace workspace) throws SQLException {
-        WorkspaceChannel channel,ch;
-        String chName;
-        Scanner buffer;
-
-        System.out.println("Enter the name of the channel");
-        do{
-            buffer = new Scanner(System.in);
-            chName = buffer.nextLine();
-            ch = DAOChannel.select(chName);
-            if(ch != null) {
-                System.out.println("this channel name already exist, please choose another name");
-            }
-        }while(ch != null);
-        channel = new WorkspaceChannel(chName);
-        channel.setWsId(workspace.getId());
-
-        //putting the profile that created it as an admin (to change !)
-        String id = currentConnectedUser.getId()+"."+workspace.getId();
-        Profile profile = DAOProfile.select(id);
-        profile.setIsAdminCh(1);
-        DAOProfile.update(profile);
-
-        //choose if you want it to be private or not
-        int choice;
-        System.out.println("do you want this channel to be private ?");
-        System.out.println("1- yes");
-        System.out.println("0- No");
-        buffer = new Scanner(System.in);
-        choice = buffer.nextInt();
-        if(choice == 1) {
-            channel.setPrivate(1);
-            System.out.println("this created channel is private");
-        }else{
-            channel.setPrivate(0);
-        }
-
-        ch = DAOChannel.insert(channel);
-        if(ch!=null){
-            System.out.println("this channel has been created succefully");
-        }else{
-            System.out.println("this channel hasn't been created ! please try again");
-        }
-
-        return channel;
-    }
-
-    //called by a user
-    public void quitWs(Workspace workspace) throws SQLException {
-        String id = currentConnectedUser.getId()+"."+workspace.getId();
-        Profile profile = DAOProfile.select(id);
-        DAOProfile.delete(profile);
-    }
-
-    //called by a profile
-    public void quitCh(WorkspaceChannel channel){
-        //we actually can't quit a channel
-    }
-
-    //called by a user
-    public void deleteWs(Workspace workspace) throws SQLException {
-        ArrayList<WorkspaceChannel> wsChannel = new ArrayList<WorkspaceChannel>();
-        ArrayList<Profile> wsProfiles = new ArrayList<Profile>();
-
-        String idProfile = currentConnectedUser.getId()+"."+workspace.getId();
-        Profile profile = DAOProfile.select(idProfile);
-
-        if( profile.isAdminWS() == 1 ){
-            //delete all channels of this workspace
-            wsChannel = (ArrayList<WorkspaceChannel>) DAOChannel.selectAll();
-            for(WorkspaceChannel channel : wsChannel){
-                if(channel.getWsId()==workspace.getId()){
-                    DAOChannel.delete(channel);
-                }
-            }
-            wsProfiles = (ArrayList<Profile>) DAOProfile.selectAll();
-
-            //delete all its profiles
-            for(Profile p : wsProfiles){
-                if(p.getWorkspaceId()==workspace.getId()){
-                    DAOProfile.delete(p);
-                }
-            }
-
-            //delete the workspace
-            DAOWorkspace.delete(workspace);
-            System.out.println("this workspace has been deleted successfully");
-
-        }else{
-            System.out.println("you don't have any right on this workspace");
-        }
-
-    }
-
-    //called by a profile
-    public void deleteCh(WorkspaceChannel channel){
-        ArrayList<Profile> chProfiles = new ArrayList<Profile>();
-
-        if(connectedProfile.getIsAdminCh() == 0){
-            System.out.println("you don't have any right on this channel");
-        }else {
-            //take the role of admin from the profiles that are admins on this channel
-            chProfiles = (ArrayList<Profile>) DAOProfile.selectAll();
-            for(Profile profile : chProfiles){
-                if(profile.isAdminCh()==1){
-                    profile.setIsAdminCh(0);
-                }
-            }
-            //delete the channel
-            DAOChannel.delete(channel);
-            System.out.println("this channel has been deleted successfully");
-        }
-    }
-
-    public void editWs(Workspace workspace) throws SQLException {//called by a user
-        Workspace ws;
-        ArrayList<Profile> wsProfiles = new ArrayList<Profile>();
-        ArrayList<WorkspaceChannel> wsChannels = new ArrayList<WorkspaceChannel>();
-        String newName;
-        boolean exist = false;
-        String idProfile = currentConnectedUser.getId()+"."+workspace.getId();
-        Profile profile = DAOProfile.select(idProfile);
-
-        Scanner buff;
-        if(profile.isAdminWS()==0){
-            System.out.println("you don't have any right on this workspace");
-        }else{
-            System.out.println("Enter the new name of this workspace");
-            do {
-                buff = new Scanner(System.in);
-                newName = buff.nextLine();
-                ws = DAOWorkspace.select(newName);
-                if(ws != null){
-                    exist = true;
-                    System.out.println("This name is taken, please choose another one");
-                }
-            }while(exist);
-            //change the id workspace for all the channels
-            wsChannels = (ArrayList<WorkspaceChannel>) DAOChannel.selectAll();
-            for(WorkspaceChannel channel: wsChannels){
-                if(channel.getWsId()==workspace.getId()){
-                    channel.setWsId(newName);
-                    DAOChannel.update(channel);
-                }
-            }
-            //change the id workspace for all the profiles
-            wsProfiles = (ArrayList<Profile>) DAOProfile.selectAll();
-            for(Profile p: wsProfiles){
-                if(p.getWorkspaceId()==workspace.getId()){
-                    p.setWorkspaceId(newName);
-                    DAOProfile.update(p);
-                }
-            }
-            //update the workspace
-            workspace.setName(newName);
-            ws = DAOWorkspace.update(workspace);
-            System.out.println("The workspace informations has been changed successfully");
-        }
-    }
-
-
-    public void editCh(WorkspaceChannel channel) throws SQLException {//called by a profile
-        String newName;
-        Scanner buff;
-        WorkspaceChannel wsChannel;
-
-        boolean exist = false;
-        if(connectedProfile.getIsAdminCh()==0){
-            System.out.println("you don't have any right on this channel");
-        }else{
-            System.out.println("Enter the new name of this channel");
-            do {
-                buff = new Scanner(System.in);
-                newName = buff.nextLine();
-                wsChannel = DAOChannel.select(newName);
-                if(channel!=null) {
-                    exist=true;
-                    System.out.println("this channel name already exist, please choose another one");
-                }
-
-            }while(exist);
-            //updating the id channel for all the messages
-            channel.setName(newName);
-            wsChannel = DAOChannel.update(channel);
-            System.out.println("The channel informations has been changed successfully");
-
-        }
-    }
-
-    public Message sendChannelMsg(WorkspaceChannel channel){//called by a profile
-        Message message;
-        String content;
-        Scanner buffer;
-        Date date = new Date();
-
-        System.out.println("Enter the content of your message");
-        buffer = new Scanner(System.in);
-        content = buffer.next();
-        message = new Message(connectedProfile,content);
-        message.setCreatedAt(date);
-        message.setIdCh(channel.getId());
-        //channel.getConversation().add(message);
-        return DAOMessageChannel.insert(message);
-    }
-
-    public void deleteChannelMsg(Message msg){//called by a profile
-        if(msg.getIdSenderMessage()== connectedProfile.getId()){
-            DAOMessageChannel.delete(msg);
-            System.out.println("the message has been deleted succefully");
-        }else{
-            System.out.println("The message that you are trying to delete is not yours, please select a message that has been sent by you");
-        }
-    }
-
-    public Message editChannelMsg(Message msg){
-        Message message;
-        String newContent;
-        Scanner buffer;
-        Date date = new Date();
-        System.out.println("Enter the new content of your message");
-        buffer = new Scanner(System.in);
-        newContent = buffer.next();
-        msg.setCreatedAt(date);
-
-        msg.setContent(newContent);
-        message = DAOMessageChannel.update(msg);
-        System.out.println("your content has been changed successfully");
-        return message;
-    }
-    public Conversation createConversation(){
-        Conversation conversation;
-        String name;
-        Scanner buffer;
-        Date date = new Date();
-        buffer = new Scanner(System.in);
-        name = buffer.nextLine();
-        conversation = new Conversation(name,date);
-        return conversation;
-    }
-    public Message sendConversationMsg(Conversation conversation){
-        Message message;
-        String content;
-        Scanner buffer;
-        Date date = new Date();
-
-        System.out.println("Enter the content of your message");
-        buffer = new Scanner(System.in);
-        content = buffer.next();
-        message = new Message(connectedProfile,content);
-        message.setCreatedAt(date);
-        message.setIdConversation(conversation.getId());
-        return DAOMessageDirect.insert(message);
-    }
-    public Message editConversationMsg(Message msg){
-        Message message;
-        String newContent;
-        Scanner buffer;
-        Date date = new Date();
-        System.out.println("Enter the new content of your message");
-        buffer = new Scanner(System.in);
-        newContent = buffer.next();
-        msg.setCreatedAt(date);
-
-        msg.setContent(newContent);
-        message = DAOMessageDirect.update(msg);
-        System.out.println("your content has been changed successfully");
-        return message;
-    }
-
-    //called to add a collaborator
-    public void addWsCollaborator(User collab,Workspace workspace) {
-        Profile profileCollab = createProfile(collab.getId(),workspace.getId());
-        DAOProfile.insert(profileCollab);
-    }
-
-    //called by a user to add a collaborator
-    public void addChCollaborator(Profile collab) {
-        //How to add a collab in a channel ?
-        //How can we know that a profile /user is in a "X" channel
-    }
-
     //called by a user
     public Profile createProfile(String idUsr,String idWs){
         Profile profile = new Profile(idWs,idUsr);
@@ -649,6 +214,10 @@ public class ProfileServiceDAO extends AbstractServiceDAO {
         profile.setId(id);
         return profile;
     }
+
+
+
+     ****************************************************************/
 
 }
 
