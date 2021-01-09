@@ -13,6 +13,20 @@ import java.util.ArrayList;
 public class Profile implements HasId {
     /* attributes */
 
+    private static final int NUMBER_CHARACTERISTICS = 8;
+
+    public static int getNumberCharacteristics() {
+        return NUMBER_CHARACTERISTICS;
+    }
+
+    public boolean isWorkspaceAdmin() {
+        return isWorkspaceAdmin;
+    }
+
+    public void setWorkspaceAdmin(boolean workspaceAdmin) {
+        isWorkspaceAdmin = workspaceAdmin;
+    }
+
     // composed id as : "userId.workspaceId", belongs_to_one relation type
     private String workspaceId; // unique workspace related to the Profile
     private String userId; // unique user related to the Profile
