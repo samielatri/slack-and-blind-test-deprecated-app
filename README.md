@@ -1,3 +1,9 @@
-# lego-slack
-lego slack app which is a slack clone with custom appearance and features 
-(test for webhook)
+#the-blind-slack-project
+
+Made by : SNRS
+Sinem
+Nahidath
+Radja
+Sami
+
+BOMB GOES BOOM IN 2 DAYS
