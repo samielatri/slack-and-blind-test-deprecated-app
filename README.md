@@ -10,4 +10,6 @@ BOMB GOES BOOM IN 1 DAY
 
 Slack : 
 
-blind slack : java 11
+blind slack : java 11 (
+  distribution correcto d'Amazon
+)
