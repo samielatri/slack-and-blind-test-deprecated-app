@@ -1,4 +1,4 @@
-package src.server;
+package server;
 
 import model.user.Profile;
 import tool.DataManipulator;

@@ -1,4 +1,4 @@
-package src.model.communication;
+package model.communication;
 
 import model.HasId;
 import model.user.Profile;

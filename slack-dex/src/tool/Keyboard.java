@@ -1,4 +1,4 @@
-package src.tool;
+package tool;
 
 import java.util.Scanner;
 

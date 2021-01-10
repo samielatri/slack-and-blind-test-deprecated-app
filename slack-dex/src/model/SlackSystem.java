@@ -1,4 +1,4 @@
-package src.model;
+package model;
 
 import model.communication.Workspace;
 import model.communication.WorkspaceChannel;

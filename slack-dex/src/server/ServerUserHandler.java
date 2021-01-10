@@ -1,4 +1,4 @@
-package src.server;
+package server;
 
 class ServerUserHandler implements Runnable {
 

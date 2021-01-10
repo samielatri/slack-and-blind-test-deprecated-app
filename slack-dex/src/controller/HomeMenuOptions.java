@@ -1,4 +1,4 @@
-package src.controller;
+package controller;
 
 public enum HomeMenuOptions {
     REGISTRATION(1, "S'inscrire"),

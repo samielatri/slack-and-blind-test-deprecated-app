@@ -30,7 +30,7 @@ public class ProfileUser extends JFrame {
         nomUser.setText(null);
 
         //affiche les info du profile TODO
-        plist = (ArrayList<Profile>) sp.selectAll();
+        plist = sp.selectAll();
         for(int i = 0; i<plist.size(); i++){
             if (plist.get(i).getUsername().equals(ch.getProfileName())){
                 vp=ps.visitProfile(plist.get(i).getId());

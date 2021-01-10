@@ -1,4 +1,4 @@
-package src.database;
+package database;
 
 import model.SlackSystem;
 import model.communication.Workspace;

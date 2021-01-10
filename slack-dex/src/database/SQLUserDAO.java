@@ -1,4 +1,4 @@
-package src.database;
+package database;
 
 import model.user.Profile;
 import model.user.User;
