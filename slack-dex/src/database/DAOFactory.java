@@ -1,4 +1,4 @@
-package database;
+package src.database;
 
 import model.communication.Message;
 import model.communication.Workspace;

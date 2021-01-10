@@ -57,9 +57,9 @@ public class ServerThread extends Thread {
                     Message received = (Message) input.readObject();
                     channel = DAOChannel.select(received.getIdCh());
                     System.out.println(received.toString());
-                    if (!received.getContent().equals("")) {
+                    /*if (!received.getContent().equals("")) {
                         server.broadcast(received, this);
-                    }
+                    }*/
                 }
             } catch (IOException | ClassNotFoundException | SQLException ex) {
                 System.out.println("server " + ex.getMessage());

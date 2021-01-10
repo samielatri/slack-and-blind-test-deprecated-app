@@ -1,4 +1,4 @@
-package test;
+package src.test;
 
 import controller.user.UserService;
 import model.user.User;

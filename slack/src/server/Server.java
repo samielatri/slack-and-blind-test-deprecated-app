@@ -5,7 +5,7 @@ import java.net.*;
 import java.sql.SQLException;
 import java.util.*;
 
-import model.communication.Message;
+import src.model.communication.Message;
 
 public class Server {
 
@@ -59,9 +59,9 @@ public class Server {
      *
      * @throws IOException
      */
-    void broadcast(Message message, ServerThread excludeUser) throws IOException {
+    /*void broadcast(Message message, ServerThread excludeUser) throws IOException {
         for (ServerThread user : userThreads) {
-            if (user.getW.getChannel() != null) {
+            if (user.getWS.getChannel() != null) {
                 String channel = user.workspace.getChannel();
                 if (message.getWorkspace().getChannel().equals(channel)) {
                     user.sendMessage(message.getContent());
@@ -69,7 +69,7 @@ public class Server {
             }
 
         }
-    }
+    }*/
 
     /**
      * Stores username of the newly connected client.
