@@ -4,12 +4,12 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-import model.Message;
-import model.User;
+import model.communication.Message;
+import model.user.User;
 
 public class Server {
 
-    private Set<User> userlist = new HashSet<>();
+    private Set<ServerUser> userlist = new HashSet<>();
     private Set<ServerThread> userThreads = new HashSet<>();
     static int defaultport = 62000;
     static int serverPort;
@@ -74,7 +74,7 @@ public class Server {
     /**
      * Stores username of the newly connected client.
      */
-    void addUser(User user) {
+    void addUser(ServerUser user) {
         userlist.add(user);
     }
 

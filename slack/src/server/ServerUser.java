@@ -1,5 +1,6 @@
 package server;
 
+import model.user.Profile;
 import tool.DataManipulator;
 
 import java.awt.*;
@@ -17,12 +18,14 @@ public class ServerUser {
     private String nickname; // shown servername
     private Socket client; // client socket
     private String color; // shown color of the user
+    private Profile profile;
 
-    public ServerUser(Socket client, String name) throws IOException, IOException {
+    public ServerUser(Socket client, Profile profile) throws IOException, IOException {
+        this.profile = profile;
         this.streamOut = new PrintStream(client.getOutputStream());
         this.streamIn = client.getInputStream();
         this.client = client;
-        this.nickname = name;
+        this.nickname = profile.getShownName();
         this.ServerUserId = nbServerUser;
         this.color = ColorInt.getColor(this.ServerUserId);
         nbServerUser += 1;
@@ -64,5 +67,13 @@ public class ServerUser {
         return "<u><span style='color:"+ this.color
                 +"'>" + this.getNickname() + "</span></u>";
 
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 }

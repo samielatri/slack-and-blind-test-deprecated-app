@@ -7,8 +7,9 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import model.Message;
+
 import javafx.scene.control.TextArea;
+import model.communication.Message;
 
 public class Client implements Runnable {
 

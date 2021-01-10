@@ -2,23 +2,31 @@ package server;
 
 import java.io.*;
 import java.net.*;
+import java.sql.SQLException;
 
-import model.Message;
-import model.User;
-import model.Workspace;
+import database.DAO;
+import database.DAOFactory;
+
+import model.user.Profile;
+import model.user.User;
+
+import model.communication.Message;
+import model.communication.WorkspaceChannel;
 
 
 public class ServerThread extends Thread {
 
     private Socket socket;
-    private Server.Server server;
+    private Server server;
     private ObjectOutputStream output = null;
     private boolean onetime = true;
     private ObjectInputStream input = null;
-    public User currentUser = null;
-    public Workspace workspace;
+    public ServerUser currentServerUser = null;
+    public WorkspaceChannel channel;
+    private DAO<Profile> DAOProfile = DAOFactory.profile();
+    private DAO<WorkspaceChannel> DAOChannel = DAOFactory.workspaceChannel();
 
-    public ServerThread(Socket socket, Server.Server server) {
+    public ServerThread(Socket socket, Server server) throws SQLException {
         this.socket = socket;
         this.server = server;
     }
@@ -38,23 +46,21 @@ public class ServerThread extends Thread {
 
                 if (onetime) {
                     Message message = (Message) input.readObject();
-                    currentUser = message.getSender();
+                    currentServerUser = new ServerUser(socket,DAOProfile.select(message.getIdSenderMessage()));
                     onetime = false;
-                    server.addUser(currentUser);
+                    server.addUser(currentServerUser);
                     System.out.println(message.toString());
                 } else {
                     Message received = (Message) input.readObject();
-
-                    workspace = received.getWorkspace();
+                    channel = DAOChannel.select(received.getIdCh());
                     System.out.println(received.toString());
                     if (!received.getContent().equals("")) {
                         server.broadcast(received, this);
                     }
                 }
-            } catch (IOException | ClassNotFoundException ex) {
+            } catch (IOException | ClassNotFoundException | SQLException ex) {
                 System.out.println("server " + ex.getMessage());
             }
-
         }
 
     }
@@ -64,8 +70,9 @@ public class ServerThread extends Thread {
      *
      * @throws IOException
      */
-    void sendMessage(Message message) throws IOException {
-        output.writeObject(message);
+    void sendMessage(String message) throws IOException {
+        Message msg = new Message(currentServerUser.getProfile(),message);
+        output.writeObject(msg);
         resetStream();
     }
 
