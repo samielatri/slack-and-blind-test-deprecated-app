@@ -20,7 +20,7 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
 
     @Override
     protected String getTableName() {
-        return null;
+        return "user";
     }
 
     /**
@@ -80,7 +80,8 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
             preparedStatement.setString( 1,user.getEmail() );
             preparedStatement.setString( 2, user.getPassword() );
 
-            queryResult = preparedStatement.executeQuery();
+
+            preparedStatement.executeUpdate();
 
             System.out.println("<DB> Successfully registred !");
         } catch(SQLException exception) {

@@ -5,9 +5,10 @@ import java.sql.DriverManager;
 
 public class DBConnection {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/slack_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"; // MySQL URL followed by the database name
+    private static final String DATABASENAME= "slackdb";
+    private static final String URL = "jdbc:mysql://localhost:3306/"+DATABASENAME+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"; // MySQL URL followed by the database name
     private static final String USERNAME = "root"; // MySQL username
-    private static final String PASSWORD = "RADJAAZZ12"; // MySQL password
+    private static final String PASSWORD = "sinsin"; // MySQL password
 
     private DBConnection() {}
 

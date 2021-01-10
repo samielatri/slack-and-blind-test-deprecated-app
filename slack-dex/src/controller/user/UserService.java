@@ -1,23 +1,18 @@
 package controller.user;
 
-import database.DAO;
-import database.DAOFactory;
-import model.user.User;
-import tool.DataManipulator;
-
 import java.sql.SQLException;
-import java.util.ArrayList;
+import database.DAOFactory;
 
 /**
  * UserServiceDAO : provide services related to the User
  */
 public class UserService {
 
-    private final DAO<User> DAOUser = DAOFactory.user();
+    private DAO<User> DAOUser;
 
     public UserService() throws SQLException {
+        DAOUser = DAOFactory.user();
     }
-
 
     /**
      * OK
@@ -69,6 +64,7 @@ public class UserService {
      */
 
     public User login(String inputedEmail, String inputedPassword) throws SQLException {
+
 
 
         if (!(DataManipulator.verifyInputedEmail(inputedEmail) | DataManipulator.verifyInputedPassword(inputedPassword))) {
