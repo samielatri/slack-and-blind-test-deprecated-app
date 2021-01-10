@@ -9,16 +9,17 @@ import java.util.Map;
 
 public final class MemoryDAO<T extends HasId> implements DAO<T> {
 
-	private final Map<String, T> workspaces = new HashMap<>();
+	private final Map<String, T> listT = new HashMap<>();
 
 	/**
+	 *
 	 *
 	 * @param obj
 	 * @return
 	 */
 	@Override
 	public T insert(T obj) {
-		workspaces.put(obj.getId(), obj);
+		listT.put(obj.getId(), obj);
 		return obj;
 	}
 
@@ -28,7 +29,7 @@ public final class MemoryDAO<T extends HasId> implements DAO<T> {
 	 */
 	@Override
 	public void delete(T obj) {
-		workspaces.remove(obj.getId());
+		listT.remove(obj.getId());
 	}
 
 	/**
@@ -48,7 +49,7 @@ public final class MemoryDAO<T extends HasId> implements DAO<T> {
 	 */
 	@Override
 	public T select(String key) {
-		return workspaces.get(key);
+		return listT.get(key);
 	}
 
 	/**
@@ -57,7 +58,7 @@ public final class MemoryDAO<T extends HasId> implements DAO<T> {
 	 */
 	@Override
 	public List<T> selectAll() {
-		return new ArrayList<>(workspaces.values());
+		return new ArrayList<>(listT.values());
 	}
 
 	/**
@@ -65,6 +66,6 @@ public final class MemoryDAO<T extends HasId> implements DAO<T> {
 	 */
 	@Override
 	public void close() {
-		workspaces.clear();
+		listT.clear();
 	}
 }

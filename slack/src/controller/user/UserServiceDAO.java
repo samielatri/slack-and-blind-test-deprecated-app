@@ -93,4 +93,94 @@ public class UserServiceDAO extends AbstractServiceDAO {
         System.out.println("Error, you can not log in");
         return null;
     }
+
+
+    /************************************************************************
+
+    public void editAccount(){
+        String newEmailAddress = "";
+        String newPasswordConfirm = "";
+        String newPassword = "";
+        boolean passwordConfirmed = false;
+        String currentPassword = "";
+        User currentUser = getConnectedUser();
+
+        System.out.println("Edit your account");
+
+        if (currentUser == null) {
+            System.out.println("No user connected !");
+            return ;
+        }
+
+        int intInput = 0;
+        do {
+            System.out.println("edit :\n" + "\t1- email address\n\t2- password\n\t 3-return");
+            intInput = readInt("your choice");
+        } while (intInput > 0 && intInput < 3);
+        if (intInput == 1){
+            do {
+                newEmailAddress = readString("new email address");
+                currentUser.setEmail(newEmailAddress);
+                System.out.println("Email Address changed successfully");
+            }while(! isValidEmailAddress(newEmailAddress));
+        }
+        if (intInput== 2) {
+            currentPassword = readString("current password");
+            if (currentPassword == currentUser.getPassword()) {
+                do {
+                    newPassword = readString("new password");
+                    newPasswordConfirm = readString("new password confirmation");
+                    passwordConfirmed = (newPassword == newPasswordConfirm);
+                    if (passwordConfirmed) {
+                        currentUser.setPassword(newPassword);
+                        System.out.println("Password changed successfully");
+                    }
+                } while (!passwordConfirmed);
+            } else {
+                System.out.println("Password does not match");
+                // return
+            }
+        }
+        // 3
+        // return
+    }
+
+    public void disconnect(){
+        System.out.println("disconnect");
+        if (slackSystem.getConnectedUser() == null){
+            System.out.println("no connected user");
+            return;
+        }
+        System.out.println("disconnecting...");
+        slackSystem.setConnectedUser(null);
+        System.out.println("disconnected successfully");
+    }
+
+    public void deleteAccount(){
+        System.out.println("delete account");
+        User user = slackSystem.getConnectedUser();
+        if (user == null){
+            System.out.println("no user connected");
+            return;
+        }
+        disconnect();
+        System.out.println("Deleting account...");
+        ArrayList<User> usersList = slackSystem.getUsers();
+        if(usersList.contains(user)) {
+            usersList.remove(user);
+            slackSystem.setUsers(usersList);
+            System.out.println("Account deleted");
+        } else {
+            System.out.println("The user was never registred... /!\\");
+        }
+    }
+
+
+    *********************************************************/
+
+
+
+
+
+
 }

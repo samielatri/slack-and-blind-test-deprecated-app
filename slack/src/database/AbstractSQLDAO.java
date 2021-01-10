@@ -37,6 +37,7 @@ public abstract class AbstractSQLDAO<T extends HasId> implements DAO<T> {
 		try {
 			connection.close();
 		} catch (SQLException throwable) {
+			throwable.printStackTrace();
 		}
 	}
 }

@@ -16,39 +16,39 @@ public class DAOFactory {
 		if (isSQL) {
 			return new SQLWorkspaceDAO();
 		}
-		return new MemoryDAO<>();
+		return new MemoryDAO<Workspace>();
 	}
 
 	public static DAO<Message> messageChannel() throws SQLException {
 		if (isSQL) {
 			return new SQLMessageChannelDAO();
 		}
-		return new MemoryDAO<>();
+		return new MemoryDAO<Message>();
 	}
 	public static DAO<Message> messageDirect() throws SQLException {
 		if (isSQL) {
 			return new SQLMessageDirectDAO();
 		}
-		return new MemoryDAO<>();
+		return new MemoryDAO<Message>();
 	}
 
 	public static DAO<WorkspaceChannel> workspaceChannel() throws SQLException {
 		if (isSQL) {
 			return new SQLWorkspaceChannelDAO();
 		}
-		return new MemoryDAO<>();
+		return new MemoryDAO<WorkspaceChannel>();
 	}
 	public static DAO<Profile> profile() throws SQLException {
 		if (isSQL) {
 			return new SQLProfileDAO();
 		}
-		return new MemoryDAO<>();
+		return new MemoryDAO<Profile>();
 	}
 	public static DAO<User> user() throws SQLException {
 		if (isSQL) {
 			return new SQLUserDAO();
 		}
-		return new MemoryDAO<>();
+		return new MemoryDAO<User>();
 	}
 
 	private DAOFactory() {}

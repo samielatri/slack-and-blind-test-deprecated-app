@@ -28,6 +28,8 @@ public class WorkspacePage extends JFrame {
         setSize(600,500);
         setTitle("Workspace");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
+        //ajout des workspace de l'appli à gauche TODO
         GridBagConstraints c=new GridBagConstraints();
         lsWK= sq.selectAll();
         for (int i=0;i<lsWK.size();i++){ //add all workspaces in the left
@@ -37,7 +39,11 @@ public class WorkspacePage extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     dispose();
-                    new ChatPage(w.getName());
+                    try {
+                        new ChatPage(w.getName());
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                 }
             });
             c.gridx=1;
@@ -51,7 +57,11 @@ public class WorkspacePage extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     dispose();
-                    new ChatPage(wu.getName());
+                    try {
+                        new ChatPage(wu.getName());
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                 }
             });
             c.gridx=1;
@@ -65,5 +75,5 @@ public class WorkspacePage extends JFrame {
         setVisible(true);
     }
 
-
+    //TODO: FAIRE UNE GROSSE VERIFICATION
 }

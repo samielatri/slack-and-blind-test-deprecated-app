@@ -8,7 +8,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 
-import javafx.scene.control.TextArea;
+//import javafx.scene.control.TextArea;
+import model.communication.Message;
 import model.communication.Message;
 
 public class Client implements Runnable {
@@ -23,12 +24,10 @@ public class Client implements Runnable {
     ObjectInputStream input = null;
     ObjectOutputStream output = null;
 
-    TextArea M_output;
     private static ArrayList<Message> messages = new ArrayList<>();
 
-    public Client(Message message, TextArea M_output) {
+    public Client(Message message) {
         this.message = message;
-        this.M_output = M_output;
     }
 
     @Override
@@ -47,8 +46,6 @@ public class Client implements Runnable {
             while (!(socket.isClosed())) {
                 Message message = (Message) input.readObject();
                 messages.add(message);
-                ChatController.setMessages(messages);
-                M_output.appendText(message.getSender().getProfile().getShownName() + ":" + message.getContent() + "\n");
                 System.out.println(message.toString());
             }
 

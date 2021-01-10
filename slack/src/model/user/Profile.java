@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class Profile implements HasId {
     /* attributes */
 
+    private static final int NUMBER_CHARACTERISTICS = 8;
+
     // composed id as : "userId.workspaceId", belongs_to_one relation type
     private String workspaceId; // unique workspace related to the Profile
     private String userId; // unique user related to the Profile
@@ -26,7 +28,7 @@ public class Profile implements HasId {
     private String phoneNumber; // phone number
     private String skypeUserName; // skype user name
 
-    private ZonedDateTime timezone; // timezone
+    private String timezone; // timezone
 
     private boolean isWorkspaceAdmin; // true if the Profile is a workspace admin, false if not
 
@@ -111,11 +113,11 @@ public class Profile implements HasId {
         this.skypeUserName = skypeUserName;
     }
 
-    public ZonedDateTime getTimezone() {
+    public String getTimezone() {
         return timezone;
     }
 
-    public void setTimezone(ZonedDateTime timezone) {
+    public void setTimezone(String timezone) {
         this.timezone = timezone;
     }
 
@@ -141,6 +143,19 @@ public class Profile implements HasId {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+    public static int getNumberCharacteristics() {
+        return NUMBER_CHARACTERISTICS;
+    }
+
+    public boolean isWorkspaceAdmin() {
+        return isWorkspaceAdmin;
+    }
+
+    public void setWorkspaceAdmin(boolean workspaceAdmin) {
+        isWorkspaceAdmin = workspaceAdmin;
+    }
+
 
     /**
      * @return id of the Profile, as : "userId.workspaceId"

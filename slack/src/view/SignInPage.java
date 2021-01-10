@@ -11,9 +11,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import model.*;
 
 
-public class SignInPage extends JFrame{
+public class SignInPage extends JFrame {
     private JPanel loginPage;
     private JTextField emailS;
     private JButton signInButton;
@@ -23,11 +24,13 @@ public class SignInPage extends JFrame{
     private String textLink="Not a member? Register";
 
     public SignInPage(){
+        super("");
         add(loginPage);
         setSize(600,500);
         setTitle("app.Slack Login Page");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
+        //connexion user TODO
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,6 +50,8 @@ public class SignInPage extends JFrame{
             }
         });
         setVisible(true);
+
+        //lien vers la page Sign UP TODO
         linkToRegister.setCursor(new Cursor(Cursor.HAND_CURSOR));
         linkToRegister.addMouseListener(new MouseAdapter() {
             @Override
@@ -63,4 +68,5 @@ public class SignInPage extends JFrame{
 
 
     }
+    //TODO: FAIRE UNE GROSSE VERIFICATION
 }

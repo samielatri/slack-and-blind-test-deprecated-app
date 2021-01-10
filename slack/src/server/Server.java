@@ -2,10 +2,10 @@ package server;
 
 import java.io.*;
 import java.net.*;
+import java.sql.SQLException;
 import java.util.*;
 
 import model.communication.Message;
-import model.user.User;
 
 public class Server {
 
@@ -27,7 +27,7 @@ public class Server {
                 i++;
             }
 
-        } catch (IOException ex) {
+        } catch (IOException | SQLException ex) {
             System.out.println("Error in the server: " + ex.getMessage());
             ex.printStackTrace();
         }
@@ -55,16 +55,16 @@ public class Server {
     /**
      * Delivers a message from one user to others (broadcasting)
      *
-     * @param channel
+     //* @param channel
      *
      * @throws IOException
      */
     void broadcast(Message message, ServerThread excludeUser) throws IOException {
         for (ServerThread user : userThreads) {
-            if (user.workspace.getChannel() != null) {
+            if (user.getW.getChannel() != null) {
                 String channel = user.workspace.getChannel();
                 if (message.getWorkspace().getChannel().equals(channel)) {
-                    user.sendMessage(message);
+                    user.sendMessage(message.getContent());
                 }
             }
 

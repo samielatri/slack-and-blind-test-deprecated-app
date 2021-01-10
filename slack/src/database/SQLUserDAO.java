@@ -1,7 +1,9 @@
 package database;
 
+import model.user.Profile;
 import model.user.User;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class SQLUserDAO extends AbstractSQLDAO<User> {
     Connection conn = DBConnection.createConnection();
@@ -137,5 +139,21 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
         }
         return u;
     }
+
+    /*public ArrayList<User> selectAll(){
+        ArrayList<User> listUser=new ArrayList<>();
+        User u=null;
+        try {
+            String sql="SELECT * FROM user";
+            queryResult=state.executeQuery(sql);
+            while (queryResult.next()){
+                u=new User(queryResult.getString("mail"),queryResult.getString("password"));
+                listUser.add(u);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return listUser;
+    }*/
 
 }

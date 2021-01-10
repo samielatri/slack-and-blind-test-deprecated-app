@@ -13,6 +13,10 @@ import model.user.User;
 import model.communication.Message;
 import model.communication.WorkspaceChannel;
 
+import model.communication.Message;
+import model.communication.Workspace;
+import model.user.User;
+
 
 public class ServerThread extends Thread {
 
@@ -37,7 +41,6 @@ public class ServerThread extends Thread {
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
