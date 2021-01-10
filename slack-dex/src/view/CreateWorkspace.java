@@ -1,10 +1,10 @@
-package src.view;
+package view;
 
 import controller.communication.WorkspaceServiceDAO;
 import database.SQLWorkspaceDAO;
 import model.SlackSystem;
 import model.communication.Workspace;
-import view.WelcomePage;
+//import view.WelcomePage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,7 +17,7 @@ public class CreateWorkspace extends JFrame{
     private JPanel createWSPage;
     private JButton CREATEButton;
     private SQLWorkspaceDAO ws= new SQLWorkspaceDAO();
-    private Workspace wp = null;
+    private Workspace wp;
     private SlackSystem system = new SlackSystem();
     private WorkspaceServiceDAO workspaceServiceDAO = new WorkspaceServiceDAO();
 
@@ -32,12 +32,17 @@ public class CreateWorkspace extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String nameOfWorkspace=wkName.getText();
-                //wp = new Workspace(nameOfWorkspace, system.getCurrentConnectedProfile());
-                //ws.insert(wp);
-                workspaceServiceDAO.createWs(nameOfWorkspace);
+                try {
+                    wp=workspaceServiceDAO.createWs(nameOfWorkspace);
+                    if(wp==null){
+                        JOptionPane.showMessageDialog(createWSPage,"This name already exist please enter another one","LEGO Slack warning",JOptionPane.WARNING_MESSAGE);
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 JOptionPane.showMessageDialog(createWSPage,"Your workspace was successfully created");
                 dispose();
-                new WelcomePage();
+                //new WelcomePage();
             }
         });
         setVisible(true);
