@@ -3,22 +3,23 @@ package server;
 import java.io.*;
 import java.net.*;
 
-import model.Message;
-import model.User;
-import model.Workspace;
+
+import model.communication.Message;
+import model.communication.Workspace;
+import model.user.User;
 
 
 public class ServerThread extends Thread {
 
     private Socket socket;
-    private Server.Server server;
+    private Server server;
     private ObjectOutputStream output = null;
     private boolean onetime = true;
     private ObjectInputStream input = null;
     public User currentUser = null;
     public Workspace workspace;
 
-    public ServerThread(Socket socket, Server.Server server) {
+    public ServerThread(Socket socket, Server server) {
         this.socket = socket;
         this.server = server;
     }
@@ -29,7 +30,6 @@ public class ServerThread extends Thread {
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -38,17 +38,17 @@ public class ServerThread extends Thread {
 
                 if (onetime) {
                     Message message = (Message) input.readObject();
-                    currentUser = message.getSender();
+                    //currentUser = message.getSender();
                     onetime = false;
                     server.addUser(currentUser);
                     System.out.println(message.toString());
                 } else {
                     Message received = (Message) input.readObject();
 
-                    workspace = received.getWorkspace();
+                    //workspace = received.getWorkspaceC();
                     System.out.println(received.toString());
                     if (!received.getContent().equals("")) {
-                        server.broadcast(received, this);
+                       // server.broadcast(received, this);
                     }
                 }
             } catch (IOException | ClassNotFoundException ex) {

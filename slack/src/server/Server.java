@@ -4,8 +4,9 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-import model.Message;
-import model.User;
+
+import model.communication.Message;
+import model.user.User;
 
 public class Server {
 
@@ -52,16 +53,10 @@ public class Server {
         server.execute();
     }
 
-    /**
-     * Delivers a message from one user to others (broadcasting)
-     *
-     * @param channel
-     *
-     * @throws IOException
-     */
+/*
     void broadcast(Message message, ServerThread excludeUser) throws IOException {
         for (ServerThread user : userThreads) {
-            if (user.workspace.getChannel() != null) {
+            if (user.getW.getChannel() != null) {
                 String channel = user.workspace.getChannel();
                 if (message.getWorkspace().getChannel().equals(channel)) {
                     user.sendMessage(message);
@@ -70,7 +65,7 @@ public class Server {
 
         }
     }
-
+*/
     /**
      * Stores username of the newly connected client.
      */
