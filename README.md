@@ -13,3 +13,5 @@ Slack :
 blind slack : java 11 (
   distribution correcto d'Amazon
 )
+
+Laisser ce repo clean and work on the other guys
