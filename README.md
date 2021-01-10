@@ -6,4 +6,8 @@ Nahidath
 Radja
 Sami
 
-BOMB GOES BOOM IN 2 DAYS
+BOMB GOES BOOM IN 1 DAY
+
+Slack : 
+
+blind slack : java 11
