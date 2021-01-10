@@ -1,4 +1,4 @@
-package server;
+package src.server;
 
 public class ColorInt {
     public static String[] mColors = {

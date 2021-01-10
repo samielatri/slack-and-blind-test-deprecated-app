@@ -1,4 +1,4 @@
-package model.user;
+package src.model.user;
 
 import model.HasId;
 import model.communication.Workspace;

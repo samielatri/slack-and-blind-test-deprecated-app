@@ -82,7 +82,7 @@ public class ChatPage extends JFrame {
 
         //liste des profile sur la droite TODO
         GridBagConstraints c=new GridBagConstraints();
-        listP=sp.selectAll();
+        listP= (ArrayList<Profile>) sp.selectAll();
         for(int i=0; i<listP.size();i++){
             p=listP.get(i);
             profileName=new JLabel(p.getUsername());
@@ -108,7 +108,7 @@ public class ChatPage extends JFrame {
         }
 
         //liste des channels du workspace TODO
-        listOfCh=swC.selectAll();
+        listOfCh= (ArrayList<WorkspaceChannel>) swC.selectAll();
         for (int j=0;j<listOfCh.size();j++){
             if (sys.getCurrentConnectedWorkspace().equals(listOfCh.get(j))){
                 ch=listOfCh.get(j);

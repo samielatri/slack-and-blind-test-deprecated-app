@@ -1,13 +1,13 @@
-package database;
+package src.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBConnection {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/slack_db"; // MySQL URL followed by the database name
+    private static final String URL = "jdbc:mysql://localhost:3306/slack_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"; // MySQL URL followed by the database name
     private static final String USERNAME = "root"; // MySQL username
-    private static final String PASSWORD = "root"; // MySQL password
+    private static final String PASSWORD = "RADJAAZZ12"; // MySQL password
 
     private DBConnection() {}
 
@@ -17,7 +17,7 @@ public class DBConnection {
 
         try {
             // load the driver class
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             System.out.println("MySQL JDBC Driver Registered");
 

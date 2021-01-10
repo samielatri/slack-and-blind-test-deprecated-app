@@ -31,7 +31,7 @@ public class WorkspacePage extends JFrame {
 
         //ajout des workspace de l'appli à gauche TODO
         GridBagConstraints c=new GridBagConstraints();
-        lsWK= sq.selectAll();
+        lsWK= (ArrayList<Workspace>) sq.selectAll();
         for (int i=0;i<lsWK.size();i++){ //add all workspaces in the left
             w=lsWK.get(i);
             button= new JButton(w.getName());
