@@ -1,12 +1,18 @@
 package controller.user;
 
-import controller.AbstractServiceDAO;
+import database.AbstractSQLDAO;
+import database.DAO;
+import database.DAOFactory;
+import model.SlackSystem;
 import model.user.Profile;
 
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class ProfileServiceDAO extends AbstractServiceDAO {
+
+public class ProfileServiceDAO {
+    private SlackSystem slackSystem=new SlackSystem();
+    private DAO<Profile> DAOProfile;
     // you can visit a profile only when you are in the workspace
     public Profile visitProfile(String profileToVisitId) throws SQLException {
 
@@ -194,19 +200,19 @@ public class ProfileServiceDAO extends AbstractServiceDAO {
             }
         }
         System.out.println("Collaborator does not exist");
-    }
+    }*/
 
     //called by a user
     public Profile createProfile(String idUsr,String idWs){
         Profile profile = new Profile(idWs,idUsr);
         String id = idUsr+"."+idWs;
-        profile.setId(id);
+        profile.setUserId(id);
         return profile;
     }
 
 
 
-     ****************************************************************/
+     /****************************************************************/
 
 }
 

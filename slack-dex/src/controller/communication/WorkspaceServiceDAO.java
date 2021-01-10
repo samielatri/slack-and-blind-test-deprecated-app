@@ -1,12 +1,20 @@
 package controller.communication;
 
-import controller.AbstractServiceDAO;
+
+import controller.user.ProfileServiceDAO;
+import database.DAO;
+import database.DAOFactory;
+import model.SlackSystem;
 import model.communication.Workspace;
 import model.user.Profile;
 
 import java.sql.SQLException;
 
-public class WorkspaceServiceDAO extends AbstractServiceDAO {
+public class WorkspaceServiceDAO {
+    private ProfileServiceDAO profileServiceDAO=new ProfileServiceDAO();
+    private SlackSystem slackSystem=new SlackSystem();
+    private DAO<Workspace> DAOWorkspace;
+    private DAO<Profile> DAOProfile;
 
 
     /******************************************
@@ -109,42 +117,25 @@ public class WorkspaceServiceDAO extends AbstractServiceDAO {
     }*/
 
     //function called by a user
-    public Workspace createWs(String name) throws SQLException {
-        Workspace workspace,ws;
+    public Workspace createWs(String workspaceName) throws SQLException {
+        Workspace workspace=null,ws;
 
-        String workspaceName;
-        Scanner scanner;
+        /*String workspaceName;
+        Scanner scanner;*/
 
         ws = DAOWorkspace.select(workspaceName);
         if(ws != null){
             System.out.println("This name already exist please enter another one");
             return null;
         }
-        /*do {
-            System.out.println("Enter the name of the workspace");
-            scanner = new Scanner(System.in);
-            workspaceName = scanner.nextLine();
-            ws = DAOWorkspace.select(workspaceName);
-            if(ws != null){
-                System.out.println("This name already exist please enter another one");
-            }
-        } while(ws != null);*/
 
-        workspace = new Workspace(workspaceName);
-
-        ws = DAOWorkspace.insert(workspace);
-
-        /*if(ws!=null){
-            System.out.println("this workspace has been created succesfully");
-        }else{
-            System.out.println("this workspace hasn't been created ! please try again");
-        }*/
         //create a profile for the user who's creating the workspace
         Profile profile;
-        profile = createProfile(currentConnectedUser.getId(),workspace.getId());
-
+        profile = profileServiceDAO.createProfile(slackSystem.getCurrentConnectedUser().getId(),workspace.getId());
+        workspace = new Workspace(workspaceName,profile);
+        ws = DAOWorkspace.insert(workspace);
         //put the creator as an admin
-        profile.setIsAdminWS(1);
+        profile.setIsWorkspaceAdmin(true);
         DAOProfile.update(profile);
 
         return workspace;
