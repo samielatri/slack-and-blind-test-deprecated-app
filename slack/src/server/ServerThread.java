@@ -3,22 +3,22 @@ package server;
 import java.io.*;
 import java.net.*;
 
-import model.Message;
-import model.User;
-import model.Workspace;
+import model.communication.Message;
+import model.user.User;
+import model.communication.Workspace;
 
 
 public class ServerThread extends Thread {
 
     private Socket socket;
-    private Server.Server server;
+    private Server server;
     private ObjectOutputStream output = null;
     private boolean onetime = true;
     private ObjectInputStream input = null;
     public User currentUser = null;
     public Workspace workspace;
 
-    public ServerThread(Socket socket, Server.Server server) {
+    public ServerThread(Socket socket, Server server) {
         this.socket = socket;
         this.server = server;
     }
@@ -38,7 +38,7 @@ public class ServerThread extends Thread {
 
                 if (onetime) {
                     Message message = (Message) input.readObject();
-                    currentUser = message.getSender();
+                    currentUser = message.getSender(); // user.getId
                     onetime = false;
                     server.addUser(currentUser);
                     System.out.println(message.toString());

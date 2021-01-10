@@ -4,8 +4,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-import model.Message;
-import model.User;
+import model.communication.Message;
+import model.user.User;
 
 public class Server {
 
