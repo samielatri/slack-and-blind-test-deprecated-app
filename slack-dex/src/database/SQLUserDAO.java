@@ -15,12 +15,13 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
     }
 
     @Override
-    protected User create(ResultSet rs) {
-        return null;
+    protected User create(ResultSet rs) throws SQLException {
+        return new User(rs.getString("mail"),rs.getString("password"));
     }
 
     @Override
     protected String getTableName() {
+        System.out.println("table user");
         return "user";
     }
 

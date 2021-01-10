@@ -17,13 +17,13 @@ public class SQLMessageDirectDAO extends AbstractSQLDAO<Message> {
     }
 
     @Override
-    protected Message create(ResultSet rs) {
-        return null;
+    protected Message create(ResultSet rs) throws SQLException {
+        return new Message(system.getCurrentConnectedProfile(), rs.getString("msgContent"));
     }
 
     @Override
     protected String getTableName() {
-        return null;
+        return "messagedirect";
     }
 
     @Override

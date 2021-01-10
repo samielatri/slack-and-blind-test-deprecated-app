@@ -14,7 +14,6 @@ public class Test {
         UserService userService = new UserService();
 
         User usr;
-
         usr = userService.register(email, mdp, mdp1);
 
     }

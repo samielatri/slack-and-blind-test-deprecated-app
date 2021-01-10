@@ -21,13 +21,13 @@ public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
 	}
 
 	@Override
-	protected WorkspaceChannel create(ResultSet rs) {
-		return null;
+	protected WorkspaceChannel create(ResultSet rs) throws SQLException {
+		return new WorkspaceChannel(rs.getString("nameWC"), system.getCurrentConnectedProfile() );
 	}
 
 	@Override
 	protected String getTableName() {
-		return null;
+		return "workspacechannel";
 	}
 
 	@Override

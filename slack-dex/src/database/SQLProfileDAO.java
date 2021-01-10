@@ -19,13 +19,13 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
     }
 
     @Override
-    protected Profile create(ResultSet rs) {
-        return null;
+    protected Profile create(ResultSet rs) throws SQLException {
+        return new Profile(rs.getString("idWk"), rs.getString("mail"));
     }
 
     @Override
     protected String getTableName() {
-        return null;
+        return "profile";
     }
 
 

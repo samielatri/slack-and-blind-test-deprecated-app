@@ -105,12 +105,12 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 	}*/
 
 	@Override
-	protected Workspace create(ResultSet rs) {
-		return null;
+	protected Workspace create(ResultSet rs) throws SQLException {
+		return new Workspace(rs.getString("nameWk"),system.getCurrentConnectedProfile());
 	}
 
 	@Override
 	protected String getTableName() {
-		return null;
+		return "workspace";
 	}
 }

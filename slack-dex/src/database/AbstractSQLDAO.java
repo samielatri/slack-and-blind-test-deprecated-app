@@ -19,16 +19,21 @@ public abstract class AbstractSQLDAO<T extends HasId> implements DAO<T> {
 		List<T> results = new ArrayList<>();
 		try(Statement st = connection.createStatement();
 		    ResultSet rs = st.executeQuery("SELECT * FROM " + getTableName())) {
+			System.out.println(getTableName());
 			while (rs.next()) {
 				results.add(create(rs));
 			}
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
 		}
+		for(T obj: results){
+			System.out.println(obj);
+		}
+
 		return results;
 	}
 
-	abstract protected T create(ResultSet rs);
+	abstract protected T create(ResultSet rs) throws SQLException;
 
 	abstract protected String getTableName();
 
