@@ -23,8 +23,8 @@ public abstract class AbstractSQLDAO<T extends HasId> implements DAO<T> {
 			while (rs.next()) {
 				results.add(create(rs));
 			}
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
+		} catch (SQLException throwable) {
+			throwable.printStackTrace();
 		}
 		for(T obj: results){
 			System.out.println(obj);

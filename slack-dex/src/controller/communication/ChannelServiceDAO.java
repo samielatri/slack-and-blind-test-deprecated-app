@@ -1,12 +1,24 @@
-package src.controller.communication;
+package controller.communication;
 
-import controller.AbstractServiceDAO;
+import database.DAO;
+import database.DAOFactory;
+import model.SlackSystem;
+import model.communication.Workspace;
+import model.communication.WorkspaceChannel;
+import model.user.User;
 
-public class ChannelServiceDAO extends AbstractServiceDAO {
+import java.sql.SQLException;
 
+public class ChannelServiceDAO{
 
-    /*********************************************************
+    private DAO<WorkspaceChannel> DAOChannel;
+    private SlackSystem slackSystem;
 
+    public ChannelServiceDAO(SlackSystem slackSystem) throws SQLException {
+        DAOChannel= DAOFactory.workspaceChannel();
+        this.slackSystem=slackSystem;
+    }
+    
 
 
     //function called by a profile
@@ -58,7 +70,11 @@ public class ChannelServiceDAO extends AbstractServiceDAO {
     }
 
 
-    //called by a profile
+    /*********************************************************
+
+
+
+     //called by a profile
     public void quitCh(WorkspaceChannel channel){
         //we actually can't quit a channel
     }
