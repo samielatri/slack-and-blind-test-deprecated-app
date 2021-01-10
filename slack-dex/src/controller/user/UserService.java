@@ -2,6 +2,7 @@ package controller.user;
 
 import database.DAO;
 import database.DAOFactory;
+import model.SlackSystem;
 import model.user.User;
 import tool.DataManipulator;
 
@@ -14,9 +15,11 @@ import java.util.ArrayList;
 public class UserService {
 
     private DAO<User> DAOUser;
+    private SlackSystem slackSystem;
 
-    public UserService() throws SQLException {
+    public UserService(SlackSystem slackSystem) throws SQLException {
         DAOUser=DAOFactory.user();
+        this.slackSystem=slackSystem;
     }
 
 
@@ -94,7 +97,7 @@ public class UserService {
 
         if (DAOUser.signIn(userToLogin) != null) {
             System.out.println("Congrates you are now logged in");
-            //setCurrentConnectedUser(userToLogin);
+            slackSystem.setCurrentConnectedUser(userToLogin);
             return userToLogin;
         }
 

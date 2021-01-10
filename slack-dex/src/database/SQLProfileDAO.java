@@ -40,7 +40,7 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
                     System.out.println("This profile is already exist");
                 }
             }
-            String sql= "INSERT INTO profile (mail, idProfile, currentStatus, completeName, shownName, actualWorkPosition, phoneNumber, timezone) VALUES (?,?,?,?,?,?,?,?)";
+            String sql= "INSERT INTO profile (mail, idProfile, currentStatus, completeName, shownName, actualWorkPosition, phoneNumber, timezone) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1,system.getCurrentConnectedUser().getEmail());
             pstate.setString(2,system.getCurrentConnectedProfile().getId());
@@ -50,6 +50,7 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
             pstate.setString(6,obj.getActualWorkPosition());
             pstate.setString(7,obj.getPhoneNumber());
             pstate.setObject(8,obj.getTimezone());
+            pstate.setObject(9,obj.getIsWorkspaceAdmin());
             res=pstate.executeQuery();
             System.out.println("Profile successfully registred !");
         }catch (SQLException e){
@@ -76,7 +77,7 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
     @Override
     public Profile update(Profile obj) {
         try {
-            String sql= "UPDATE profile SET currentStatus = ?, completeName= ?, shownName = ?, actualWorkPosition= ?, phoneNumber= ?, timezone= ? WHERE idProfile= ?";
+            String sql= "UPDATE profile SET currentStatus = ?, completeName= ?, shownName = ?, actualWorkPosition= ?, phoneNumber= ?, timezone= ?, adminWorkspace = ? WHERE idProfile= ?";
             PreparedStatement pstate= conn.prepareStatement(sql);
             pstate.setString(1, obj.getCurrentStatus());
             pstate.setString(2, obj.getCompleteName());
@@ -85,6 +86,7 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
             pstate.setString(5,obj.getPhoneNumber());
             pstate.setObject(6,obj.getTimezone());
             pstate.setString(7,obj.getUsername());
+            pstate.setObject(8,obj.getIsWorkspaceAdmin());
             res=pstate.executeQuery();
             System.out.println("Password updated ! ");
         }catch (SQLException e){
