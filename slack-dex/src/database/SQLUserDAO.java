@@ -9,6 +9,7 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
     Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
     ResultSet queryResult =null;
+    int res;
 
     public SQLUserDAO() throws SQLException {
     }
@@ -20,7 +21,7 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
 
     @Override
     protected String getTableName() {
-        return null;
+        return "user";
     }
 
     /**
@@ -80,7 +81,7 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
             preparedStatement.setString( 1,user.getEmail() );
             preparedStatement.setString( 2, user.getPassword() );
 
-            queryResult = preparedStatement.executeQuery();
+            res = preparedStatement.executeUpdate();
 
             System.out.println("<DB> Successfully registred !");
         } catch(SQLException exception) {

@@ -6,8 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/slackk/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/slack/visuel" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/slack/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/slack-dex" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.13" level="project" />
   </component>
 </module>

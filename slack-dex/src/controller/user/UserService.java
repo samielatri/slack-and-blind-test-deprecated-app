@@ -13,9 +13,10 @@ import java.util.ArrayList;
  */
 public class UserService {
 
-    private final DAO<User> DAOUser = DAOFactory.user();
+    private DAO<User> DAOUser;
 
     public UserService() throws SQLException {
+        DAOUser=DAOFactory.user();
     }
 
 
