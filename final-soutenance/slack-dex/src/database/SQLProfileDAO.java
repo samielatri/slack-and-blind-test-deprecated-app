@@ -13,6 +13,7 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
     Connection conn = DBConnection.createConnection();
     Statement state = conn.createStatement();
     ResultSet res=null;
+    int res2;
     private SlackSystem system=new SlackSystem();
 
     public SQLProfileDAO() throws SQLException {
@@ -51,7 +52,7 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
             pstate.setString(7,obj.getPhoneNumber());
             pstate.setObject(8,obj.getTimezone());
             pstate.setObject(9,obj.getIsWorkspaceAdmin());
-            res=pstate.executeQuery();
+            res2=pstate.executeUpdate();
             System.out.println("Profile successfully registred !");
         }catch (SQLException e){
             e.printStackTrace();
@@ -87,7 +88,7 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
             pstate.setObject(6,obj.getTimezone());
             pstate.setString(7,obj.getUsername());
             pstate.setObject(8,obj.getIsWorkspaceAdmin());
-            res=pstate.executeQuery();
+            res2=pstate.executeUpdate();
             System.out.println("Password updated ! ");
         }catch (SQLException e){
             e.printStackTrace();

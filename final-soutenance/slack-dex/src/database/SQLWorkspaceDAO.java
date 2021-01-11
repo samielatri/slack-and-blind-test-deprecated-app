@@ -10,7 +10,8 @@ import java.sql.*;
 public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 	Connection conn = DBConnection.createConnection();
 	Statement state = conn.createStatement();
-	ResultSet res=null, res2=null;
+	ResultSet res=null;
+	int res2;
 	private SlackSystem system=new SlackSystem();
 
 	public SQLWorkspaceDAO() throws SQLException {
@@ -31,7 +32,7 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 			String sql= "INSERT INTO workspace (nameWK) VALUES (?)";
 			PreparedStatement pstate= conn.prepareStatement(sql);
 			pstate.setString(1,obj.getName());
-			res2=pstate.executeQuery();
+			res2=pstate.executeUpdate();
 			System.out.println("Workspace successfully created !");
 		}catch(SQLException e){
 			e.printStackTrace();

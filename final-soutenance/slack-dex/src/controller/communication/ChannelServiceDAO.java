@@ -28,8 +28,8 @@ public class ChannelServiceDAO{
         ch = DAOChannel.select(idChannel);
         if(ch != null) {
             System.out.println("this channel name already exist, please choose another name");
+            return null;
         }
-        System.out.println("Enter the name of the channel");
 
         channel = new WorkspaceChannel(idChannel,slackSystem.getCurrentConnectedProfile());
         channel.setWorkspaceId(slackSystem.getCurrentConnectedWorkspace().getId());
