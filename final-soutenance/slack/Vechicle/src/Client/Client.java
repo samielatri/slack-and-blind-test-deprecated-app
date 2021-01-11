@@ -52,7 +52,7 @@ public class Client implements Runnable {
 				System.out.println(message.toString());
 			}
 
-//			closeConnection();
+			closeConnection();
 
 		} catch (IOException | ClassNotFoundException ex) {
 			System.out.println("Client" + ex.getMessage());

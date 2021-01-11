@@ -1,87 +1,80 @@
-package server;
+package Server;
 
 import java.io.*;
 import java.net.*;
-import java.sql.SQLException;
 import java.util.*;
 
-import model.communication.Message;
+import Model.Message;
+import Model.User;
 
 public class Server {
 
-    private Set<ServerUser> userlist = new HashSet<>();
-    private Set<ServerThread> userThreads = new HashSet<>();
-    static int defaultport = 62000;
-    static int serverPort;
+	private Set<User> userlist = new HashSet<>();
+	private Set<ServerThread> userThreads = new HashSet<>();
+	static int defaultport = 62000;
+	static int serverPort;
 
-    public void execute() {
-        try (ServerSocket serverSocket = new ServerSocket(serverPort)) {
-            int i = 1;
+	public void execute() {
+		try (ServerSocket serverSocket = new ServerSocket(serverPort)) {
+			int i = 1;
 
-            while (true) {
-                Socket socket = serverSocket.accept();
-                System.out.println("Inbound Connection #" + i);
-                ServerThread newUser = new ServerThread(socket, this);
-                userThreads.add(newUser);
-                newUser.start();
-                i++;
-            }
+			while (true) {
+				Socket socket = serverSocket.accept();
 
-        } catch (IOException | SQLException ex) {
-            System.out.println("Error in the server: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-    }
+				System.out.println("Inbound Connection #" + i);
+				// create a new User
+				ServerThread newUser = new ServerThread(socket, this);
+				// add new User to list
+				userThreads.add(newUser);
 
-    public static void main(String[] args) {
+				newUser.start();
+				i++;
+			}
 
-        if (args.length == 0) {
-            serverPort = defaultport;
-            System.out.println("Using default port: " + defaultport);
-        } else {
-            try {
-                serverPort = Integer.parseInt(args[0]);
-            } catch (NumberFormatException nfe) {
-                serverPort = defaultport;
-                System.out.println("Error: Invalid port number: " + args[0]);
-                System.out.println("Using default port: " + defaultport);
-            }
-        }
+		} catch (IOException ex) {
+			System.out.println("Error in the server: " + ex.getMessage());
+			ex.printStackTrace();
+		}
+	}
 
-        Server server = new Server();
-        server.execute();
-    }
+	public static void main(String[] args) {
 
-    /**
-     * Delivers a message from one user to others (broadcasting)
-     *
-     //* @param channel
-     *
-     * @throws IOException
-     */
-    /*
-    void broadcast(Message message, ServerThread excludeUser) throws IOException {
-        for (ServerThread user : userThreads) {
-            if (user.getW.getChannel() != null) {
-                String channel = user.workspace.getChannel();
-                if (message.getWorkspace().getChannel().equals(channel)) {
-                    user.sendMessage(message.getContent());
-                }
-            }
+		if (args.length == 0) {
+			serverPort = defaultport;
+			System.out.println("Using default port: " + defaultport);
+		} else {
+			try {
+				serverPort = Integer.parseInt(args[0]);
+			} catch (NumberFormatException nfe) {
+				serverPort = defaultport;
+				System.out.println("Error: Invalid port number: " + args[0]);
+				System.out.println("Using default port: " + defaultport);
+			}
+		}
 
-        }
-    }
-*/
-    /**
-     * Stores username of the newly connected client.
-     */
-    void addUser(ServerUser user) {
-        userlist.add(user);
-    }
+		Server server = new Server();
+		server.execute();
+	}
 
-    /**
-     * When a client is disconneted, removes the associated username and UserThread
-     */
+
+	void broadcast(Message message, ServerThread excludeUser) throws IOException {
+		for (ServerThread user : userThreads) {
+			System.out.println("Channel: " + user.workspace.getChannel());
+
+			if (user.workspace.getChannel() != null) {
+				String channel = user.workspace.getChannel();
+				if (message.getWorkspace().getChannel().equals(channel)) {
+					user.sendMessage(message);
+				}
+			}
+
+		}
+	}
+
+	void addUser(User user) {
+		userlist.add(user);
+	}
+
 //	void remove(String userName, ServerThread aUser) {
 //		boolean removed = userNames.remove(userName);
 //		if (removed) {
@@ -93,10 +86,7 @@ public class Server {
 //		return this.userNames;
 //	}
 
-    /**
-     * Returns true if there are other users connected (not count the currently
-     * connected user)
-     */
+
 //	boolean hasUsers() {
 //		return !this.userNames.isEmpty();
 //	}

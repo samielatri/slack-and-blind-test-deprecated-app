@@ -1,5 +1,6 @@
 package view;
 
+import client.Client;
 import controller.communication.WorkspaceServiceDAO;
 import database.DAO;
 import database.DAOFactory;
@@ -18,12 +19,11 @@ import java.util.List;
 public class WorkspacePage extends JFrame {
     private Workspace w=null, wu=null;
 
-    public WorkspacePage(SlackSystem slackSystem) throws SQLException {
+    public WorkspacePage(Client client, SlackSystem slackSystem) throws SQLException {
         JPanel linkWK = new JPanel();
         JPanel linkAll=new JPanel();
         JPanel linkUserWK=new JPanel();
         JButton button= new JButton();
-        JButton button2=new JButton();
         GridBagLayout gridbag = new GridBagLayout();
         GridBagConstraints c=new GridBagConstraints();
         linkWK.setLayout(gridbag);
@@ -38,9 +38,8 @@ public class WorkspacePage extends JFrame {
         setTitle("Workspace");
         setContentPane(linkAll);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-
-        button.setPreferredSize(new Dimension(200,100));
-        button2.setPreferredSize(new Dimension(200,100));
+        setLocationRelativeTo(null);
+        
         //ajout des workspace de l'appli à gauche TODO
 
         List<Workspace> lsWK;
@@ -54,6 +53,7 @@ public class WorkspacePage extends JFrame {
             System.out.println(w);
             System.out.println("added");
             button= new JButton(w.getName());
+            button.setPreferredSize(new Dimension(200,80));
             i++;
             button.addActionListener(new ActionListener() {
                 @Override
@@ -62,7 +62,7 @@ public class WorkspacePage extends JFrame {
                     try {
                         workspaceServiceDAO.joinWorkspace(w.getId());
                         System.out.println("joined");
-                        new ProfileCreation(slackSystem);
+                        new ProfileCreation(client,slackSystem);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
@@ -74,29 +74,7 @@ public class WorkspacePage extends JFrame {
             linkAll.revalidate();
             linkAll.repaint();
 
-            //add all workspace of user in the right
-            wu=slackSystem.getCurrentConnectedWorkspace();
-            button2= new JButton(w.getName());
-            button2.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                    try {
-                       workspaceServiceDAO.joinWorkspace(wu.getId());
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
-            });
-            c.gridx=1;
-            c.gridy=i;
-            linkUserWK.add(button2,c);
-            linkUserWK.revalidate();
-            linkUserWK.repaint();
         }
-
-
-
 
         setVisible(true);
     }

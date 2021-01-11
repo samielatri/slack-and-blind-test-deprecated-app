@@ -20,8 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95fddbf8-3987-43fb-989f-b18c23e948c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/the-blind-slack-project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../final-soutenance/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../final-soutenance/.idea/dbnavigator.xml" afterDir="false" />
@@ -171,7 +169,6 @@
       <change beforePath="$PROJECT_DIR$/../slack-dex/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-dex/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../slack-dex/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-dex/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../slack-dex/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-dex/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../slack-dex/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-dex/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />

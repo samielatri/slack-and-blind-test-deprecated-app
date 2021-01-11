@@ -103,7 +103,7 @@ public class Workspace implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Workspace [id=" + id + ", name=" + name + ", workspaceChannels=" + workspaceChannels + ", members="
+		return "Workspace [id=" + id + ", name=" + name + ", members="
 				+ members + ", admins=" + admins + ", bannedUsers=" + bannedUsers + ", createdBy=" + createdBy
 				+ ", channel=" + channel + "]";
 	}

@@ -13,11 +13,7 @@ public class WorkspaceChannel implements HasId {
     // id
     private String name; // name of the workspace channel
 
-    // has_one relation
-    private ArrayList<Message> conversation; // list of messages in a workspace channel
-    private ArrayList<Profile> members; // list of the members of the workspace channel, administrators are also members
-    private ArrayList<Profile> admins; // list of the administrators of the workspace channel
-
+    
     // belongs_to relation type
     private String WorkspaceId; // the id of the workspace that the WorkspaceChannel belongs to
 
@@ -25,10 +21,9 @@ public class WorkspaceChannel implements HasId {
     private boolean isPrivate; // true if private, if not (public)
 
     /* constructors */
-    public WorkspaceChannel(String name, Profile creator) {
+    public WorkspaceChannel(String name) {
         this.name = name;
-        members.add(creator);
-        admins.add(creator);
+        
     }
 
     /* accessors */
@@ -44,30 +39,6 @@ public class WorkspaceChannel implements HasId {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public ArrayList<Message> getConversation() {
-        return conversation;
-    }
-
-    public void setConversation(ArrayList<Message> conversation) {
-        this.conversation = conversation;
-    }
-
-    public ArrayList<Profile> getMembers() {
-        return members;
-    }
-
-    public void setMembers(ArrayList<Profile> members) {
-        this.members = members;
-    }
-
-    public ArrayList<Profile> getAdmins() {
-        return admins;
-    }
-
-    public void setAdmins(ArrayList<Profile> admins) {
-        this.admins = admins;
     }
 
     public String getWorkspaceId() {
@@ -86,25 +57,10 @@ public class WorkspaceChannel implements HasId {
         isPrivate = aPrivate;
     }
 
-    public long getNumberOfMembers(){
-        return ListManipulator.numberOfElements(members);
-    }
-
-    public long getNumberOfAdmins(){
-        return ListManipulator.numberOfElements(admins);
-    }
-
-    public long getNumberOfPureMembers(){
-        return getNumberOfMembers() - getNumberOfAdmins();
-    }
-
-    public long getNumberOfMessages(){
-        return ListManipulator.numberOfElements(conversation);
-    }
 
 
-    @Override
-    public String toString() {
+    //@Override
+    /*public String toString() {
         return "WorkspaceChannel{" +
                 "name='" + name + '\'' +
                 ", conversation=" + conversation +
@@ -123,6 +79,6 @@ public class WorkspaceChannel implements HasId {
         WorkspaceChannel that = (WorkspaceChannel) o;
 
         return name.equals(that.name);
-    }
+    }*/
 
 }

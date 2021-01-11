@@ -7,6 +7,7 @@ import database.DAOFactory;
 import database.SQLProfileDAO;
 import model.SlackSystem;
 import model.communication.Workspace;
+import model.communication.WorkspaceChannel;
 import model.user.Profile;
 import model.user.User;
 
@@ -19,6 +20,7 @@ public class WorkspaceServiceDAO {
     private DAO<Workspace> DAOWorkspace= DAOFactory.workspace();
     private DAO<Profile> DAOProfile=DAOFactory.profile();
     private SlackSystem slackSystem;
+    private DAO<WorkspaceChannel> DAOChannel =DAOFactory.workspaceChannel();
 
     public WorkspaceServiceDAO(SlackSystem slackSystem) throws SQLException {
         this.slackSystem=slackSystem;
@@ -137,21 +139,18 @@ public class WorkspaceServiceDAO {
         String id = currentConnectedUser.getId()+"."+workspace.getId();
         Profile profile = DAOProfile.select(id);
         DAOProfile.delete(profile);
-    }
+    }*/
 
     //called by a user
     public void deleteWs(Workspace workspace) throws SQLException {
         ArrayList<WorkspaceChannel> wsChannel = new ArrayList<WorkspaceChannel>();
         ArrayList<Profile> wsProfiles = new ArrayList<Profile>();
 
-        String idProfile = currentConnectedUser.getId()+"."+workspace.getId();
-        Profile profile = DAOProfile.select(idProfile);
-
-        if( profile.isAdminWS() == 1 ){
+        if( slackSystem.getCurrentConnectedProfile().getIsWorkspaceAdmin()){
             //delete all channels of this workspace
             wsChannel = (ArrayList<WorkspaceChannel>) DAOChannel.selectAll();
             for(WorkspaceChannel channel : wsChannel){
-                if(channel.getWsId()==workspace.getId()){
+                if(channel.getWorkspaceId().equals(workspace.getId())){
                     DAOChannel.delete(channel);
                 }
             }
@@ -159,7 +158,7 @@ public class WorkspaceServiceDAO {
 
             //delete all its profiles
             for(Profile p : wsProfiles){
-                if(p.getWorkspaceId()==workspace.getId()){
+                if(p.getWorkspaceId().equals(workspace.getId())){
                     DAOProfile.delete(p);
                 }
             }
@@ -171,10 +170,9 @@ public class WorkspaceServiceDAO {
         }else{
             System.out.println("you don't have any right on this workspace");
         }
-
     }
 
-    public void editWs(Workspace workspace) throws SQLException {//called by a user
+    /*public void editWs(Workspace workspace) throws SQLException {//called by a user
         Workspace ws;
         ArrayList<Profile> wsProfiles = new ArrayList<Profile>();
         ArrayList<WorkspaceChannel> wsChannels = new ArrayList<WorkspaceChannel>();

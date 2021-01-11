@@ -1,5 +1,6 @@
 package view;
 
+import client.Client;
 import model.SlackSystem;
 
 import javax.swing.*;
@@ -16,7 +17,7 @@ public class WelcomePage extends JFrame{
     private JButton createWorkspaceButton;
     private JButton joinWorkspaceButton;
 
-    public WelcomePage(SlackSystem slackSystem) {
+    public WelcomePage(Client client, SlackSystem slackSystem) {
         JPanel welcomePage = new JPanel();
         JButton createWorkspaceButton = new JButton("Create Workspace");
         JButton joinWorkspaceButton = new JButton("Join Workspace");
@@ -44,7 +45,7 @@ public class WelcomePage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 try {
-                    new CreateWorkspace(slackSystem);
+                    new CreateWorkspace(client,slackSystem);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -57,7 +58,7 @@ public class WelcomePage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 try {
-                    new WorkspacePage(slackSystem);
+                    new WorkspacePage(client,slackSystem);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

@@ -16,21 +16,25 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `messagechannel`
+-- Table structure for table `profile`
 --
 
-DROP TABLE IF EXISTS `messagechannel`;
+DROP TABLE IF EXISTS `profile`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `messagechannel` (
-  `idMsg` varchar(255) NOT NULL,
-  `nameWC` varchar(255) DEFAULT NULL,
-  `contenu` varchar(500) DEFAULT NULL,
-  `createDate` date DEFAULT NULL,
-  `updateDate` date DEFAULT NULL,
-  `sender` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`idMsg`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `profile` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `currentStatus` varchar(255) DEFAULT NULL,
+  `completeName` varchar(255) DEFAULT NULL,
+  `shownName` varchar(255) DEFAULT NULL,
+  `actualWorkPosition` varchar(255) DEFAULT NULL,
+  `phoneNumber` varchar(255) DEFAULT NULL,
+  `timezone` varchar(255) DEFAULT NULL,
+  `userid` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_idx` (`userid`),
+  CONSTRAINT `user` FOREIGN KEY (`userid`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -42,4 +46,4 @@ CREATE TABLE `messagechannel` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-07 21:51:28
+-- Dump completed on 2021-01-07 21:51:27

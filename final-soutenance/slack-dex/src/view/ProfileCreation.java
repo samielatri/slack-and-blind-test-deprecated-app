@@ -1,5 +1,6 @@
 package view;
 
+import client.Client;
 import controller.user.ProfileServiceDAO;
 import controller.user.UserService;
 import model.SlackSystem;
@@ -21,7 +22,7 @@ public class ProfileCreation extends JFrame {
     private JTextField acp;
     private JButton createPButton;
 
-    public ProfileCreation(SlackSystem slackSystem) throws SQLException {
+    public ProfileCreation(Client client, SlackSystem slackSystem) throws SQLException {
         add(createProfile);
         setSize(600,600);
         setTitle("Create your profile");
@@ -46,7 +47,7 @@ public class ProfileCreation extends JFrame {
                 profile.setPhoneNumber(phoneNumberE);
                 profile.setActualWorkPosition(actualPositionWork);
                 try {
-                    new ChannelList(slackSystem);
+                    new ChannelList(client,slackSystem);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

@@ -1,5 +1,6 @@
 package view;
 
+import client.Client;
 import controller.communication.ChannelServiceDAO;
 import database.SQLWorkspaceChannelDAO;
 import model.SlackSystem;
@@ -14,19 +15,26 @@ import java.sql.SQLException;
 public class CreateChannel extends JFrame {
     private JPanel createCH;
     private JTextField nameCH;
-    private JButton CREATEchButton;
     private WorkspaceChannel ch=null;
 
 
-    public CreateChannel(SlackSystem slackSystem) throws SQLException {
+    public CreateChannel(Client client, SlackSystem slackSystem) throws SQLException {
         JPanel createCH = new JPanel();
+        JTextField nameCH= new JTextField();
+        JButton CREATEchButton= new JButton("CREATE");
         GridBagLayout gridbag = new GridBagLayout();
         GridBagConstraints c=new GridBagConstraints();
+        CREATEchButton.setPreferredSize(new Dimension(100,20));
+        nameCH.setPreferredSize(new Dimension(200,200));
         createCH.setLayout(gridbag);
+        createCH.add(nameCH);
+        createCH.add(CREATEchButton);
         add(createCH);
-        setSize(600,500);
+        setSize(400,400);
         setTitle("Create your Channel");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setContentPane(createCH);
+        setLocationRelativeTo(null);
 
         ChannelServiceDAO channelServiceDAO=new ChannelServiceDAO(slackSystem);
         //creation d'un channel TODO
@@ -45,7 +53,7 @@ public class CreateChannel extends JFrame {
                 }
                 try {
                     dispose();
-                    new ChannelList(slackSystem);
+                    new ChannelList(client,slackSystem);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

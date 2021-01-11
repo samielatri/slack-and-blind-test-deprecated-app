@@ -2,6 +2,7 @@ package view;
 
 
 
+import client.Client;
 import controller.user.UserService;
 import model.SlackSystem;
 
@@ -23,7 +24,7 @@ public class SignInPage extends JFrame {
     private JLabel linkToRegister;
     private String textLink="Not a member? Register";
 
-    public SignInPage(SlackSystem slackSystem,UserService userService){
+    public SignInPage(Client client, SlackSystem slackSystem, UserService userService){
         super("");
         add(loginPage);
         setSize(600,500);
@@ -46,7 +47,7 @@ public class SignInPage extends JFrame {
                     }else {
                         JOptionPane.showMessageDialog(loginPage,"You're now connected");
                         dispose();
-                        new WelcomePage(slackSystem);
+                        new WelcomePage(client,slackSystem);
                     }
 
                 } catch (SQLException throwables) {
@@ -63,7 +64,7 @@ public class SignInPage extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 dispose();
                 try {
-                    new SignUpPage(slackSystem,userService);
+                    new SignUpPage(client,slackSystem,userService);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

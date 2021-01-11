@@ -22,7 +22,7 @@ public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
 
 	@Override
 	protected WorkspaceChannel create(ResultSet rs) throws SQLException {
-		return new WorkspaceChannel(rs.getString("nameWC"), system.getCurrentConnectedProfile() );
+		return new WorkspaceChannel(rs.getString("nameWC"));
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class SQLWorkspaceChannelDAO extends AbstractSQLDAO<WorkspaceChannel> {
 			pstate.setString(1,key);
 			res=pstate.executeQuery();
 			while (res.next()){
-				wC=new WorkspaceChannel(res.getString("nameWC"),system.getCurrentConnectedProfile());
+				wC=new WorkspaceChannel(res.getString("nameWC"));
 			}
 		}catch (SQLException e){
 			e.printStackTrace();

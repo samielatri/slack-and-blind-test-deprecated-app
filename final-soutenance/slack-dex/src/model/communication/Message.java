@@ -17,9 +17,11 @@ public class Message implements HasId {
     private String content;
     private String idCh;
     private int idConversation;
+    private Profile sender;
 
     /* constructor */
     public Message(Profile sender, String content){
+        this.sender=sender;
         this.id = Long.toString(ID_GENERATOR.incrementAndGet());
         this.idSenderMessage = sender.getId();
         this.createdAt = new Date();
@@ -82,6 +84,10 @@ public class Message implements HasId {
 
     public void setIdConversation(int idConversation) {
         this.idConversation = idConversation;
+    }
+
+    public Profile getSender() {
+        return sender;
     }
 
     @Override

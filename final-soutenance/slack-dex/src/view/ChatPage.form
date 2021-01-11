@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.ChatPage">
+  <grid id="27dc6" binding="chatPage" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="3b287" binding="channelList" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="126" height="10"/>
+          </grid>
+        </constraints>
+        <properties>
+          <opaque value="true"/>
+        </properties>
+        <border type="line">
+          <color color="-4473925"/>
+        </border>
+        <children/>
+      </grid>
+      <component id="9c4e1" class="javax.swing.JTextField" binding="msgEnter">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="182" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <foreground color="-3355444"/>
+          <text value="Type your message here..."/>
+        </properties>
+      </component>
+      <hspacer id="549f8">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="509ba" class="javax.swing.JButton" binding="sendbtn">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="30" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <borderPainted value="true"/>
+          <contentAreaFilled value="false"/>
+          <enabled value="true"/>
+          <icon value="send-resizeimage.png"/>
+          <opaque value="false"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="5317d" class="javax.swing.JButton" binding="buttonCreateCH">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="126" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="Create Channel"/>
+        </properties>
+      </component>
+      <scrollpane id="b0f43">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <component id="d277b" class="javax.swing.JTextPane" binding="msgSpace">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <scrollpane id="b774a">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="b3177" class="javax.swing.JTextPane" binding="listUsers">
+            <constraints/>
+            <properties>
+              <margin top="3" left="3" bottom="3" right="3"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+    </children>
+  </grid>
+</form>

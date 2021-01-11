@@ -1,5 +1,6 @@
 package test;
 
+import client.Client;
 import controller.user.UserService;
 import model.SlackSystem;
 import model.user.User;
@@ -10,7 +11,9 @@ import java.sql.SQLException;
 
 public class Test {
     public static void main(String[] arg) throws SQLException {
+
         SlackSystem slackSystem = new SlackSystem();
+        Client client=new Client(null,null);
         /*String email="radj@sin.nahi", mdp = "@12!AZzzx", mdp1 = "@12!AZzzx";
         email = readString("Email");
         mdp = readString("Password");*/
@@ -32,7 +35,7 @@ public class Test {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HomePage(slackSystem,userService);
+                new HomePage(client,slackSystem,userService);
 
             }
         });

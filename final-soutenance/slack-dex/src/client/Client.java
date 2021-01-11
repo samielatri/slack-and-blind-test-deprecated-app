@@ -1,5 +1,6 @@
 package client;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -8,85 +9,87 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 
-//import javafx.scene.control.TextArea;
 import model.communication.Message;
-import model.communication.Message;
+
 
 public class Client implements Runnable {
 
-    // User defined Fields
-    private String host = "localhost";
-    private int port = 62000;
-    private Message message;
+	// User defined Fields
+	private String host = "localhost";
+	private int port = 62000;
+	private Message message;
 
-    // For Socket Connection
-    Socket socket;
-    ObjectInputStream input = null;
-    ObjectOutputStream output = null;
+	// For Socket Connection
+	Socket socket;
+	ObjectInputStream input = null;
+	ObjectOutputStream output = null;
 
-    private static ArrayList<Message> messages = new ArrayList<>();
+	TextArea M_output;
+	private static ArrayList<Message> messages = new ArrayList<>();
 
-    public Client(Message message) {
-        this.message = message;
-    }
+	public Client(Message message, TextArea M_output) {
+		this.message = message;
+		this.M_output = M_output;
+	}
 
-    @Override
-    public void run() {
-        try {
-            InetAddress ip = InetAddress.getByName(host);
+	@Override
+	public void run() {
+		try {
+			InetAddress ip = InetAddress.getByName(host);
 
-            socket = new Socket(ip, port);
+			socket = new Socket(ip, port);
 
-            output = new ObjectOutputStream(socket.getOutputStream());
-            input = new ObjectInputStream(socket.getInputStream());
+			output = new ObjectOutputStream(socket.getOutputStream());
+			input = new ObjectInputStream(socket.getInputStream());
 
-            output.writeObject(message);
-            resetStream();
+			output.writeObject(message);
+			resetStream();
 
-            while (!(socket.isClosed())) {
-                Message message = (Message) input.readObject();
-                messages.add(message);
-                System.out.println(message.toString());
-            }
+			while (!(socket.isClosed())) {
+				Message message = (Message) input.readObject();
+				messages.add(message);
+				//.setMessages(messages);
+				M_output.appendText(message.getSender().getShownName() + ":" + message.getContent() + "\n");
+				System.out.println(message.toString());
+			}
 
-//			closeConnection();
+			closeConnection();
 
-        } catch (IOException | ClassNotFoundException ex) {
-            System.out.println("client" + ex.getMessage());
+		} catch (IOException | ClassNotFoundException ex) {
+			System.out.println("Client" + ex.getMessage());
 
-        }
-    }
+		}
+	}
 
-    public void closeConnection() {
-        try {
-            socket.close();
-            output.close();
-            input.close();
-            System.out.println("Client Closed Connection");
+	public void closeConnection() {
+		try {
+			socket.close();
+			output.close();
+			input.close();
+			System.out.println("Client Closed Connection");
 
-        } catch (IOException ex) {
-            System.out.println("client" + ex.getMessage());
-        }
-    }
+		} catch (IOException ex) {
+			System.out.println("Client" + ex.getMessage());
+		}
+	}
 
-    public void sendMessage(Message message) {
+	public void sendMessage(Message message) {
 
-        try {
-            output.writeObject(message);
-            resetStream();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+		try {
+			output.writeObject(message);
+			resetStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-    public void resetStream() {
-        try {
-            output.flush();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+	public void resetStream() {
+		try {
+			output.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

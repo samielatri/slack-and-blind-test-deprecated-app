@@ -20,9 +20,13 @@ public class Server {
 
 			while (true) {
 				Socket socket = serverSocket.accept();
+
 				System.out.println("Inbound Connection #" + i);
+				// create a new User
 				ServerThread newUser = new ServerThread(socket, this);
+				// add new User to list
 				userThreads.add(newUser);
+
 				newUser.start();
 				i++;
 			}
@@ -55,6 +59,8 @@ public class Server {
 
 	void broadcast(Message message, ServerThread excludeUser) throws IOException {
 		for (ServerThread user : userThreads) {
+			System.out.println("Channel: " + user.workspace.getChannel());
+
 			if (user.workspace.getChannel() != null) {
 				String channel = user.workspace.getChannel();
 				if (message.getWorkspace().getChannel().equals(channel)) {

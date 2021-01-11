@@ -1,5 +1,6 @@
 package view;
 
+import client.Client;
 import controller.user.UserService;
 import model.SlackSystem;
 
@@ -14,7 +15,7 @@ public class HomePage extends JFrame {
     private JButton signInButton;
     private JButton signUpButton;
 
-    public HomePage(SlackSystem slackSystem,UserService userService){
+    public HomePage(Client client, SlackSystem slackSystem, UserService userService){
         add(Home);
         setSize(600,400);
         setTitle("app.Slack Home Page");
@@ -28,7 +29,7 @@ public class HomePage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new SignInPage(slackSystem,userService);
+                new SignInPage(client,slackSystem,userService);
             }
         });
 
@@ -38,7 +39,7 @@ public class HomePage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 try {
-                    new SignUpPage(slackSystem,userService);
+                    new SignUpPage(client,slackSystem,userService);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

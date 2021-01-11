@@ -44,7 +44,8 @@ public class ServerThread extends Thread {
 				} else {
 					Message received = (Message) input.readObject();
 
-					workspace = received.getWorkspace();
+					Workspace newworkspace = received.getWorkspace();
+					workspace = newworkspace;
 					System.out.println(received.toString());
 					if (!received.getContent().equals("")) {
 						server.broadcast(received, this);

@@ -16,14 +16,25 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `workspace`
+-- Table structure for table `workspace`
 --
 
-LOCK TABLES `workspace` WRITE;
-/*!40000 ALTER TABLE `workspace` DISABLE KEYS */;
-INSERT INTO `workspace` VALUES (1,'CH1',1,',1','','','8180'),(2,'C2CVF',2,',1','','','4075'),(3,'sfesgre',2,',4','','','9101'),(4,'fw4rt',3,',2','','','6548'),(5,'gre',2,',6',',7','','3179');
-/*!40000 ALTER TABLE `workspace` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `workspace`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `workspace` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `createdby` int NOT NULL,
+  `admin` varchar(255) DEFAULT NULL,
+  `member` varchar(255) DEFAULT NULL,
+  `bannedusers` varchar(255) DEFAULT NULL,
+  `channel` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `created_idx` (`createdby`),
+  CONSTRAINT `created` FOREIGN KEY (`createdby`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -34,4 +45,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-06 23:11:29
+-- Dump completed on 2021-01-07 21:51:28

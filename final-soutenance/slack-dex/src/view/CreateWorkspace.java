@@ -1,5 +1,6 @@
 package view;
 
+import client.Client;
 import controller.communication.WorkspaceServiceDAO;
 import database.SQLWorkspaceDAO;
 import model.SlackSystem;
@@ -16,7 +17,7 @@ import java.sql.SQLException;
 public class CreateWorkspace extends JFrame{
     private Workspace wp;
 
-    public CreateWorkspace(SlackSystem slackSystem) throws SQLException {
+    public CreateWorkspace(Client client, SlackSystem slackSystem) throws SQLException {
         JPanel createWSPage = new JPanel();
         JTextField wkName=new JTextField();
         GridBagLayout gridbag = new GridBagLayout();
@@ -54,7 +55,7 @@ public class CreateWorkspace extends JFrame{
                 }
                 JOptionPane.showMessageDialog(createWSPage,"Your workspace was successfully created");
                 dispose();
-                new WelcomePage(slackSystem);
+                new WelcomePage(client,slackSystem);
             }
         });
         setVisible(true);

@@ -28,10 +28,10 @@ public class ChannelServiceDAO{
         ch = DAOChannel.select(idChannel);
         if(ch != null) {
             System.out.println("this channel name already exist, please choose another name");
+            return null;
         }
-        System.out.println("Enter the name of the channel");
 
-        channel = new WorkspaceChannel(idChannel,slackSystem.getCurrentConnectedProfile());
+        channel = new WorkspaceChannel(idChannel);
         channel.setWorkspaceId(slackSystem.getCurrentConnectedWorkspace().getId());
 
         ch = DAOChannel.insert(channel);
@@ -43,7 +43,7 @@ public class ChannelServiceDAO{
     }
 
 
-    /*********************************************************
+    /**********************************************************/
 
 
 
@@ -54,26 +54,17 @@ public class ChannelServiceDAO{
 
 
     //called by a profile
-    public void deleteCh(WorkspaceChannel channel){
-        ArrayList<Profile> chProfiles = new ArrayList<Profile>();
+     public void deleteCh(WorkspaceChannel channel){
 
-        if(connectedProfile.getIsAdminCh() == 0){
-            System.out.println("you don't have any right on this channel");
-        }else {
-            //take the role of admin from the profiles that are admins on this channel
-            chProfiles = (ArrayList<Profile>) DAOProfile.selectAll();
-            for(Profile profile : chProfiles){
-                if(profile.isAdminCh()==1){
-                    profile.setIsAdminCh(0);
-                }
-            }
-            //delete the channel
-            DAOChannel.delete(channel);
-            System.out.println("this channel has been deleted successfully");
-        }
-    }
+     if(slackSystem.getCurrentConnectedProfile().getIsWorkspaceAdmin()){
+         DAOChannel.delete(channel);
+         System.out.println("this channel has been deleted successfully");
+         }else {
+         System.out.println("this channel couldn't be deleted");
+         }
+     }
 
-    public void editCh(WorkspaceChannel channel) throws SQLException {//called by a profile
+    /*public void editCh(WorkspaceChannel channel) throws SQLException {//called by a profile
         String newName;
         Scanner buff;
         WorkspaceChannel wsChannel;
