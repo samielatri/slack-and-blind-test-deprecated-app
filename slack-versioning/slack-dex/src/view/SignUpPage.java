@@ -41,10 +41,12 @@ public class SignUpPage extends JFrame {
                     if (userService.register(emailEnter,passwordEnter,passwordEnter2)==null) {
                         JOptionPane.showMessageDialog(SignUp,"Password doesn't match !","LEGO Slack warning",
                                 JOptionPane.WARNING_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(SignUp,"User successfully registered !");
+                        dispose();
+                        new WelcomePage(slackSystem);
                     }
-                    JOptionPane.showMessageDialog(SignUp,"User successfully registered !");
-                    dispose();
-                    new WelcomePage(slackSystem);
+
 
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();

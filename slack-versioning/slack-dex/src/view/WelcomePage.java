@@ -12,6 +12,9 @@ public class WelcomePage extends JFrame{
 
 
     private JLabel welcomeName;
+    private JPanel welcomePage;
+    private JButton createWorkspaceButton;
+    private JButton joinWorkspaceButton;
 
     public WelcomePage(SlackSystem slackSystem) {
         JPanel welcomePage = new JPanel();

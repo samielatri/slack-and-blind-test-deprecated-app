@@ -10,7 +10,7 @@ import java.sql.*;
 public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 	Connection conn = DBConnection.createConnection();
 	Statement state = conn.createStatement();
-	ResultSet res=null;
+	ResultSet res=null, res2=null;
 	private SlackSystem system=new SlackSystem();
 
 	public SQLWorkspaceDAO() throws SQLException {
@@ -28,11 +28,10 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 					System.out.println("This name of workspace is already taken");
 				}
 			}
-			String sql= "INSERT INTO workspace (idProfile, nameWK) VALUES (?,?)";
+			String sql= "INSERT INTO workspace (nameWK) VALUES (?)";
 			PreparedStatement pstate= conn.prepareStatement(sql);
-			pstate.setString(1,system.getCurrentConnectedProfile().getId());
-			pstate.setString(2,obj.getName());
-			res=pstate.executeQuery();
+			pstate.setString(1,obj.getName());
+			res2=pstate.executeQuery();
 			System.out.println("Workspace successfully created !");
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -80,7 +79,7 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 			pstate.setString(1,key);
 			res=pstate.executeQuery();
 			while (res.next()){
-				w=new Workspace(res.getString("nameWK"),system.getCurrentConnectedProfile());
+				w=new Workspace(res.getString("nameWK"));
 			}
 		}catch (SQLException e){
 			e.printStackTrace();
@@ -106,7 +105,7 @@ public class SQLWorkspaceDAO extends AbstractSQLDAO<Workspace> {
 
 	@Override
 	protected Workspace create(ResultSet rs) throws SQLException {
-		return new Workspace(rs.getString("nameWk"),system.getCurrentConnectedProfile());
+		return new Workspace(rs.getString("nameWk"));
 	}
 
 	@Override

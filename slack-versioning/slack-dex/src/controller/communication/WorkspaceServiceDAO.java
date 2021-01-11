@@ -122,8 +122,8 @@ public class WorkspaceServiceDAO {
 
         //create a profile for the user who's creating the workspace
         Profile profile;
+        workspace = new Workspace(workspaceName);
         profile = profileServiceDAO.createProfile(slackSystem.getCurrentConnectedUser().getId(),workspace.getId());
-        workspace = new Workspace(workspaceName,profile);
         ws = DAOWorkspace.insert(workspace);
         //put the creator as an admin
         profile.setIsWorkspaceAdmin(true);

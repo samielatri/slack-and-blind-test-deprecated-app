@@ -43,10 +43,12 @@ public class SignInPage extends JFrame {
                     if(userService.login(emailEnter, passwordEnter)==null){
                         JOptionPane.showMessageDialog(loginPage,"Wrong password or wrong username","LEGO Slack warning",
                                 JOptionPane.WARNING_MESSAGE);
+                    }else {
+                        JOptionPane.showMessageDialog(loginPage,"You're now connected");
+                        dispose();
+                        new WelcomePage(slackSystem);
                     }
-                    JOptionPane.showMessageDialog(loginPage,"You're now connected");
-                    dispose();
-                    new WelcomePage(slackSystem);
+
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

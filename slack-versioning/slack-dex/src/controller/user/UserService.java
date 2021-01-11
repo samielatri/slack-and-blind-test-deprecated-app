@@ -84,7 +84,7 @@ public class UserService {
 
         User userToLogin = null;
         for (User user : DAOUser.selectAll()) {
-            if (user.getId().equalsIgnoreCase(inputedEmail)) {
+            if ((user.getId().equals(inputedEmail))&&(user.getPassword().equals(inputedPassword))) {
                 userToLogin = user;
                 break;
             }

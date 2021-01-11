@@ -54,7 +54,7 @@ public class CreateWorkspace extends JFrame{
                 }
                 JOptionPane.showMessageDialog(createWSPage,"Your workspace was successfully created");
                 dispose();
-                //new WelcomePage();
+                new WelcomePage(slackSystem);
             }
         });
         setVisible(true);

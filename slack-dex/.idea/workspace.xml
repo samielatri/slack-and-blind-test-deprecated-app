@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7835635e-6599-4a11-aaff-95e2f4f40cf5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/client/client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/client/src/com/music/blind_test/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/client/src/com/music/blind_test/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/CreateGameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/CreateGameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/EndRoundData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/EndRoundData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/GameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/GameInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/Packet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/StartRoundData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/StartRoundData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/SubmitSolutionData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/SubmitSolutionData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/common/common.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/music-blind-test-main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/music-blind-test-main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/server/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/server/src/com/music/blind_test/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blind_final_building/music-blind-test-main/server/src/com/music/blind_test/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/blindtest.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/blindtest.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/blindtest_piscine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/blindtest_piscine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/BlindTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/BlindTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/control/QuestionH.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/control/QuestionH.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/database/ConnectionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/database/ConnectionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/database/Questions.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/database/Questions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/database/Reponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/database/Reponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/BlindTestHome.form" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/BlindTestHome.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/BlindTestHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/BlindTestHome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/GameOver.form" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/GameOver.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/GameOver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/PlayPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/PlayPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/PlayPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../blind-test-versioning/blindtest_piscine/src/vue/PlayPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/database_dump/alpha_database_dump/lego-slack-db-script.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/database_dump/alpha_database_dump/lego-slack-db-script.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/slack-dex.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/slack-dex.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/slack.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/slack.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/HomeMenuOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/HomeMenuOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/communication/ChannelServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/communication/ChannelServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/communication/ConversationServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/communication/ConversationServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/communication/MessagetServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/communication/MessagetServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/communication/WorkspaceServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/communication/WorkspaceServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/user/ProfileServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/user/ProfileServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/controller/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/AbstractSQLDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/AbstractSQLDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/DAOFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/MemoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/MemoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLMessageChannelDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLMessageChannelDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLMessageDirectDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLMessageDirectDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLProfileDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLProfileDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLWorkspaceChannelDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLWorkspaceChannelDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLWorkspaceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/database/SQLWorkspaceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/HasId.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/HasId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/SlackSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/SlackSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/communication/Conversation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/communication/Conversation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/communication/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/communication/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/communication/Workspace.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/communication/Workspace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/communication/WorkspaceChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/communication/WorkspaceChannel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/user/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/user/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/model/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/server/ColorInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/server/ColorInt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/server/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/server/ServerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/server/ServerUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/server/ServerUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/server/ServerUserHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/server/ServerUserHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/test/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/tool/DataManipulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/tool/DataManipulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/tool/Keyboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/tool/Keyboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/tool/ListManipulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/tool/ListManipulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/CreateWorkspace.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/CreateWorkspace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/HomePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/HomePage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/LoginFormEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/LoginFormEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/LoginListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/LoginListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/SignInPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/SignInPage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/SignInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/SignInPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/SignUpPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/SignUpPage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/SignUpPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack-dex/src/view/SignUpPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/alpha_database_dump/lego-slack-db-script.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/alpha_database_dump/lego-slack-db-script.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_messagechannel.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_messagechannel.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_messagedirect.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_messagedirect.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_profile.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_profile.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_user.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_workspace.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_workspace.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_workspacechannel.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/database_dump/beta_database_dump/slack_workspacechannel.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/slack.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/slack.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/application/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/application/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/AbstractServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/AbstractServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/HomeMenuOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/HomeMenuOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/communication/ChannelServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/communication/ChannelServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/communication/ConversationServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/communication/ConversationServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/communication/MessagetServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/communication/MessagetServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/communication/WorkspaceServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/communication/WorkspaceServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/user/ProfileServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/user/ProfileServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/user/UserServiceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/controller/user/UserServiceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/AbstractSQLDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/AbstractSQLDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/DAOFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/MemoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/MemoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLMessageChannelDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLMessageChannelDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLMessageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLMessageDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLMessageDirectDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLMessageDirectDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLProfileDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLProfileDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLWorkspaceChannelDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLWorkspaceChannelDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLWorkspaceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/database/SQLWorkspaceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/model/HasId.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/model/HasId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/model/SlackSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/model/SlackSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/model/communication/Conversation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/model/communication/Conversation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/model/communication/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/model/communication/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/model/communication/Workspace.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/model/communication/Workspace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/model/communication/WorkspaceChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/model/communication/WorkspaceChannel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/model/user/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/model/user/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/model/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/server/ColorInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/server/ColorInt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/server/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/server/ServerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/server/ServerUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/server/ServerUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/server/ServerUserHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/server/ServerUserHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/test/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/tool/DataManipulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/tool/DataManipulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/tool/Keyboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/tool/Keyboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/tool/ListManipulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/tool/ListManipulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/ChatPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/ChatPage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/ChatPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/ChatPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/CreateChannel.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/CreateChannel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/CreateChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/CreateChannel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/CreateWorkspace.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/CreateWorkspace.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/CreateWorkspace.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/CreateWorkspace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/HomePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/HomePage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/LoginFormEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/LoginFormEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/LoginListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/LoginListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/ProfileUser.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/ProfileUser.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/ProfileUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/ProfileUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/SignInPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/SignInPage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/SignInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/SignInPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/SignUpPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/SignUpPage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/SignUpPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/SignUpPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/WelcomePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/WelcomePage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/WelcomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/WelcomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/WorkspacePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/WorkspacePage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slack-versioning/slack/src/view/WorkspacePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../slack-versioning/slack/src/view/WorkspacePage.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1msktjF6j4rZLU9ME3u2OJ7j2jf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../slack-versioning/slack-dex" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.Test" />
+      <module name="slack-dex" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7835635e-6599-4a11-aaff-95e2f4f40cf5" name="Default Changelist" comment="" />
+      <created>1610289902683</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610289902683</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="473" y="154" key="FileChooserDialogImpl" timestamp="1610306734208">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="473" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1610306734208" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1610305819449">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610305819449" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1610305819449">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610305819449" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1610305819448">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610305819448" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1610305819449">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610305819449" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1610290276034">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1610290276034" />
+  </component>
+</project>

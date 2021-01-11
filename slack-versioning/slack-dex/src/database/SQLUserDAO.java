@@ -76,7 +76,7 @@ public class SQLUserDAO extends AbstractSQLDAO<User> {
                 }
             }
 
-            String sqlInsertionQuery= "INSERT INTO user (mail, password) VALUES (?,MD5(?))";
+            String sqlInsertionQuery= "INSERT INTO user (mail, password) VALUES (?,?)";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sqlInsertionQuery);
             preparedStatement.setString( 1,user.getEmail() );

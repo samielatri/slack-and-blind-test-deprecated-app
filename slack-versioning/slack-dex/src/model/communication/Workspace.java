@@ -21,10 +21,8 @@ public class Workspace implements HasId {
     private ArrayList<Profile> bannedProfiles; // list of the banned users of the workspace
 
     /* constructors */
-    public Workspace(String name, Profile creatorProfile){
+    public Workspace(String name){
         this.name = name;
-        memberProfiles.add(creatorProfile);
-        adminProfiles.add(creatorProfile);
     }
 
     /* accessors */
