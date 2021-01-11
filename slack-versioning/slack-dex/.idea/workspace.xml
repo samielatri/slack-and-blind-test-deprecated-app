@@ -22,62 +22,10 @@
     <list default="true" id="f016ee8b-1f32-4ae0-a838-4fc5def4bf35" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/.idea/blind-test-versioning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/.idea/blind-test-versioning.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/.idea/libraries/mysql_connector_java_8_0_22.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/.idea/libraries/mysql_connector_java_8_0_22.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/aws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/aws.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/music-blind-test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/music-blind-test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/runConfigurations/Client.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/runConfigurations/Client.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/runConfigurations/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/runConfigurations/Server.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/GameClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/GameClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/ConnectToServer.form" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/ConnectToServer.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/ConnectToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/ConnectToServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/CreateGame.form" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/CreateGame.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/CreateGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/CreateGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/GameLobby.form" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/GameLobby.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/GameLobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/GameLobby.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/OngoingGame.form" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/OngoingGame.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/OngoingGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/client/src/com/music/blind_test/client/ui/OngoingGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/CreateGameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/CreateGameData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/EndRoundData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/EndRoundData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/GameData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/GameInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/Packet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/StartRoundData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/StartRoundData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/SubmitSolutionData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/common/src/com/music/blind_test/SubmitSolutionData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/dump_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/dump_data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/game/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/game/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/game/Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/game/Games.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/game/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/game/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/game/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/server/src/com/music/blind_test/server/game/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../blind-test-versioning/music-blind-test/tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../final-soutenance/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../final-soutenance/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../final-soutenance/.idea/final-soutenance.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../final-soutenance/.idea/final-soutenance.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../final-soutenance/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../final-soutenance/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../final-soutenance/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../final-soutenance/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../final-soutenance/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../final-soutenance/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../final-soutenance/blindtest_piscine/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../final-soutenance/blindtest_piscine/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../final-soutenance/blindtest_piscine/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../final-soutenance/blindtest_piscine/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../final-soutenance/blindtest_piscine/.idea/libraries/mysql_connector_java_8_0_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../final-soutenance/blindtest_piscine/.idea/libraries/mysql_connector_java_8_0_13.xml" afterDir="false" />
@@ -161,7 +109,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database_dump/alpha_database_dump/lego-slack-db-script.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database_dump/alpha_database_dump/lego-slack-db-script.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/slack-dex.iml" beforeDir="false" afterPath="$PROJECT_DIR$/slack-dex.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/slack.iml" beforeDir="false" afterPath="$PROJECT_DIR$/slack.iml" afterDir="false" />
@@ -324,7 +271,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../final-soutenance" />
+    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/blindtest_piscine" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -382,10 +329,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1610316105791" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1610351615873">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1610352411958">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1610351615873" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1610352411958" />
     <state width="1493" height="228" key="GridCell.Tab.0.bottom" timestamp="1610352346005">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
