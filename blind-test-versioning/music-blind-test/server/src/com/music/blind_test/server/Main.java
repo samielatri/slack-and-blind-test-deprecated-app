@@ -17,7 +17,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException, SQLException {
-        Database database = new Database("jdbc:mysql://localhost/music_blind_test", getDbConfig());
+        Database database = new Database("jdbc:mysql://localhost/blindtest", getDbConfig());
         Users users = new Users(database);
 
         int port = Integer.parseInt(args[0]);
