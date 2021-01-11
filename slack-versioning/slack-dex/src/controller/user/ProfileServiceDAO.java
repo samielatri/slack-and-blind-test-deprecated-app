@@ -206,7 +206,8 @@ public class ProfileServiceDAO {
     public Profile createProfile(String idUsr,String idWs){
         Profile profile = new Profile(idWs,idUsr);
         String id = idUsr+"."+idWs;
-        profile.setUserId(id);
+        profile.setUserId(idUsr);
+        profile.setWorkspaceId(idWs);
         return profile;
     }
 

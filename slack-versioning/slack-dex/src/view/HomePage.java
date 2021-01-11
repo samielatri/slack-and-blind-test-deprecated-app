@@ -1,6 +1,7 @@
 package view;
 
 import controller.user.UserService;
+import model.SlackSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,20 +14,21 @@ public class HomePage extends JFrame {
     private JButton signInButton;
     private JButton signUpButton;
 
-    public HomePage(UserService userService){
+    public HomePage(SlackSystem slackSystem,UserService userService){
         add(Home);
         setSize(600,400);
         setTitle("app.Slack Home Page");
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new GridLayout());
         getContentPane().add(Home);
+        setLocationRelativeTo(null);
 
         //bouton Sign IN
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new SignInPage(userService);
+                new SignInPage(slackSystem,userService);
             }
         });
 
@@ -36,7 +38,7 @@ public class HomePage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 try {
-                    new SignUpPage(userService);
+                    new SignUpPage(slackSystem,userService);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

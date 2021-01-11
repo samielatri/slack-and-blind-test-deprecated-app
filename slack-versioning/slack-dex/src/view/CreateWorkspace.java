@@ -7,27 +7,39 @@ import model.communication.Workspace;
 //import view.WelcomePage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 
 public class CreateWorkspace extends JFrame{
-    private JTextField wkName;
-    private JPanel createWSPage;
-    private JButton CREATEButton;
-    private SQLWorkspaceDAO ws= new SQLWorkspaceDAO();
     private Workspace wp;
-    private SlackSystem system = new SlackSystem();
-    private WorkspaceServiceDAO workspaceServiceDAO = new WorkspaceServiceDAO();
 
-    public CreateWorkspace() throws SQLException {
+    public CreateWorkspace(SlackSystem slackSystem) throws SQLException {
+        JPanel createWSPage = new JPanel();
+        JTextField wkName=new JTextField();
+        GridBagLayout gridbag = new GridBagLayout();
+        GridBagConstraints c=new GridBagConstraints();
+        JButton CREATEButton=new JButton("CREATE");
+        createWSPage.setLayout(gridbag);
+        c.fill = GridBagConstraints.CENTER;
+        c.weightx=2;
+        c.weighty=2;
+        gridbag.setConstraints(createWSPage, c);
         add(createWSPage);
         setSize(300,400);
         setTitle("Create your Workspace");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-
+        CREATEButton.setPreferredSize(new Dimension(100,20));
+        wkName.setPreferredSize(new Dimension(90,20));
+        createWSPage.add(CREATEButton,c);
+        createWSPage.add(wkName,c);
+        setLocationRelativeTo(null);
         //creation du workspace TODO
+        SQLWorkspaceDAO ws= new SQLWorkspaceDAO();
+        WorkspaceServiceDAO workspaceServiceDAO = new WorkspaceServiceDAO(slackSystem);
+
         CREATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

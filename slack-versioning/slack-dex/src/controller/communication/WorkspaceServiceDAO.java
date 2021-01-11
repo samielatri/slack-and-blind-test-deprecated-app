@@ -4,17 +4,25 @@ package controller.communication;
 import controller.user.ProfileServiceDAO;
 import database.DAO;
 import database.DAOFactory;
+import database.SQLProfileDAO;
 import model.SlackSystem;
 import model.communication.Workspace;
 import model.user.Profile;
+import model.user.User;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorkspaceServiceDAO {
     private ProfileServiceDAO profileServiceDAO=new ProfileServiceDAO();
-    private SlackSystem slackSystem=new SlackSystem();
-    private DAO<Workspace> DAOWorkspace;
-    private DAO<Profile> DAOProfile;
+    private DAO<Workspace> DAOWorkspace= DAOFactory.workspace();
+    private DAO<Profile> DAOProfile=DAOFactory.profile();
+    private SlackSystem slackSystem;
+
+    public WorkspaceServiceDAO(SlackSystem slackSystem) throws SQLException {
+        this.slackSystem=slackSystem;
+    }
 
 
     /******************************************
@@ -34,37 +42,20 @@ public class WorkspaceServiceDAO {
         }
         // didn't find and didn't join worskapce
         System.out.println("Workspace is not joined");
-    }
+    }*/
 
-    public void joinWorkspace() {
-        User user = slackSystem.getConnectedUser();
-        ArrayList<Workspace> listWorkspace = slackSystem.getWorkspaces();
-        ArrayList<Workspace> userWorkspace = user.getWorkspaces();
-        String workspaceId = readString("workspace id to join");
+    public void joinWorkspace(String workspaceId) throws SQLException {
+        User user = slackSystem.getCurrentConnectedUser();
 
-        // check in all workspaces if the workspace exists
-        for (Workspace tempWorkspace : listWorkspace) {
-            String tempWorkspaceId = tempWorkspace.getId();
-            if (workspaceId == tempWorkspaceId) {
-                for (Workspace tempUserWorkspace : userWorkspace) {
-                    String tempUserWorkspaceId = tempUserWorkspace.getId();
-                    if (tempUserWorkspaceId == tempWorkspaceId) {
-                        System.out.println("Workpace already joined");
-                        return;
-                    } else {
-                        System.out.println("Joining workspace ...");
-                        userWorkspace.add(tempWorkspace);
-                        user.setWorkspaces(userWorkspace);
-                        System.out.println("workspace joined !");
-                        return;
-                    }
-                }
-            }
+        Profile profile = DAOProfile.select(user.getId() + "." + workspaceId);
+        if(profile == null){
+            profile = profileServiceDAO.createProfile(user.getId(), workspaceId);
         }
-        // didn't find and didn't join worskapce
-        System.out.println("Workspace does not even exist, the user cannot have been joining it and cannot join it either.");
+        slackSystem.setCurrentConnectedProfile(profile);
+        slackSystem.setCurrentConnectedWorkspace(DAOWorkspace.select(workspaceId));
     }
 
+    /*
     public void banMemberFromWorkspace() {
         User connectedUser = slackSystem.getConnectedUser();
         Workspace connectedWorkspace = connectedUser.getCurrentWorkspace();

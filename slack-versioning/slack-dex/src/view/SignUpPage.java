@@ -1,6 +1,7 @@
 package view;
 
 import controller.user.UserService;
+import model.SlackSystem;
 
 
 import javax.swing.*;
@@ -20,12 +21,12 @@ public class SignUpPage extends JFrame {
 
 
 
-    public SignUpPage(UserService userService) throws SQLException {
+    public SignUpPage(SlackSystem slackSystem,UserService userService) throws SQLException {
         add(SignUp);
         setSize(600,600);
         setTitle("app.Slack Login Page");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        
+        setLocationRelativeTo(null);
         
 
         //Inscription de l'user TODO
@@ -43,7 +44,7 @@ public class SignUpPage extends JFrame {
                     }
                     JOptionPane.showMessageDialog(SignUp,"User successfully registered !");
                     dispose();
-                    //new WelcomePage();
+                    new WelcomePage(slackSystem);
 
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();

@@ -97,7 +97,7 @@ public class UserService {
 
         if (DAOUser.signIn(userToLogin) != null) {
             System.out.println("Congrates you are now logged in");
-            slackSystem.setCurrentConnectedUser(userToLogin);
+            slackSystem.setCurrentConnectedUser(new User(userToLogin));
             return userToLogin;
         }
 

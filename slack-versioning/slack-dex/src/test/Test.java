@@ -32,7 +32,7 @@ public class Test {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HomePage(userService);
+                new HomePage(slackSystem,userService);
 
             }
         });

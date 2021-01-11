@@ -36,6 +36,11 @@ public class User implements HasId {
         this.password = password;
     }
 
+    public User(User user) {
+        email = user.email;
+        password = user.password;
+    }
+
     /* accessors */
 
     /**

@@ -22,48 +22,21 @@ public class ChannelServiceDAO{
 
 
     //function called by a profile
-    public WorkspaceChannel createCh(Workspace workspace) throws SQLException {
+    public WorkspaceChannel createCh(String idChannel) throws SQLException {
         WorkspaceChannel channel,ch;
-        String chName;
-        Scanner buffer;
 
-        System.out.println("Enter the name of the channel");
-        do{
-            buffer = new Scanner(System.in);
-            chName = buffer.nextLine();
-            ch = DAOChannel.select(chName);
-            if(ch != null) {
-                System.out.println("this channel name already exist, please choose another name");
-            }
-        }while(ch != null);
-        channel = new WorkspaceChannel(chName);
-        channel.setWsId(workspace.getId());
-
-        //putting the profile that created it as an admin (to change !)
-        String id = currentConnectedUser.getId()+"."+workspace.getId();
-        Profile profile = DAOProfile.select(id);
-        profile.setIsAdminCh(1);
-        DAOProfile.update(profile);
-
-        //choose if you want it to be private or not
-        int choice;
-        System.out.println("do you want this channel to be private ?");
-        System.out.println("1- yes");
-        System.out.println("0- No");
-        buffer = new Scanner(System.in);
-        choice = buffer.nextInt();
-        if(choice == 1) {
-            channel.setPrivate(1);
-            System.out.println("this created channel is private");
-        }else{
-            channel.setPrivate(0);
+        ch = DAOChannel.select(idChannel);
+        if(ch != null) {
+            System.out.println("this channel name already exist, please choose another name");
         }
+        System.out.println("Enter the name of the channel");
+
+        channel = new WorkspaceChannel(idChannel,slackSystem.getCurrentConnectedProfile());
+        channel.setWorkspaceId(slackSystem.getCurrentConnectedWorkspace().getId());
 
         ch = DAOChannel.insert(channel);
-        if(ch!=null){
-            System.out.println("this channel has been created succefully");
-        }else{
-            System.out.println("this channel hasn't been created ! please try again");
+        if(ch==null){
+            return null;
         }
 
         return channel;
