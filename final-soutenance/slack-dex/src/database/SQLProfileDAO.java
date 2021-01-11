@@ -84,7 +84,7 @@ public class SQLProfileDAO extends AbstractSQLDAO<Profile> {
             pstate.setString(3, obj.getShownName());
             pstate.setString(4,obj.getActualWorkPosition());
             pstate.setString(5,obj.getPhoneNumber());
-            pstate.setObject(6,obj.getTimezone());
+            pstate.setString(6,obj.getTimezone());
             pstate.setString(7,obj.getUsername());
             pstate.setObject(8,obj.getIsWorkspaceAdmin());
             res=pstate.executeQuery();

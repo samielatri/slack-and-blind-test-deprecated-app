@@ -15,10 +15,10 @@ public class Workspace implements HasId {
     private String name; // name of the workspace
 
     // has_many relation type
-    private ArrayList<WorkspaceChannel> workspaceChannels; // list of the channels of the workspace
+    /*private ArrayList<WorkspaceChannel> workspaceChannels; // list of the channels of the workspace
     private ArrayList<Profile> memberProfiles; // list of the users that are members of the workspace (administrators are members too)
     private ArrayList<Profile> adminProfiles; // list of the administrators of the workspace
-    private ArrayList<Profile> bannedProfiles; // list of the banned users of the workspace
+    private ArrayList<Profile> bannedProfiles; // list of the banned users of the workspace*/
 
     /* constructors */
     public Workspace(String name){
@@ -35,7 +35,7 @@ public class Workspace implements HasId {
         this.name = name;
     }
 
-    public ArrayList<WorkspaceChannel> getWorkspaceChannels() {
+    /*public ArrayList<WorkspaceChannel> getWorkspaceChannels() {
         return workspaceChannels;
     }
 
@@ -65,14 +65,14 @@ public class Workspace implements HasId {
 
     public void setBannedProfiles(ArrayList<Profile> bannedProfiles) {
         this.bannedProfiles = bannedProfiles;
-    }
+    }*/
 
     @Override
     public String getId() {
         return name;
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -101,14 +101,14 @@ public class Workspace implements HasId {
 
     /**
      * @return
-     */
+     *
     public long getNumberOfWorkspaceChannels(){
         return ListManipulator.numberOfElements(workspaceChannels);
     }
 
     /**
      *
-     */
+     *
     public long getNumberOfMembers(){
         return ListManipulator.numberOfElements(memberProfiles);
     }
@@ -116,7 +116,7 @@ public class Workspace implements HasId {
     /**
      *
      * @return
-     */
+     *
     public long getNumberOfAdmins(){
         return ListManipulator.numberOfElements(adminProfiles);
     }
@@ -124,16 +124,16 @@ public class Workspace implements HasId {
     /**
      *
      * @return
-     */
+     *
     public long getNumberOfBannedMembers(){
         return ListManipulator.numberOfElements(bannedProfiles);
-    }
+    }*/
 
-    /**
+    /*
      *
      * @return
-     */
+     *
     public long getNumberOfSimpleMembers(){
         return getNumberOfMembers() - getNumberOfAdmins();
-    }
+    }*/
 }
