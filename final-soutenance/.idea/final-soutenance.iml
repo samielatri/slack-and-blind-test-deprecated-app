@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/music-blind-test/common/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/music-blind-test/server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/music-blind-test/client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/blindtest_piscine/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
