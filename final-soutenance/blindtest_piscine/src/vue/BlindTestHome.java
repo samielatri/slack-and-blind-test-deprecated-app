@@ -21,12 +21,11 @@ public class BlindTestHome extends JFrame{
         PLAYButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*try {
+                try {
                     new PlayPanel();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
-                }*/
-                new AskPlayerName();
+                }
             }
         });
         setVisible(true);
